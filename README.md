@@ -2,7 +2,7 @@
 
 Application mobile pour développer son lexique darija marocain niveau C1/C2.
 
-## ⚡ Installer sur iPhone (2 minutes)
+## ⚡ Installer sur iPhone (12 minutes)
 
 ### Étape 1 — Activer GitHub Pages
 
