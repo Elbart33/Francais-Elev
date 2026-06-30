@@ -15,71 +15,88 @@
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#000;--bg2:#0C0C0E;--bg3:#1C1C1E;--bg4:#2C2C2E;--bg5:#3A3A3C;--text:#FFF;--text2:rgba(255,255,255,.75);--text3:rgba(255,255,255,.4);--accent:#5E5CE6;--green:#30D158;--red:#FF453A;--orange:#FF9F0A;--border:rgba(255,255,255,.08);--darija:#BF5AF2}
+:root{--bg:#000;--bg2:#0C0C0E;--bg3:#1C1C1E;--bg4:#2C2C2E;--bg5:#3A3A3C;--text:#FFF;--text2:rgba(255,255,255,.8);--text3:rgba(255,255,255,.5);--accent:#5E5CE6;--green:#30D158;--red:#FF453A;--orange:#FF9F0A;--border:rgba(255,255,255,.08);--darija:#BF5AF2;--darija-bg:rgba(191,90,242,.12)}
 html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif;overflow:hidden;height:100%}
 #root{height:100%}
 .app{max-width:430px;margin:0 auto;height:100vh;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
 .scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .scroll-area::-webkit-scrollbar{display:none}
-.nav-bar{background:rgba(0,0,0,.9);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-top:1px solid var(--border);padding:10px 0 max(20px,env(safe-area-inset-bottom));display:flex;justify-content:space-around;flex-shrink:0}
+.nav-bar{background:rgba(0,0,0,.9);backdrop-filter:blur(30px);border-top:1px solid var(--border);padding:10px 0 max(20px,env(safe-area-inset-bottom));display:flex;justify-content:space-around;flex-shrink:0}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 14px;cursor:pointer;border:none;background:none;color:var(--text3);min-width:56px}
 .nav-item.active{color:var(--text)}
 .nav-icon{font-size:24px}
 .nav-label{font-size:13px;font-weight:600}
 .card{background:var(--bg3);border-radius:20px;border:1px solid var(--border);overflow:hidden}
-.word-hero{margin:16px;border-radius:28px;overflow:hidden;position:relative;min-height:200px;background:linear-gradient(145deg,#1a1a2e,#16213e,#0f3460);border:1px solid rgba(94,92,230,.3);cursor:pointer}
+.word-hero{margin:16px;border-radius:28px;overflow:hidden;position:relative;min-height:220px;background:linear-gradient(145deg,#1a1a2e,#16213e,#0f3460);border:1px solid rgba(94,92,230,.3);cursor:pointer}
 .word-hero-content{padding:24px}
 .word-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(94,92,230,.2);border:1px solid rgba(94,92,230,.4);border-radius:20px;padding:5px 13px;font-size:13px;font-weight:600;color:#8B8EFF;margin-bottom:14px}
-.french-word{font-size:40px;font-weight:700;margin-bottom:6px}
-.transliteration{font-size:19px;color:var(--text2);font-style:italic;margin-bottom:12px}
-.definition-text{font-size:17px;color:var(--text2);line-height:1.6}
-.tag{display:inline-flex;align-items:center;background:var(--bg4);border-radius:8px;padding:5px 11px;font-size:13px;font-weight:500;color:var(--text2)}
+.french-word{font-size:48px;font-weight:700;margin-bottom:6px}
+.transliteration{font-size:21px;color:var(--text2);font-style:italic;margin-bottom:12px}
+.definition-text{font-size:20px;color:var(--text2);line-height:1.6}
+.tag{display:inline-flex;align-items:center;background:var(--bg4);border-radius:8px;padding:5px 11px;font-size:15px;font-weight:500;color:var(--text2)}
 .section{padding:0 16px;margin-bottom:18px}
-.section-title{font-size:22px;font-weight:700;margin-bottom:14px}
-.section-sub{font-size:14px;color:var(--text3);margin-top:-10px;margin-bottom:14px;direction:rtl;text-align:right}
+.section-title{font-size:24px;font-weight:700;margin-bottom:14px}
+.section-sub{font-size:15px;color:var(--text3);margin-top:-10px;margin-bottom:14px;direction:rtl;text-align:right}
 .detail-row{display:flex;justify-content:space-between;padding:15px 16px;border-bottom:1px solid var(--border)}
 .detail-row:last-child{border-bottom:none}
-.detail-label{font-size:15px;color:var(--text3)}
-.detail-value{font-size:15px;color:var(--text);text-align:left;max-width:65%}
-.example-card{background:var(--bg4);border-radius:14px;padding:16px;margin-bottom:10px;font-size:17px;line-height:1.65;border-left:3px solid var(--accent)}
+.detail-label{font-size:16px;color:var(--text3)}
+.detail-value{font-size:16px;color:var(--text);text-align:left;max-width:65%}
+.example-card{background:var(--bg4);border-radius:14px;padding:16px;margin-bottom:10px;font-size:19px;line-height:1.65;border-left:4px solid var(--accent)}
 .srs-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px}
-.srs-btn{border:none;border-radius:14px;padding:16px 8px;font-size:14px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px}
+.srs-btn{border:none;border-radius:14px;padding:16px 8px;font-size:16px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px}
 .srs-btn:active{transform:scale(.95)}
 .srs-btn.unknown{background:rgba(255,69,58,.15);color:#FF453A;border:1px solid rgba(255,69,58,.25)}
 .srs-btn.medium{background:rgba(255,159,10,.15);color:#FF9F0A;border:1px solid rgba(255,159,10,.25)}
 .srs-btn.known{background:rgba(48,209,88,.15);color:#30D158;border:1px solid rgba(48,209,88,.25)}
-.progress-bar-bg{height:5px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.progress-bar-bg{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
 .progress-bar-fill{height:100%;border-radius:3px}
-.level-badge{display:inline-flex;padding:4px 11px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid currentColor}
-.quiz-option{background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:18px;margin-bottom:10px;cursor:pointer;font-size:17px;line-height:1.45}
+.level-badge{display:inline-flex;padding:4px 11px;border-radius:20px;font-size:14px;font-weight:600;border:1px solid currentColor}
+.quiz-option{background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:18px;margin-bottom:10px;cursor:pointer;font-size:20px;line-height:1.45}
 .quiz-option.correct{border-color:var(--green);background:rgba(48,209,88,.08);color:var(--green)}
 .quiz-option.wrong{border-color:var(--red);background:rgba(255,69,58,.08);color:var(--red)}
 .stat-block{flex:1;background:var(--bg3);border-radius:16px;padding:16px;border:1px solid var(--border);text-align:center}
-.stat-num{font-size:30px;font-weight:700}
-.stat-label{font-size:13px;color:var(--text3)}
-.search-bar{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:17px;color:var(--text);width:100%;outline:none}
+.stat-num{font-size:32px;font-weight:700}
+.stat-label{font-size:14px;color:var(--text3)}
+.search-bar{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:18px;color:var(--text);width:100%;outline:none}
 .search-bar::placeholder{color:var(--text3)}
-.immersion-word{background:rgba(94,92,230,.15);border-bottom:1.5px solid var(--accent);cursor:pointer;border-radius:2px}
+.immersion-word{background:rgba(94,92,230,.15);border-bottom:1.5px solid var(--accent);cursor:pointer;border-radius:2px;padding:0 2px}
 .chip-row{display:flex;gap:8px;overflow-x:auto;padding:0 16px 4px;scrollbar-width:none}
 .chip-row::-webkit-scrollbar{display:none}
-.chip{flex-shrink:0;padding:8px 15px;border-radius:20px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2);white-space:nowrap}
+.chip{flex-shrink:0;padding:8px 15px;border-radius:20px;font-size:16px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2);white-space:nowrap}
 .chip.active{border-color:var(--accent);background:rgba(94,92,230,.15);color:var(--text)}
 .word-list-item{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-bottom:1px solid var(--border);cursor:pointer}
 .word-list-item:last-child{border-bottom:none}
 .word-list-left{display:flex;align-items:center;gap:12px}
-.word-french-sm{font-size:22px;font-weight:600}
-.word-translit-sm{font-size:14px;color:var(--text3)}
+.word-french-sm{font-size:23px;font-weight:600}
+.word-translit-sm{font-size:15px;color:var(--text3)}
 .back-btn{width:42px;height:42px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--text)}
 .word-detail-header{padding:20px 16px 0;display:flex;align-items:center;gap:12px}
 .dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;display:inline-block;margin-right:4px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:12px 22px;border-radius:20px;font-size:15px;font-weight:600;z-index:300;max-width:90%;text-align:center}
-.install-tip{margin:12px 16px;background:rgba(94,92,230,.08);border:1px solid rgba(94,92,230,.2);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--text3)}
+.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:12px 22px;border-radius:20px;font-size:16px;font-weight:600;z-index:300;max-width:90%;text-align:center}
+.install-tip{margin:12px 16px;background:rgba(94,92,230,.08);border:1px solid rgba(94,92,230,.2);border-radius:14px;padding:14px 16px;font-size:15px;color:var(--text3)}
 .install-tip strong{color:var(--text2)}
-.tip-darija{background:rgba(191,90,242,.1);border:1px solid rgba(191,90,242,.25);border-radius:14px;padding:14px 16px;margin:12px 0;font-size:17px;line-height:1.6;color:#E5C9FF;direction:rtl;text-align:right}
-.tip-darija::before{content:'💡 '}
-.darija-label{font-size:11px;font-weight:700;color:var(--darija);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;direction:ltr;text-align:left}
-.quiz-feedback{margin-top:14px;background:rgba(191,90,242,.1);border:1px solid rgba(191,90,230,.25);border-radius:14px;padding:14px 16px;font-size:18px;font-weight:600;color:#E5C9FF;direction:rtl;text-align:center}
+.tip-darija{background:var(--darija-bg);border:2px solid rgba(191,90,242,.3);border-radius:16px;padding:20px 22px;margin:16px 0;font-size:22px;line-height:1.8;color:#E5C9FF;direction:rtl;text-align:right;box-shadow:0 4px 16px rgba(191,90,242,.08)}
+.tip-darija .tip-title{font-size:16px;font-weight:700;color:#BF5AF2;text-transform:uppercase;letter-spacing:1px;direction:ltr;text-align:left;margin-bottom:12px}
+.tip-darija .tip-example{background:rgba(255,255,255,.06);border-radius:12px;padding:14px 18px;margin-top:12px;font-size:20px;color:#D4BFFF}
+.tip-darija .tip-icon{font-size:28px;margin-left:12px;display:inline-block}
+.darija-label{font-size:13px;font-weight:700;color:var(--darija);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;direction:ltr;text-align:left}
+.quiz-feedback{margin-top:14px;background:var(--darija-bg);border:1px solid rgba(191,90,230,.25);border-radius:14px;padding:14px 16px;font-size:20px;font-weight:600;color:#E5C9FF;direction:rtl;text-align:center}
+.mission-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:18px;margin:12px 16px}
+.mission-step{display:flex;align-items:center;gap:14px;background:var(--bg4);border-radius:14px;padding:14px 16px;cursor:pointer;transition:background .2s}
+.mission-step:active{background:var(--bg5)}
+.mission-step .step-icon{font-size:24px;flex-shrink:0}
+.mission-step .step-content{flex:1}
+.mission-step .step-title{font-size:17px;font-weight:600}
+.mission-step .step-sub{font-size:15px;color:var(--text3)}
+.mission-step .step-arrow{font-size:20px;color:var(--text3)}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border)}
+.settings-row:last-child{border-bottom:none}
+.settings-label{font-size:17px;color:var(--text2)}
+.settings-value{font-size:17px;color:var(--text)}
+.size-btn{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:8px 16px;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.size-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.size-btn:active{transform:scale(.95)}
 </style>
 </head>
 <body>
@@ -87,9 +104,9 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 <script>
 const{useState,useEffect,useRef,useMemo}=React;
 
-let V=[],TEXTS=[],CATS=[],PARCOURS=[],UNITS=[],LEVELS=[];
-const DARIJA_CORRECT=['\ud83c\udf89 \u0635\u062d\u064a\u062d! \u0632\u064a\u0646 \u0639\u0644\u064a\u0643','\u2705 \u0647\u0627\u0643 \u0648\u0627\u062d\u062f \u0622\u062e\u0631\u060c \u0646\u062a\u0627 \u0641\u0627\u0644\u0637\u0631\u064a\u0642 \u0627\u0644\u0632\u064a\u0646\u0629','\ud83d\udcaa \u0628\u0631\u0627\u0641\u0648\u060c \u0643\u0645\u0644 \u0647\u0643\u0627','\ud83d\udd25 \u0648\u0627\u0639\u0631! \u0628\u0642\u0649 \u0645\u0627\u0634\u064a'];
-const DARIJA_WRONG=['\ud83d\udca1 \u0645\u0627\u0634\u064a \u0647\u064a\u060c \u0634\u0648\u0641 \u0627\u0644\u062a\u0644\u0645\u064a\u062d \u0648\u0643\u0645\u0644','\ud83d\udd01 \u0645\u0627\u0643\u0627\u064a\u0646\u0634 \u0645\u0634\u0643\u0644\u060c \u0627\u0644\u062a\u0643\u0631\u0627\u0631 \u0643\u064a\u0641\u0647\u0645\u0643 \u0645\u0632\u064a\u0627\u0646','\ud83d\udcda \u0642\u0631\u064a\u0628 \u0628\u0632\u0627\u0641\u060c \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649','\ud83c\udf31 \u0627\u0644\u063a\u0644\u0637 \u062c\u0632\u0621 \u0645\u0646 \u0627\u0644\u062a\u0639\u0644\u0645\u060c \u0643\u0645\u0644 \u0628\u0644\u0627 \u0645\u0627 \u062a\u0642\u0644\u0642'];
+let V=[],TEXTS=[],CATS=[],PARCOURS=[],UNITS=[],LEVELS=[],EXPRESSIONS=[];
+const DARIJA_CORRECT=['🎉 صحيح! زين عليك','✅ هاك واحد آخر، نتا ف الطريق الزينة','💪 برافو، كمّل هكا','🔥 واعر! بقى ماشي'];
+const DARIJA_WRONG=['💡 ماشي هي، شوف التلميح وكمّل','🔄 ماكاينش مشكل، التكرار كيفهمك مزيان','📚 قريب بزاف، حاول مرة أخرى','🌱 الغلط جزء من التعلم، كمّل بلا ما تقلق'];
 
 function getWord(id){return V.find(w=>w.id===id)}
 function getWords(ids){return ids.map(id=>getWord(id)).filter(Boolean)}
@@ -100,6 +117,8 @@ function loadStats(){try{return JSON.parse(localStorage.getItem('fstats')||'{}')
 function saveStats(s){try{localStorage.setItem('fstats',JSON.stringify(s))}catch(e){}}
 function loadUnitProg(){try{return JSON.parse(localStorage.getItem('funits')||'{}')}catch(e){return{}}}
 function saveUnitProg(p){try{localStorage.setItem('funits',JSON.stringify(p))}catch(e){}}
+function loadFontSize(){try{return localStorage.getItem('ffontsize')||'medium'}catch(e){return'medium'}}
+function saveFontSize(s){try{localStorage.setItem('ffontsize',s)}catch(e){}}
 function isDue(card){if(!card)return true;return new Date(card.due)<=new Date()}
 function dayOfYear(d){return Math.floor((d-new Date(d.getFullYear(),0,0))/86400000)}
 
@@ -120,93 +139,110 @@ function warmUp(){try{if(!window.speechSynthesis)return;const synth=window.speec
 
 function LevelBadge({level}){const f=LEVELS.find(l=>l.id===level)||LEVELS[0];return React.createElement('span',{className:'level-badge',style:{color:f.color,borderColor:f.color+'44'}},f.label)}
 
-function WordDetail({word,onBack,onSRS,srs,onGoText}){
+function TipDarija({title,children,example}){
+return React.createElement('div',{className:'tip-darija'},
+React.createElement('div',{className:'tip-title'},React.createElement('span',{className:'tip-icon'},'💡'),' ',title||'نصيحة بالدارجة'),
+children,
+example&&React.createElement('div',{className:'tip-example'},'📖 '+example)
+);
+}
+
+function WordDetail({word,onBack,onSRS,srs,onGoText,fontSize}){
 const[showAll,setShowAll]=useState(false);
 const card=srs[word.id]||null;
 const[chosen,setChosen]=useState(card?card.status:null);
 const handle=q=>{const c=q===0?'unknown':q===1?'medium':'known';setChosen(c);const n=reviewCard(srs,word.id,q);saveSRS(n);setTimeout(()=>onSRS(n),200)};
 const ctx=TEXTS.filter(t=>t.w.includes(word.a));
+const expr=EXPRESSIONS.filter(e=>e.unit===word.unit||!e.unit);
+const style=fontSize?{fontSize:fontSize+'px'}:{};
 return React.createElement('div',{style:{paddingBottom:20}},
 React.createElement('div',{className:'word-detail-header'},
-React.createElement('button',{className:'back-btn',onClick:onBack},'\u2190'),
-React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'D\u00e9tail')
+React.createElement('button',{className:'back-btn',onClick:onBack},'←'),
+React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'Détail')
 ),
 React.createElement('div',{className:'word-hero',style:{cursor:'default',marginTop:16}},
 React.createElement('div',{className:'word-hero-content'},
 React.createElement('div',{style:{display:'flex',justifyContent:'space-between'}},
 React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),word.r),
-React.createElement('button',{onClick:()=>speak(word.a),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer'}},'\ud83d\udd0a')
+React.createElement('button',{onClick:()=>speak(word.a),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer'}},'🔊')
 ),
-React.createElement('div',{className:'french-word'},word.a),
+React.createElement('div',{className:'french-word',style:style},word.a),
 React.createElement('div',{className:'transliteration'},word.t),
-React.createElement('div',{className:'definition-text'},word.d)
+React.createElement('div',{className:'definition-text',style:style},word.d)
 )
 ),
 ctx.length>0&&React.createElement('div',{style:{padding:'0 16px 16px'}},
-React.createElement('button',{onClick:()=>onGoText(ctx[0].id),style:{width:'100%',background:'rgba(94,92,230,.15)',border:'1px solid rgba(94,92,230,.4)',borderRadius:12,padding:'12px',color:'#A8A6FF',fontSize:15,fontWeight:600,cursor:'pointer'}},'\ud83d\udcd6 Voir en contexte \u2014 '+ctx[0].t)
+React.createElement('button',{onClick:()=>onGoText(ctx[0].id),style:{width:'100%',background:'rgba(94,92,230,.15)',border:'1px solid rgba(94,92,230,.4)',borderRadius:12,padding:'12px',color:'#A8A6FF',fontSize:15,fontWeight:600,cursor:'pointer'}},'📖 Voir en contexte — '+ctx[0].t)
 ),
 React.createElement('div',{style:{display:'flex',gap:8,padding:'0 16px 16px',flexWrap:'wrap'}},
 React.createElement(LevelBadge,{level:word.l}),
-React.createElement('span',{className:'tag'},'\ud83c\udf0d '+word.o),
-React.createElement('span',{className:'tag'},'\ud83d\udcca '+word.f),
-card&&React.createElement('span',{className:'tag'},'\u23f3 r\u00e9vision '+new Date(card.due).toLocaleDateString('fr-FR',{day:'numeric',month:'short'}))
+React.createElement('span',{className:'tag'},'🌍 '+word.o),
+React.createElement('span',{className:'tag'},'📊 '+word.f),
+card&&React.createElement('span',{className:'tag'},'⏳ révision '+new Date(card.due).toLocaleDateString('fr-FR',{day:'numeric',month:'short'}))
+),
+word.tip&&React.createElement('div',{className:'section'},
+React.createElement(TipDarija,{title:'نصيحة لفهم الكلمة',example:word.tipExample},word.tip)
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card'},
 React.createElement('div',{style:{padding:16}},
-React.createElement('div',{style:{fontSize:13,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'NUANCE'),
-React.createElement('div',{style:{fontSize:17,color:'var(--text2)',lineHeight:1.5}},word.n)
+React.createElement('div',{style:{fontSize:14,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'NUANCE'),
+React.createElement('div',{style:{fontSize:19,color:'var(--text2)',lineHeight:1.5}},word.n)
 )
 ),
-word.glose&&React.createElement('div',{className:'tip-darija',style:{marginTop:12}},
-React.createElement('div',{className:'darija-label'},'\ud83d\udde3\ufe0f \u0628\u0627\u0644\u062f\u0627\u0631\u062c\u0629 \u2014 \u0641\u0647\u0645 \u0627\u0644\u0643\u0644\u0645\u0629'),
-word.glose
+word.glose&&React.createElement('div',{className:'section'},
+React.createElement(TipDarija,{title:'بالدارجة — شرح الكلمة'},word.glose)
 )
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card'},
 React.createElement('div',{className:'detail-row'},
 React.createElement('span',{className:'detail-label'},'Synonymes'),
-React.createElement('span',{className:'detail-value'},word.syn.join(' \u00b7 '))
+React.createElement('span',{className:'detail-value'},word.syn.join(' · '))
 ),
 React.createElement('div',{className:'detail-row'},
 React.createElement('span',{className:'detail-label'},'Antonymes'),
-React.createElement('span',{className:'detail-value'},word.ant.join(' \u00b7 '))
+React.createElement('span',{className:'detail-value'},word.ant.join(' · '))
 )
 )
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},
 React.createElement('div',{className:'section-title',style:{marginBottom:0}},'Exemples'),
-React.createElement('button',{onClick:()=>setShowAll(!showAll),style:{background:'none',border:'none',color:'var(--accent)',fontSize:15,cursor:'pointer'}},showAll?'R\u00e9duire':'Voir tout')
+React.createElement('button',{onClick:()=>setShowAll(!showAll),style:{background:'none',border:'none',color:'var(--accent)',fontSize:15,cursor:'pointer'}},showAll?'Réduire':'Voir tout')
 ),
-...(showAll?word.ex:word.ex.slice(0,2)).map((ex,i)=>React.createElement('div',{key:i,className:'example-card'},ex))
+...(showAll?word.ex:word.ex.slice(0,2)).map((ex,i)=>React.createElement('div',{key:i,className:'example-card',style:style},ex))
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card',style:{borderColor:'rgba(255,69,58,.2)'}},
 React.createElement('div',{style:{padding:16}},
-React.createElement('div',{style:{fontSize:13,fontWeight:600,color:'#FF453A',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'\u26a0 ERREURS'),
-React.createElement('div',{style:{fontSize:16,color:'var(--text2)',lineHeight:1.5}},word.err)
+React.createElement('div',{style:{fontSize:14,fontWeight:600,color:'#FF453A',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'⚠ ERREURS'),
+React.createElement('div',{style:{fontSize:18,color:'var(--text2)',lineHeight:1.5}},word.err)
 )
 ),
-word.errTip&&React.createElement('div',{className:'tip-darija',style:{marginTop:12}},
-React.createElement('div',{className:'darija-label'},'\ud83d\udde3\ufe0f \u0628\u0627\u0644\u062f\u0627\u0631\u062c\u0629 \u2014 \u0627\u0644\u063a\u0644\u0637\u0629 \u0627\u0644\u0634\u0627\u0626\u0639\u0629'),
-word.errTip
+word.errTip&&React.createElement('div',{className:'section'},
+React.createElement(TipDarija,{title:'بالدارجة — الغلطة الشائعة'},word.errTip)
 )
 ),
-word.tip&&React.createElement('div',{className:'section'},
-React.createElement('div',{className:'tip-darija'},
-React.createElement('div',{className:'darija-label'},'\ud83d\udde3\ufe0f \u0628\u0627\u0644\u062f\u0627\u0631\u062c\u0629 \u2014 \u0646\u0635\u064a\u062d\u0629'),
-word.tip
+expr.length>0&&React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'💬 Expressions liées'),
+React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:10}},
+expr.slice(0,3).map(e=>
+React.createElement('div',{key:e.id,style:{padding:'8px 0',borderBottom:'1px solid var(--border)'}},
+React.createElement('div',{style:{fontSize:18,fontWeight:600}},e.a),
+React.createElement('div',{style:{fontSize:15,color:'var(--text2)'}},e.d),
+e.tip&&React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:4,direction:'rtl',textAlign:'right'}},'💡 '+e.tip)
+)
+)
 )
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{style:{fontSize:16,color:'var(--text3)',textAlign:'center',marginBottom:4}},'Tu connais ce mot ?'),
-React.createElement('div',{style:{fontSize:14,color:'var(--darija)',textAlign:'center',marginBottom:12,direction:'rtl'}},'\u0648\u0627\u0634 \u0639\u0627\u0631\u0641 \u0647\u0627\u062f \u0627\u0644\u0643\u0644\u0645\u0629\u061f'),
+React.createElement('div',{style:{fontSize:15,color:'var(--darija)',textAlign:'center',marginBottom:12,direction:'rtl'}},'واش عارف هاد الكلمة؟'),
 React.createElement('div',{className:'card'},
 React.createElement('div',{className:'srs-row'},
 ['unknown','medium','known'].map((c,i)=>React.createElement('button',{key:c,className:'srs-btn '+c,onClick:()=>handle(i),style:{opacity:chosen&&chosen!==c?.45:1}},
-React.createElement('span',{className:'srs-icon'},[' \u274c','\ud83e\udd14','\u2705'][i]),
+React.createElement('span',{className:'srs-icon'},[' ❌','🤔','✅'][i]),
 React.createElement('span',null,['Inconnu','Moyen','Je connais'][i])
 ))
 )
@@ -215,53 +251,48 @@ React.createElement('span',null,['Inconnu','Moyen','Je connais'][i])
 )
 }
 
-function Home({onOpen,srs,stats,lastTextId,onGoText,onGoQuiz,onGoProgress}){
+function Home({onOpen,srs,stats,lastTextId,onGoText,onGoQuiz,onGoProgress,fontSize}){
 const today=V[dayOfYear(new Date())%V.length];
 const known=Object.values(srs).filter(v=>v.status==='known').length;
 const medium=Object.values(srs).filter(v=>v.status==='medium').length;
 const due=V.filter(w=>isDue(srs[w.id]));
 const pct=Math.round((known/V.length)*100);
 const last=TEXTS.find(t=>t.id===lastTextId)||TEXTS[0];
+const style=fontSize?{fontSize:fontSize+'px'}:{};
+// Mission steps
+const steps=[
+{id:'learn',icon:'📖',title:'Apprendre un mot',sub:today.a,action:()=>onOpen(today),done:false},
+{id:'read',icon:'📄',title:'Lire le texte',sub:last.t,action:()=>onGoText(last.id),done:false},
+{id:'quiz',icon:'🎯',title:'Faire le quiz',sub:due.length+' mots à réviser',action:onGoQuiz,done:false}
+];
 return React.createElement('div',null,
 React.createElement('div',{style:{padding:'16px'}},
-React.createElement('div',{style:{fontSize:15,color:'var(--text3)',marginBottom:4}},'Bonjour \ud83d\udc4b'),
-React.createElement('div',{style:{fontSize:28,fontWeight:700}},'Fran\u00e7ais Elevate'),
-React.createElement('div',{style:{fontSize:15,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'\u064a\u0644\u0627 \u0646\u0632\u064a\u062f\u0648 \u0646\u062a\u0639\u0644\u0645\u0648 \u0627\u0644\u0641\u0631\u0646\u0633\u064a\u0629 \u0627\u0644\u064a\u0648\u0645 \ud83d\udcaa')
+React.createElement('div',{style:{fontSize:16,color:'var(--text3)',marginBottom:4}},'Bonjour 👋'),
+React.createElement('div',{style:{fontSize:30,fontWeight:700}},'Français Elevate'),
+React.createElement('div',{style:{fontSize:16,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'يلا نزيدو نتعلمو الفرنسية اليوم 💪')
 ),
 React.createElement('div',{style:{display:'flex',gap:10,padding:'0 16px'}},
 React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--green)'}},known),React.createElement('div',{className:'stat-label'},'Connus')),
-React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En r\u00e9vision')),
-React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'S\u00e9rie \ud83d\udd25'))
+React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En révision')),
+React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'Série 🔥'))
 ),
-React.createElement('div',{style:{padding:'16px 16px 4px'}},
-React.createElement('div',{style:{fontSize:14,fontWeight:600,color:'var(--text3)',textTransform:'uppercase'}},'MOT DU JOUR')
+React.createElement('div',{className:'mission-card'},
+React.createElement('div',{style:{fontSize:16,fontWeight:700,color:'var(--accent)',marginBottom:12,display:'flex',alignItems:'center',gap:8}},'📋 Mission du jour'),
+React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:8}},
+steps.map((step,i)=>
+React.createElement('div',{key:i,className:'mission-step',onClick:step.action},
+React.createElement('span',{className:'step-icon'},step.done?'✅':'⬜'),
+React.createElement('div',{className:'step-content'},
+React.createElement('div',{className:'step-title'},step.title),
+React.createElement('div',{className:'step-sub'},step.sub)
 ),
-React.createElement('div',{className:'word-hero',onClick:()=>onOpen(today)},
-React.createElement('div',{className:'word-hero-content'},
-React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),today.r),
-React.createElement('div',{className:'french-word'},today.a),
-React.createElement('div',{className:'transliteration'},today.t),
-React.createElement('div',{className:'definition-text'},today.d)
+React.createElement('span',{className:'step-arrow'},'›')
+)
+)
 )
 ),
 React.createElement('div',{style:{padding:'16px',display:'flex',flexDirection:'column',gap:10}},
-React.createElement('div',{onClick:()=>onGoText(last.id),style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
-React.createElement('div',{style:{fontSize:24}},'\ud83d\udcd6'),
-React.createElement('div',{style:{flex:1}},
-React.createElement('div',{style:{fontSize:16,fontWeight:600}},'Continuer la lecture'),
-React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},last.t)
-),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
-),
-React.createElement('div',{onClick:onGoQuiz,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
-React.createElement('div',{style:{fontSize:24}},'\u26a1'),
-React.createElement('div',{style:{flex:1}},
-React.createElement('div',{style:{fontSize:16,fontWeight:600}},'D\u00e9fi Quiz'),
-React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},due.length+' mot'+(due.length>1?'s':'')+' \u00e0 r\u00e9viser')
-),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
-),
-React.createElement('div',{onClick:onGoProgress,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
+React.createElement('div',{onClick:()=>onGoProgress,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
 React.createElement('div',{style:{position:'relative',width:36,height:36,borderRadius:'50%',background:'conic-gradient(var(--accent) '+(pct*3.6)+'deg,var(--bg5) 0deg)'}},
 React.createElement('div',{style:{width:36,height:36,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:13,fontWeight:700}},pct+'%')
 ),
@@ -269,45 +300,56 @@ React.createElement('div',{style:{flex:1}},
 React.createElement('div',{style:{fontSize:16,fontWeight:600}},'Ma progression'),
 React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},known+' / '+V.length+' mots')
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
 )
 ),
 React.createElement('div',{className:'section'},
-React.createElement('div',{className:'section-title'},'\u00c0 r\u00e9viser'),
+React.createElement('div',{className:'section-title'},'À réviser'),
 React.createElement('div',{className:'card'},
 due.slice(0,5).map(w=>
 React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
 React.createElement('div',{className:'word-list-left'},
 React.createElement('div',null,
-React.createElement('div',{className:'word-french-sm'},w.a),
+React.createElement('div',{className:'word-french-sm',style:style},w.a),
 React.createElement('div',{className:'word-translit-sm'},w.t)
 )
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'\u203a')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
 )
 )
 )
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'💬 Expression du jour'),
+React.createElement('div',{className:'card',style:{padding:16}},
+EXPRESSIONS.length>0?React.createElement('div',null,
+React.createElement('div',{style:{fontSize:22,fontWeight:700}},EXPRESSIONS[0].a),
+React.createElement('div',{style:{fontSize:17,color:'var(--text2)',marginTop:4}},EXPRESSIONS[0].d),
+React.createElement('button',{onClick:()=>speak(EXPRESSIONS[0].a),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 14px',color:'var(--text)',fontSize:14,cursor:'pointer',marginTop:8}},'🔊 Écouter')
+):React.createElement('div',{style:{fontSize:16,color:'var(--text3)'}},'Aucune expression pour le moment')
 )
 )
+);
 }
 
-function Library({onOpen,srs,onGoText,onGoQuizUnit,unitProg}){
+function Library({onOpen,srs,onGoText,onGoQuizUnit,unitProg,fontSize}){
 const[view,setView]=useState('tree');
 const[activeUnit,setActiveUnit]=useState(null);
 const[search,setSearch]=useState('');
 const[cat,setCat]=useState('all');
+const style=fontSize?{fontSize:fontSize+'px'}:{};
 
 const renderRow=w=>{
 const c=CATS.find(x=>x.id===w.c);
 return React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
 React.createElement('div',{className:'word-list-left'},
-React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(c?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}},c?.icon||'\ud83d\udcdd'),
+React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(c?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}},c?.icon||'📝'),
 React.createElement('div',null,
-React.createElement('div',{className:'word-french-sm'},w.a),
-React.createElement('div',{className:'word-translit-sm'},w.t+' \u00b7 '+w.r)
+React.createElement('div',{className:'word-french-sm',style:style},w.a),
+React.createElement('div',{className:'word-translit-sm'},w.t+' · '+w.r)
 )
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'\u203a')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
 );
 };
 
@@ -320,7 +362,7 @@ return React.createElement('div',null,
 React.createElement('div',{style:{padding:'20px 16px 12px'}},
 React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Tous les mots'),
-React.createElement('button',{onClick:()=>setView('tree'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:14,cursor:'pointer'}},'\ud83e\uddd7 Parcours')
+React.createElement('button',{onClick:()=>setView('tree'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:14,cursor:'pointer'}},'🧗 Parcours')
 ),
 React.createElement('input',{className:'search-bar',placeholder:'Rechercher...',value:search,onChange:e=>setSearch(e.target.value)})
 ),
@@ -330,7 +372,7 @@ React.createElement('div',{className:'chip'+(cat==='all'?' active':''),onClick:(
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card'},
-f.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun r\u00e9sultat'):f.map(renderRow)
+f.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun résultat'):f.map(renderRow)
 )
 )
 );
@@ -341,23 +383,35 @@ const u=activeUnit;
 const words=getWords(u.words);
 const prog=unitProg[u.id]||{};
 const text=TEXTS.find(t=>t.w.some(w=>words.some(v=>v.a===w)));
+const exprs=EXPRESSIONS.filter(e=>e.unit===u.id);
 return React.createElement('div',null,
 React.createElement('div',{className:'word-detail-header',style:{padding:'20px 16px 0'}},
-React.createElement('button',{className:'back-btn',onClick:()=>{setView('tree');setActiveUnit(null)}},'\u2190'),
-React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'Unit\u00e9 '+u.id)
+React.createElement('button',{className:'back-btn',onClick:()=>{setView('tree');setActiveUnit(null)}},'←'),
+React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'Unité '+u.id)
 ),
 React.createElement('div',{style:{padding:'16px'}},
 React.createElement('div',{style:{fontSize:34}},u.icon),
 React.createElement('div',{style:{fontSize:24,fontWeight:700}},u.title),
-React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},words.length+' mots')
+React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},words.length+' mots'+(exprs.length?' · '+exprs.length+' expressions':''))
 ),
 React.createElement('div',{style:{padding:'0 16px 16px',display:'flex',gap:10}},
-text&&React.createElement('button',{onClick:()=>onGoText(text.id),style:{flex:1,background:u.color+'22',border:'1px solid '+u.color+'55',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'\ud83d\udcd6 Lire'),
-React.createElement('button',{onClick:()=>onGoQuizUnit(u.id),style:{flex:1,background:u.color,border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer'}},'\ud83d\ude80 Quiz')
+text&&React.createElement('button',{onClick:()=>onGoText(text.id),style:{flex:1,background:u.color+'22',border:'1px solid '+u.color+'55',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'📖 Lire'),
+React.createElement('button',{onClick:()=>onGoQuizUnit(u.id),style:{flex:1,background:u.color,border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer'}},'🚀 Quiz')
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'section-title'},'Mots'),
 React.createElement('div',{className:'card'},words.map(renderRow))
+),
+exprs.length>0&&React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'💬 Expressions'),
+React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:10}},
+exprs.map(e=>
+React.createElement('div',{key:e.id,style:{padding:'8px 0',borderBottom:'1px solid var(--border)'}},
+React.createElement('div',{style:{fontSize:18,fontWeight:600}},e.a),
+React.createElement('div',{style:{fontSize:15,color:'var(--text2)'}},e.d)
+)
+)
+)
 )
 );
 }
@@ -365,8 +419,8 @@ React.createElement('div',{className:'card'},words.map(renderRow))
 return React.createElement('div',null,
 React.createElement('div',{style:{padding:'20px 16px 4px'}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700,marginBottom:4}},'Parcours'),
-React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Progresse unit\u00e9 par unit\u00e9'),
-React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'\u062a\u0642\u062f\u0645 \u062e\u0637\u0648\u0629 \u0628\u062e\u0637\u0648\u0629\u060c \u0628\u0644\u0627 \u0645\u0627 \u062a\u0633\u062a\u0639\u062c\u0644')
+React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Progresse unité par unité'),
+React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'تقدم خطوة بخطوة، بلا ما تستعجل')
 ),
 React.createElement('div',{style:{padding:'16px',display:'flex',flexDirection:'column',alignItems:'center'}},
 UNITS.map((u,i)=>{
@@ -381,15 +435,16 @@ React.createElement('div',{style:{fontSize:13,fontWeight:600,marginTop:6,color:'
 })
 ),
 React.createElement('div',{style:{padding:'12px 16px 20px'}},
-React.createElement('button',{onClick:()=>setView('all'),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:15,fontWeight:600,cursor:'pointer'}},'\ud83d\udcda Tous les mots ('+V.length+')')
+React.createElement('button',{onClick:()=>setView('all'),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:15,fontWeight:600,cursor:'pointer'}},'📚 Tous les mots ('+V.length+')')
 )
 );
 }
 
-function Immersion({onOpen,activeId,onSetId,onRead}){
+function Immersion({onOpen,activeId,onSetId,onRead,fontSize}){
 const active=TEXTS.find(t=>t.id===activeId)||TEXTS[0];
 const[toast,setToast]=useState(null);
 useEffect(()=>{onRead(active.id)},[active.id]);
+const style=fontSize?{fontSize:fontSize+'px'}:{};
 const render=(text,words)=>{
 let parts=[{text,isWord:false}];
 words.forEach(kw=>{
@@ -407,15 +462,15 @@ return parts;
 };
 const tap=word=>{
 const f=V.find(v=>word.includes(v.a)||v.a.includes(word));
-if(f){setToast('"'+f.a+'" \u2192 '+f.t);setTimeout(()=>setToast(null),2000);onOpen(f);}
+if(f){setToast('"'+f.a+'" → '+f.t);setTimeout(()=>setToast(null),2000);onOpen(f);}
 };
 const kw=V.filter(v=>active.w.includes(v.a));
 return React.createElement('div',null,
 toast&&React.createElement('div',{className:'toast'},toast),
 React.createElement('div',{style:{padding:'20px 16px 12px'}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Immersion'),
-React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Touchez les mots surlign\u00e9s'),
-React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'\u0636\u063a\u0637 \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0633\u0637\u0631\u0629 \u0628\u0627\u0634 \u062a\u0641\u0647\u0645\u0647\u0627')
+React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Touchez les mots surlignés'),
+React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'ضغط على الكلمة المسطرة باش تفهمها')
 ),
 React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
 TEXTS.map(t=>React.createElement('div',{key:t.id,className:'chip'+(active.id===t.id?' active':''),onClick:()=>onSetId(t.id)},t.t))
@@ -423,30 +478,30 @@ TEXTS.map(t=>React.createElement('div',{key:t.id,className:'chip'+(active.id===t
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card'},
 React.createElement('div',{style:{padding:20}},
-React.createElement('div',{style:{fontSize:16,lineHeight:1.9,color:'var(--text2)'}},
+React.createElement('div',{style:{fontSize:18,lineHeight:1.9,color:'var(--text2)'}},
 ...render(active.x,active.w).map((p,i)=>
-p.isWord?React.createElement('span',{key:i,className:'immersion-word',onClick:()=>tap(p.text)},p.text):React.createElement('span',{key:i},p.text)
+p.isWord?React.createElement('span',{key:i,className:'immersion-word',onClick:()=>tap(p.text),style:style},p.text):React.createElement('span',{key:i},p.text)
 )
 )
 )
 )
 ),
 kw.length>0&&React.createElement('div',{className:'section'},
-React.createElement('div',{className:'section-title'},'\ud83d\udccc Mots-cl\u00e9s'),
+React.createElement('div',{className:'section-title'},'📌 Mots-clés'),
 React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:8}},
 kw.map(w=>React.createElement('div',{key:w.id,onClick:()=>onOpen(w),style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 4px',cursor:'pointer',borderBottom:'1px solid var(--border)'}},
 React.createElement('div',null,
-React.createElement('div',{style:{fontSize:15,fontWeight:600}},w.a),
+React.createElement('div',{style:{fontSize:16,fontWeight:600}},w.a),
 React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},w.t)
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
 ))
 )
 )
 );
 }
 
-function Quiz({srs,onSRS,initialMode,initialTextId,initialUnitId,onUnitComplete,onExit}){
+function Quiz({srs,onSRS,initialMode,initialTextId,initialUnitId,onUnitComplete,onExit,fontSize}){
 const[mode,setMode]=useState(initialMode||'menu');
 const[textId,setTextId]=useState(initialTextId||1);
 const[unitId,setUnitId]=useState(initialUnitId||1);
@@ -460,6 +515,7 @@ const[correctCount,setCorrectCount]=useState(0);
 const[finished,setFinished]=useState(false);
 const[feedback,setFeedback]=useState(null);
 const doneRef=useRef(false);
+const style=fontSize?{fontSize:fontSize+'px'}:{};
 
 useEffect(()=>{
 if(mode==='text'){const t=TEXTS.find(x=>x.id===textId);const p=t?V.filter(v=>t.w.includes(v.a)):V;setPool(p);}
@@ -520,18 +576,18 @@ if(mode==='menu')return React.createElement('div',null,
 React.createElement('div',{style:{padding:'20px 16px 8px'}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Quiz'),
 React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Choisis ton mode'),
-React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'\u0627\u062e\u062a\u0627\u0631 \u0637\u0631\u064a\u0642\u0629 \u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629 \u0627\u0644\u0644\u064a \u0643\u062a\u0639\u062c\u0628\u0643')
+React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'اختار طريقة المراجعة اللي كتعجبك')
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('general')},
-React.createElement('div',{style:{fontSize:15,fontWeight:600}},'\ud83c\udfaf G\u00e9n\u00e9ral'),
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},'🎯 Général'),
 React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},V.length+' mots')
 ),
 React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('due')},
-React.createElement('div',{style:{fontSize:15,fontWeight:600}},'\u23f3 \u00c0 r\u00e9viser'),
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},'⏳ À réviser'),
 React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},V.filter(w=>isDue(srs[w.id])).length+' mots')
 ),
-React.createElement('div',{className:'section-title',style:{marginTop:8}},'Par unit\u00e9'),
+React.createElement('div',{className:'section-title',style:{marginTop:8}},'Par unité'),
 ...UNITS.map(u=>React.createElement('div',{key:u.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer'},onClick:()=>{setUnitId(u.id);setMode('unit')}},
 React.createElement('div',{style:{fontSize:15,fontWeight:600}},u.icon+' '+u.title),
 React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},getWords(u.words).length+' mots')
@@ -548,12 +604,12 @@ if(mode==='unit'&&finished){
 const score=session.length?Math.round((correctCount/session.length)*100):0;
 const passed=score>=80;
 return React.createElement('div',{style:{padding:'40px 24px',textAlign:'center'}},
-React.createElement('div',{style:{fontSize:54,marginBottom:12}},passed?'\ud83c\udf89':'\ud83d\udcaa'),
-React.createElement('div',{style:{fontSize:22,fontWeight:700,marginBottom:6}},passed?'Valid\u00e9 !':'Pas encore'),
+React.createElement('div',{style:{fontSize:54,marginBottom:12}},passed?'🎉':'💪'),
+React.createElement('div',{style:{fontSize:22,fontWeight:700,marginBottom:6}},passed?'Validé !':'Pas encore'),
 React.createElement('div',{style:{fontSize:14,color:'var(--text3)',marginBottom:24}},correctCount+'/'+session.length+' ('+score+'%)'),
 !passed&&React.createElement('div',{style:{fontSize:14,color:'var(--text3)',marginBottom:20}},'Il faut 80% pour valider. Retente !'),
-React.createElement('button',{onClick:()=>{setMode('unit');setSession([...getWords(UNITS.find(x=>x.id===unitId).words)].sort(()=>Math.random()-.5));setSessionIdx(0);setCorrectCount(0);setFinished(false);doneRef.current=false;},style:{width:'100%',background:'#5E5CE6',border:'none',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer',marginBottom:10}},'\ud83d\udd01 Recommencer'),
-React.createElement('button',{onClick:()=>onExit&&onExit(),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'\u2190 Retour')
+React.createElement('button',{onClick:()=>{setMode('unit');setSession([...getWords(UNITS.find(x=>x.id===unitId).words)].sort(()=>Math.random()-.5));setSessionIdx(0);setCorrectCount(0);setFinished(false);doneRef.current=false;},style:{width:'100%',background:'#5E5CE6',border:'none',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer',marginBottom:10}},'🔁 Recommencer'),
+React.createElement('button',{onClick:()=>onExit&&onExit(),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'← Retour')
 );
 }
 
@@ -572,14 +628,14 @@ React.createElement('div',{className:'section',style:{marginTop:0}},
 React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
 React.createElement('div',{className:'word-hero-content'},
 React.createElement('div',{style:{fontSize:13,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
-React.createElement('div',{className:'french-word'},question.word.a),
+React.createElement('div',{className:'french-word',style:style},question.word.a),
 React.createElement('div',{className:'transliteration'},question.word.t)
 )
 ),
 ...question.options.map((opt,i)=>{
 let cls='quiz-option';
 if(selected){if(opt===question.correct)cls+=' correct';else if(opt===selected)cls+=' wrong';}
-return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt)},opt);
+return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt),style:style},opt);
 }),
 feedback&&React.createElement('div',{className:'quiz-feedback'},feedback)
 )
@@ -598,37 +654,35 @@ React.createElement('div',{className:'section',style:{marginTop:8}},
 React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
 React.createElement('div',{className:'word-hero-content'},
 React.createElement('div',{style:{fontSize:13,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
-React.createElement('div',{className:'french-word'},question.word.a),
+React.createElement('div',{className:'french-word',style:style},question.word.a),
 React.createElement('div',{className:'transliteration'},question.word.t)
 )
 ),
 ...question.options.map((opt,i)=>{
 let cls='quiz-option';
 if(selected){if(opt===question.correct)cls+=' correct';else if(opt===selected)cls+=' wrong';}
-return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt)},opt);
+return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt),style:style},opt);
 }),
 feedback&&React.createElement('div',{className:'quiz-feedback'},feedback)
 )
 );
 }
 
-function Progress({srs,stats,onImport}){
-const known=Object.values(srs).filter(v=>v.status==='known').length;
-const medium=Object.values(srs).filter(v=>v.status==='medium').length;
-const unknown=Object.values(srs).filter(v=>v.status==='unknown').length;
-const pct=Math.round((known/V.length)*100);
+function Settings({onFontSizeChange,currentSize,onImport,onExport}){
+const sizes=['small','medium','large','xlarge'];
+const labels=['Petit','Moyen','Grand','Très grand'];
 const fileRef=useRef(null);
-const exportData=()=>{
+const handleExport=()=>{
 try{
-const data=JSON.stringify({srs,stats,exportedAt:new Date().toISOString()},null,2);
+const data=JSON.stringify({srs:loadSRS(),stats:loadStats(),exportedAt:new Date().toISOString()},null,2);
 const blob=new Blob([data],{type:'application/json'});
 const url=URL.createObjectURL(blob);
 const a=document.createElement('a');
-a.href=url;a.download='francais-backup.json';a.click();
+a.href=url;a.download='francais-elevate-backup.json';a.click();
 URL.revokeObjectURL(url);
 }catch(e){}
 };
-const importData=e=>{
+const handleImport=e=>{
 const file=e.target.files&&e.target.files[0];
 if(!file)return;
 const reader=new FileReader();
@@ -643,16 +697,53 @@ e.target.value='';
 };
 return React.createElement('div',null,
 React.createElement('div',{style:{padding:'20px 16px 8px'}},
-React.createElement('div',{style:{fontSize:26,fontWeight:700,marginBottom:4}},'Progression'),
+React.createElement('div',{style:{fontSize:26,fontWeight:700}},'⚙️ Réglages'),
+React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Personnalise ton expérience')
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'card'},
+React.createElement('div',{className:'settings-row'},
+React.createElement('span',{className:'settings-label'},'🔤 Taille du texte'),
+React.createElement('div',{style:{display:'flex',gap:6}},
+sizes.map((s,i)=>React.createElement('button',{key:s,className:'size-btn'+(currentSize===s?' active':''),onClick:()=>onFontSizeChange(s)},labels[i]))
+)
+),
+React.createElement('div',{className:'settings-row'},
+React.createElement('span',{className:'settings-label'},'💾 Sauvegarde'),
+React.createElement('div',{style:{display:'flex',gap:6}},
+React.createElement('button',{onClick:handleExport,style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:8,padding:'6px 12px',color:'var(--text)',fontSize:13,cursor:'pointer'}},'⬇ Exporter'),
+React.createElement('button',{onClick:()=>fileRef.current&&fileRef.current.click(),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:8,padding:'6px 12px',color:'var(--text)',fontSize:13,cursor:'pointer'}},'⬆ Importer'),
+React.createElement('input',{ref:fileRef,type:'file',accept:'application/json',style:{display:'none'},onChange:handleImport})
+)
+)
+)
+),
+React.createElement('div',{className:'section'},
+React.createElement(TipDarija,{title:'نصيحة'},'حجم النص كيتغير فجميع الصفحات. اختار الحجم اللي كترتاح ليه.'),
+React.createElement('div',{style:{marginTop:12}}),
+React.createElement(TipDarija,{title:'نصيحة'},'البيانات ديالك كاتحفظ فالمتصفح. استعمل التصدير باش تحافظ عليها.')
+)
+);
+}
+
+function Progress({srs,stats,onImport,fontSize}){
+const known=Object.values(srs).filter(v=>v.status==='known').length;
+const medium=Object.values(srs).filter(v=>v.status==='medium').length;
+const unknown=Object.values(srs).filter(v=>v.status==='unknown').length;
+const pct=Math.round((known/V.length)*100);
+const style=fontSize?{fontSize:fontSize+'px'}:{};
+return React.createElement('div',null,
+React.createElement('div',{style:{padding:'20px 16px 8px'}},
+React.createElement('div',{style:{fontSize:26,fontWeight:700,marginBottom:4}},'📊 Progression'),
 React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Votre parcours'),
-React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'\u0634\u0648\u0641 \u0627\u0644\u0637\u0631\u064a\u0642 \u0627\u0644\u0644\u064a \u0642\u0637\u0639\u062a\u064a \u062d\u062a\u0649 \u0647\u0646\u0627\u060c \u0646\u062a\u0627 \u0633\u0627\u064a\u0631 \u0632\u0648\u064a\u0646')
+React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'شوف الطريق اللي قطعتي حتى هنا، نتا ساير زوين')
 ),
 React.createElement('div',{style:{padding:'0 16px 16px'}},
 React.createElement('div',{style:{background:'linear-gradient(135deg,#1a1a2e,#16213e)',border:'1px solid rgba(94,92,230,.3)',borderRadius:24,padding:28,textAlign:'center'}},
 React.createElement('div',{style:{fontSize:72,fontWeight:800,color:'white'}},known),
-React.createElement('div',{style:{fontSize:16,color:'rgba(255,255,255,.5)'}},'mots ma\u00eetris\u00e9s'),
+React.createElement('div',{style:{fontSize:16,color:'rgba(255,255,255,.5)'}},'mots maîtrisés'),
 React.createElement('div',{style:{marginTop:16,display:'flex',justifyContent:'center',gap:24}},
-React.createElement('div',null,React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF9F0A'}},medium),React.createElement('div',{style:{fontSize:13,color:'rgba(255,255,255,.4)'}},'en r\u00e9vision')),
+React.createElement('div',null,React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF9F0A'}},medium),React.createElement('div',{style:{fontSize:13,color:'rgba(255,255,255,.4)'}},'en révision')),
 React.createElement('div',{style:{width:1,background:'rgba(255,255,255,.1)'}}),
 React.createElement('div',null,React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF453A'}},unknown),React.createElement('div',{style:{fontSize:13,color:'rgba(255,255,255,.4)'}},'inconnus'))
 )
@@ -680,13 +771,30 @@ React.createElement('div',{className:'progress-bar-fill',style:{width:p+'%',back
 )
 ),
 React.createElement('div',{className:'section'},
-React.createElement('div',{className:'section-title'},'Sauvegarde'),
-React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:10}},
-React.createElement('div',{style:{fontSize:14,color:'var(--text3)'}},'Tes donn\u00e9es sont stock\u00e9es sur cet appareil. Exporte-les pour les sauvegarder.'),
-React.createElement('button',{onClick:exportData,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'\u2b07 Exporter'),
-React.createElement('button',{onClick:()=>fileRef.current&&fileRef.current.click(),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'\u2b06 Importer'),
-React.createElement('input',{ref:fileRef,type:'file',accept:'application/json',style:{display:'none'},onChange:importData})
+React.createElement('div',{className:'section-title'},'🏆 Unités'),
+React.createElement('div',{className:'card'},
+UNITS.map(u=>{
+const words=getWords(u.words);
+const known2=words.filter(w=>srs[w.id]&&srs[w.id].status==='known').length;
+const p=words.length?Math.round(known2/words.length*100):0;
+return React.createElement('div',{key:u.id,className:'detail-row'},
+React.createElement('div',{style:{display:'flex',alignItems:'center',gap:10}},
+React.createElement('span',{style:{fontSize:18}},u.icon),
+React.createElement('span',{className:'detail-label'},u.title)
+),
+React.createElement('div',{style:{textAlign:'right'}},
+React.createElement('div',{style:{fontSize:15,fontWeight:600,color:u.color}},known2+'/'+words.length+' ('+p+'%)'),
+React.createElement('div',{className:'progress-bar-bg',style:{width:120,height:4,marginTop:4}},
+React.createElement('div',{className:'progress-bar-fill',style:{width:p+'%',background:u.color}})
 )
+)
+);
+})
+)
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'💡 Conseil'),
+React.createElement(TipDarija,{title:'نصيحة'},'راجع الكلمات اللي غلطت فيها كل يوم. التكرار هو المفتاح باش تحفظ مزيان.')
 )
 );
 }
@@ -710,12 +818,16 @@ const[textId,setTextId]=useState(()=>{try{return JSON.parse(localStorage.getItem
 const[readTexts,setReadTexts]=useState(()=>{try{return JSON.parse(localStorage.getItem('fread_texts'))||[]}catch(e){return[]}});
 const[unitProg,setUnitProg]=useState(loadUnitProg);
 const[quizInit,setQuizInit]=useState(null);
+const[fontSize,setFontSize]=useState(loadFontSize);
 const scrollRef=useRef(null);
+
+const fontSizes={small:36,medium:48,large:56,xlarge:66};
 
 const go=t=>{setTab(t);setWord(null);scrollRef.current?.scrollTo(0,0)};
 const open=w=>{setWord(w);scrollRef.current?.scrollTo(0,0)};
 const onSRS=n=>{setSrs(n)};
 const onImport=(s,st)=>{setSrs(s);saveSRS(s);setStats(st);saveStats(st)};
+const onFontSizeChange=s=>{setFontSize(s);saveFontSize(s)};
 
 const setText=(id)=>{setTextId(id);try{localStorage.setItem('flast_text',JSON.stringify(id))}catch(e){}};
 const markRead=(id)=>{setReadTexts(prev=>{if(prev.includes(id))return prev;const n=[...prev,id];try{localStorage.setItem('fread_texts',JSON.stringify(n))}catch(e){}return n})};
@@ -725,18 +837,21 @@ const goQuizUnit=(id)=>{setQuizInit({mode:'unit',unitId:id});setWord(null);setTa
 const goProgress=()=>go('progress');
 const onUnitComplete=(id,passed,score)=>{setUnitProg(prev=>{const prevBest=(prev[id]&&prev[id].best)||0;const n={...prev,[id]:{done:passed||(prev[id]&&prev[id].done)||false,best:Math.max(score,prevBest)}};saveUnitProg(n);return n})};
 
+const currentFontSize=fontSizes[fontSize]||48;
+
 let content;
-if(word)content=React.createElement(WordDetail,{word,onBack:()=>{setWord(null);scrollRef.current?.scrollTo(0,0)},onSRS,srs,onGoText:goText});
-else if(tab==='home')content=React.createElement(Home,{onOpen:open,srs,stats,lastTextId:textId,onGoText:goText,onGoQuiz:goQuiz,onGoProgress:goProgress});
-else if(tab==='library')content=React.createElement(Library,{onOpen:open,srs,onGoText:goText,onGoQuizUnit:goQuizUnit,unitProg});
-else if(tab==='immersion')content=React.createElement(Immersion,{onOpen:open,activeId:textId,onSetId:setText,onRead:markRead});
-else if(tab==='quiz')content=React.createElement(Quiz,{srs,onSRS,initialMode:quizInit&&quizInit.mode,initialUnitId:quizInit&&quizInit.unitId,onUnitComplete,onExit:()=>go('library')});
-else content=React.createElement(Progress,{srs,stats,onImport});
+if(word)content=React.createElement(WordDetail,{word,onBack:()=>{setWord(null);scrollRef.current?.scrollTo(0,0)},onSRS,srs,onGoText:goText,fontSize:currentFontSize});
+else if(tab==='home')content=React.createElement(Home,{onOpen:open,srs,stats,lastTextId:textId,onGoText:goText,onGoQuiz:goQuiz,onGoProgress:goProgress,fontSize:currentFontSize});
+else if(tab==='library')content=React.createElement(Library,{onOpen:open,srs,onGoText:goText,onGoQuizUnit:goQuizUnit,unitProg,fontSize:currentFontSize});
+else if(tab==='immersion')content=React.createElement(Immersion,{onOpen:open,activeId:textId,onSetId:setText,onRead:markRead,fontSize:currentFontSize});
+else if(tab==='quiz')content=React.createElement(Quiz,{srs,onSRS,initialMode:quizInit&&quizInit.mode,initialUnitId:quizInit&&quizInit.unitId,onUnitComplete,onExit:()=>go('library'),fontSize:currentFontSize});
+else if(tab==='settings')content=React.createElement(Settings,{onFontSizeChange,currentSize:fontSize,onImport,onExport:()=>{}});
+else content=React.createElement(Progress,{srs,stats,onImport,fontSize:currentFontSize});
 
 return React.createElement('div',{className:'app'},
 React.createElement('div',{className:'scroll-area',ref:scrollRef},content),
 React.createElement('nav',{className:'nav-bar'},
-[{id:'home',icon:'\u2302',label:'Accueil'},{id:'library',icon:'\u25eb',label:'Mots'},{id:'immersion',icon:'\u25c9',label:'Immersion'},{id:'quiz',icon:'\u25c8',label:'Quiz'},{id:'progress',icon:'\u25a3',label:'Progr\u00e8s'}].map(t=>
+[{id:'home',icon:'⌂',label:'Accueil'},{id:'library',icon:'◫',label:'Mots'},{id:'immersion',icon:'◉',label:'Immersion'},{id:'quiz',icon:'◈',label:'Quiz'},{id:'progress',icon:'▣',label:'Progrès'},{id:'settings',icon:'⚙️',label:'Réglages'}].map(t=>
 React.createElement('button',{key:t.id,className:'nav-item'+(tab===t.id&&!word?' active':''),onClick:()=>go(t.id)},
 React.createElement('span',{className:'nav-icon'},t.icon),
 React.createElement('span',{className:'nav-label'},t.label)
@@ -747,9 +862,9 @@ React.createElement('span',{className:'nav-label'},t.label)
 
 function LoadError({onRetry}){
 return React.createElement('div',{style:{height:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:24,textAlign:'center',gap:14}},
-React.createElement('div',{style:{fontSize:34}},'\u26a0\ufe0f'),
+React.createElement('div',{style:{fontSize:34}},'⚠️'),
 React.createElement('div',{style:{fontSize:15,color:'var(--text2)'}},'Impossible de charger le vocabulaire.'),
-React.createElement('button',{onClick:onRetry,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px 20px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'R\u00e9essayer')
+React.createElement('button',{onClick:onRetry,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px 20px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'Réessayer')
 );
 }
 
@@ -765,6 +880,7 @@ CATS=data.categories||[];
 PARCOURS=data.parcours||[];
 UNITS=data.units||[];
 LEVELS=data.levels||[];
+EXPRESSIONS=data.expressions||[];
 }
 
 async function init(){
