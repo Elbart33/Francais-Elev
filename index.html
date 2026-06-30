@@ -98,7 +98,7 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 <body>
 <div id="root"></div>
 <script>
-const{useState,useEffect,useRef,useCallback}=React;
+const{useState,useEffect,useRef,useCallback,useMemo}=React;
 
 const VOCABULARY=[{id:1,arabic:"إحباط",transliteration:"i7bat",definition:"Frustration profonde ou découragement suite à un échec répété",nuance:"Plus fort que 'زعفان' — implique un état durable, pas juste un moment de colère. Souvent utilisé en introspection.",register:"Psychologie · Émotionnel",origin:"Fusha → Darija",frequency:"Très courant",difficulty:2,category:"psychologie",synonyms:["خيبة","يأس خفيف"],antonyms:["حماس","تحفيز"],examples:["حسيت بإحباط كبير ملي ما تحققش هاد الشي","الإحباط ما خلاهش يكمل فالمشروع","كيف كتتعامل مع الإحباط ملي الأمور ما تجيش كما بغيتي؟"],errors:"Ne pas confondre avec 'زعفان' (énervé momentanément) — إحباط est plus profond et durable.",level:"riche"},{id:2,arabic:"الوعي الذاتي",transliteration:"l-wa3y dh-dhati",definition:"Conscience de soi, capacité à s'observer et comprendre ses propres émotions",nuance:"Expression phare dans les cercles de développement personnel marocains, podcasts, interviews. Distingue une personne cultivée.",register:"Psychologie · Développement personnel",origin:"Fusha → Darija cultivée",frequency:"Courant dans médias",difficulty:3,category:"psychologie",synonyms:["معرفة الذات","التأمل الداخلي"],antonyms:["الغفلة","عدم الوعي"],examples:["الوعي الذاتي هو أول خطوة باش تتطور","ناس عندهم وعي ذاتي عالي كيعرفو واشبغاو من الحياة","بدونش الوعي الذاتي، كتكرر نفس الأخطاء"],errors:"Éviter de dire juste 'واعي بروحو' dans un contexte soutenu — utiliser l'expression complète.",level:"avancé"},{id:3,arabic:"الغموض",transliteration:"l-ghomud",definition:"L'ambiguïté, le flou, ce qui n'est pas clair ou défini",nuance:"Utilisé dans des contextes intellectuels (art, politique, relations). Plus noble que 'مش واضح'.",register:"Langage soutenu · Débat · Art",origin:"Fusha → Darija intellectuelle",frequency:"Courant chez intellectuels",difficulty:3,category:"pensée critique",synonyms:["اللاوضوح","التضبيب"],antonyms:["الوضوح","الشفافية"],examples:["غموض الرسالة خلى الناس يفسروها بطرق مختلفة","سياسة الغموض ما كتخدمش فالعلاقات","الفن كيشتغل على الغموض والتأويل"],errors:"Ne pas dire 'الغموضية' — la forme correcte est 'الغموض' seulement.",level:"avancé"},{id:4,arabic:"التناقض",transliteration:"t-tanaqud",definition:"La contradiction, deux réalités qui s'opposent dans une même situation ou personne",nuance:"Très utilisé dans les débats marocains et analyses sociales. Implique une tension intellectuelle.",register:"Débat · Philosophie · Société",origin:"Fusha → Darija de débat",frequency:"Fréquent",difficulty:3,category:"débat",synonyms:["التضارب","التعارض"],antonyms:["الانسجام","التوافق"],examples:["كاين تناقض واضح بين كلامو وأفعالو","المجتمع المغربي عيش فالتناقض بين التقليد والحداثة","هاد التناقض هو اللي كيخلق الصراع"],errors:"Ne pas confondre avec 'الاختلاف' (différence simple) — التناقض implique une opposition directe.",level:"riche"},{id:5,arabic:"الهشاشة العاطفية",transliteration:"l-hshasha l-3atifiya",definition:"La vulnérabilité émotionnelle, le fait d'être facilement blessé ou affecté",nuance:"Expression montée en popularité via podcasts psy marocains. Connotation neutre, introspective.",register:"Psychologie · Émotionnel · Intime",origin:"Calque de 'vulnérabilité' → Darija moderne",frequency:"Très courant aujourd'hui",difficulty:3,category:"émotions complexes",synonyms:["الضعف العاطفي","الحساسية الزايدة"],antonyms:["الصلابة العاطفية","الحصانة"],examples:["الهشاشة العاطفية مو عيب، هي علامة إنك إنسان","اعترافو بهشاشته العاطفية ساعدو يتعافى","ملي كتكون هشاش عاطفياً، الكلمات كتأثر فيك بزاف"],errors:"Ne pas traduire littéralement 'هش' comme fragile physiquement — ici le contexte est strictement émotionnel.",level:"avancé"},{id:6,arabic:"الاستحقاق",transliteration:"l-isti7qaq",definition:"Le mérite, le droit moral à quelque chose qu'on a gagné ou mérité",nuance:"Utilisé dans des débats sur la justice sociale, le travail, les droits. Différent de الحق (droit légal).",register:"Société · Justice · Débat",origin:"Fusha → Darija cultivée",frequency:"Courant",difficulty:3,category:"société",synonyms:["الجدارة","الكفاءة"],antonyms:["المحسوبية","الواسطة"],examples:["فلسفة الاستحقاق كتقول إن كل واحد يأخذ على حسب ما خدم","سؤال الاستحقاق مطروح بقوة فالنقاشات الاجتماعية","ما كانش الاستحقاق، كانت الواسطة والمحسوبية"],errors:"Différent de 'التكبر' (arrogance) — الاستحقاق est une revendication légitime.",level:"avancé"},{id:7,arabic:"التردد",transliteration:"t-taraddud",definition:"L'hésitation, l'incapacité à se décider entre deux options",nuance:"Implique un conflit intérieur profond. Utilisé dans des contextes psychologiques et personnels.",register:"Psychologie · Quotidien soutenu",origin:"Fusha → Darija",frequency:"Très fréquent",difficulty:1,category:"psychologie",synonyms:["الشك","عدم الحسم"],antonyms:["الحسم","العزيمة"],examples:["التردد ديالو خلاه يضيع الفرصة","كاين فرق بين التردد الصحي والتردد اللي كيشل","ملي كتكثر التفكير، كيزيد التردد"],errors:"Ne pas confondre avec 'الكسل' (paresse) — التردد est cognitif, pas comportemental.",level:"courant"},{id:8,arabic:"الانتماء",transliteration:"l-intimaa",definition:"Le sentiment d'appartenance à un groupe, une culture, un lieu",nuance:"Mot clé dans les débats identitaires marocains. Très chargé émotionnellement et socialement.",register:"Société · Identité · Émotionnel",origin:"Fusha → Darija cultivée",frequency:"Fréquent",difficulty:2,category:"société",synonyms:["الهوية","الانتساب"],antonyms:["الاغتراب","الانفصال"],examples:["إحساس الانتماء ضروري للصحة النفسية","المغاربة فالخارج كيعيشو أزمة الانتماء","انتماؤه لهاد المدينة كيبان من طريقة حديثو"],errors:"Différent de 'الهوية' (identité) — الانتماء est le sentiment affectif d'appartenance.",level:"riche"},{id:9,arabic:"النخبوية",transliteration:"n-nakhbawiya",definition:"L'élitisme, la mentalité ou comportement d'une élite qui se distingue du commun",nuance:"Souvent péjoratif dans le discours populaire marocain. Employé dans les critiques sociales et politiques.",register:"Critique sociale · Politique · Débat",origin:"Fusha → Darija de presse",frequency:"Courant dans médias",difficulty:4,category:"politique",synonyms:["الاستعلاء","التفوقية الاجتماعية"],antonyms:["الشعبية","التواضع الاجتماعي"],examples:["النخبوية ديالهم ظاهرة في طريقة كلامهم","النقاش الأكاديمي كيطيح فالنخبوية","النخبوية حاجز بين المثقف والمواطن العادي"],errors:"Ne pas confondre avec 'التكبر' (arrogance personnelle) — النخبوية est un phénomène social structurel.",level:"élite"},{id:10,arabic:"الإسقاط النفسي",transliteration:"l-isqat n-nafsi",definition:"La projection psychologique — attribuer à l'autre ses propres sentiments ou défauts",nuance:"Expression technique de psychologie devenue populaire dans les discussions marocaines modernes.",register:"Psychologie · Relations humaines",origin:"Terme technique → Darija éduquée",frequency:"Montant",difficulty:4,category:"psychologie",synonyms:["تحميل الآخر","نسب الصفات للغير"],antonyms:["التأمل الذاتي","المساءلة الذاتية"],examples:["ملي كتنتقد الناس على أشياء فيك، هذا هو الإسقاط النفسي","الإسقاط النفسي آلية دفاع لاوعية","كيف تعرف واش راك كتعمل إسقاطاً نفسياً؟"],errors:"Ne pas utiliser pour décrire une simple accusation — الإسقاط النفسي est inconscient et mécanisme de défense.",level:"élite"},{id:11,arabic:"الطموح المفرط",transliteration:"t-tumu7 l-mufrit",definition:"L'ambition excessive qui dépasse les capacités ou dérègle la vie",nuance:"Expression nuancée — le طموح seul est positif, mais مفرط le transforme en défaut.",register:"Développement personnel · Psychologie",origin:"Darija cultivée",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["الجشع المهني","التطلع الزائد"],antonyms:["القناعة","التوازن"],examples:["الطموح المفرط كيخلي الواحد ما يستمتعش بما حقق","الفرق بين الطموح والطموح المفرط هو الوعي","طموحه المفرط دمر علاقاته الشخصية"],errors:"Toujours utiliser مفرط pour nuancer — sans lui, طموح seul est positif.",level:"riche"},{id:12,arabic:"التبرير",transliteration:"t-tabreer",definition:"La rationalisation — trouver des justifications à ses comportements pour éviter la culpabilité",nuance:"En psychologie, le تبرير est un mécanisme de défense. En darija courante, aussi utilisé péjorativement.",register:"Psychologie · Quotidien",origin:"Fusha → Darija",frequency:"Très fréquent",difficulty:1,category:"psychologie",synonyms:["التعلل","الحجج الواهية"],antonyms:["المسؤولية","الاعتراف"],examples:["مكيبقاش كيعتذر، دايما كيبرر","التبرير مو حل، هو هروب من المسؤولية","كلنا كنبررو في مرحلة من المراحل"],errors:"Différent de 'الشرح' (explication légitime) — التبرير sert à éviter la responsabilité.",level:"courant"},{id:13,arabic:"الحدود الشخصية",transliteration:"l-7dud sh-shakhsiya",definition:"Les limites personnelles — ce qu'on accepte ou refuse dans ses relations",nuance:"Concept central du développement personnel marocain moderne. Souvent dit 'les limites' en code-switching.",register:"Relations humaines · Psychologie",origin:"Calque de 'personal boundaries' → Darija moderne",frequency:"Très courant aujourd'hui",difficulty:2,category:"relations humaines",synonyms:["الخطوط الحمراء","حدود المقبول"],antonyms:["الانفتاح الكلي","التساهل المفرط"],examples:["وضع الحدود الشخصية مو أنانية، هو احترام الذات","ما عندوش حدود شخصية فعلاقاته","كيف كتحدد حدودك الشخصية مع الناس القريبين؟"],errors:"Ne pas confondre avec 'الخصوصية' (vie privée) — الحدود الشخصية concerne les comportements acceptables.",level:"riche"},{id:14,arabic:"الخطاب",transliteration:"l-khitab",definition:"Le discours — ensemble cohérent d'idées, de langage et de positions sur un sujet",nuance:"Terme d'analyse critique et médiatique. Utilisé dans les cercles intellectuels marocains.",register:"Politique · Intellectuel · Médias",origin:"Fusha → Darija intellectuelle",frequency:"Fréquent dans médias",difficulty:4,category:"politique",synonyms:["الرواية","الموقف الإيديولوجي"],antonyms:[],examples:["الخطاب الرسمي مختلف على الواقع المعاش","تحليل الخطاب السياسي يكشف الكثير","كاين خطاب متحكم فيه فوراء هاد الرسالة"],errors:"Différent de 'الكلام' (parole ordinaire) — الخطاب implique une structure idéologique.",level:"élite"},{id:15,arabic:"الانزلاق الأخلاقي",transliteration:"l-inzilaq l-akhlaqi",definition:"La dérive morale progressive — quand on abandonne graduellement ses valeurs sans s'en rendre compte",nuance:"Expression très puissante dans les débats marocains sur la corruption et la société.",register:"Philosophie · Société · Éthique",origin:"Darija intellectuelle",frequency:"Rare, très cultivé",difficulty:5,category:"philosophie",synonyms:["الانحلال التدريجي","فساد القيم"],antonyms:["الاستقامة","الثبات الأخلاقي"],examples:["الانزلاق الأخلاقي كيبدا بتنازلات صغيرة","المجتمع يعيش انزلاقاً أخلاقياً واضحاً","كيف تحمي نفسك من الانزلاق الأخلاقي في بيئة فاسدة؟"],errors:"Ne pas utiliser pour un acte isolé — الانزلاق implique un processus graduel.",level:"élite"},{id:16,arabic:"التعاطف",transliteration:"t-ta3atuf",definition:"L'empathie, la capacité à ressentir et comprendre les émotions d'autrui",nuance:"Plus profond que 'الشفقة' (pitié) — implique de se mettre vraiment à la place de l'autre, sans condescendance.",register:"Psychologie · Relations humaines",origin:"Fusha → Darija cultivée",frequency:"Très courant",difficulty:2,category:"psychologie",synonyms:["التفهم العاطفي","المشاركة الوجدانية"],antonyms:["اللامبالاة","القسوة"],examples:["التعاطف هو أساس أي علاقة صحية","صعيب تتعاطف مع شي واحد كيهضرك بطريقة قاسية","التعاطف مو معناه تكون موافق، هو غير تفهم"],errors:"Ne pas confondre avec 'الشفقة' qui implique une hiérarchie (pitié envers un inférieur).",level:"riche"},
 {id:17,arabic:"الاستقلالية",transliteration:"l-istiqlaliya",definition:"L'autonomie, la capacité à penser et agir par soi-même sans dépendre d'autrui",nuance:"Utilisé autant pour l'indépendance financière que psychologique. Valeur centrale dans le discours générationnel moderne.",register:"Développement personnel · Société",origin:"Fusha → Darija moderne",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["الاعتماد على الذات","الحرية الشخصية"],antonyms:["التبعية","الاتكالية"],examples:["الاستقلالية المادية كتعطيك حرية القرار","بغيت نوصل للاستقلالية قبل ما نتزوج","الاستقلالية العاطفية صعيبة بزاف على بعض الناس"],errors:"Ne pas confondre avec l'isolement social — الاستقلالية concerne la capacité de décision, pas la solitude.",level:"riche"},
@@ -136,7 +136,21 @@ const VOCABULARY=[{id:1,arabic:"إحباط",transliteration:"i7bat",definition:"
 {id:49,arabic:"الاستغلال",transliteration:"l-istighlal",definition:"L'exploitation, le fait de tirer profit abusif d'une personne, situation ou ressource",nuance:"Utilisé dans des contextes économiques, relationnels et sociaux, toujours négatif.",register:"Société · Relations humaines · Économie",origin:"Fusha → Darija",frequency:"Fréquent",difficulty:2,category:"société",synonyms:["استعمال الآخر لمصلحة شخصية","التعسف"],antonyms:["الإنصاف","الاحترام المتبادل"],examples:["الاستغلال فالشغل مشكل منتشر بزاف","حس بالاستغلال فالعلاقة وقرر يمشي","الاستغلال الاقتصادي للعمال قضية عالمية"],errors:"Toujours connoté négativement — ne jamais l'utiliser pour décrire un échange équitable.",level:"riche"},
 {id:50,arabic:"التعافي",transliteration:"t-ta3afi",definition:"La guérison ou le rétablissement, le processus de surmonter une blessure physique ou psychologique",nuance:"Très utilisé dans le langage thérapeutique moderne marocain (تعافي من صدمة، تعافي عاطفي).",register:"Psychologie · Santé · Émotionnel",origin:"Fusha → Darija thérapeutique",frequency:"Très courant aujourd'hui",difficulty:2,category:"émotions complexes",synonyms:["الشفاء النفسي","التجاوز"],antonyms:["الانتكاسة","الجرح المفتوح"],examples:["التعافي مو خط مستقيم، فيه تقدم ونكسات","التعافي العاطفي كياخد وقتو الخاص","بدأت رحلة التعافي بعد سنين ديال الألم"],errors:"Ne pas le confondre avec l'oubli — التعافي n'efface pas l'expérience, il permet de vivre avec elle.",level:"avancé"},];
 
-const IMMERSION_TEXTS=[{id:1,title:"الوعي والنجاح",text:"الناس اللي كتوصل لنجاح حقيقي مو بالضرورة الأذكى، ولكن غالباً هما اللي عندهم وعي ذاتي عالي. كيعرفو قيمهم، كيعرفو حدودهم الشخصية، وما كيبرروش فشلهم، بل كيواجهوه بشجاعة. الإحباط موجود عندهم، ولكن ما كيوقفهمش.",words:["وعي ذاتي","حدودهم الشخصية","كيبررو","الإحباط"],category:"psychologie"},{id:2,title:"المجتمع والتناقض",text:"المجتمع المغربي كيعيش تناقضاً عميقاً: يريد الحداثة ولكن ما يخلاش القيم التقليدية. هاد الانتماء المزدوج أحياناً كيخلق انزلاقاً أخلاقياً خفياً، ملي كيبدا الناس يتساهلو في أشياء ما كانو تساهلو فيها قبل.",words:["تناقضاً","الانتماء","انزلاقاً أخلاقياً"],category:"société"}];
+const IMMERSION_TEXTS=[
+{id:1,title:"الوعي والنجاح",text:"الناس اللي عندهم وعي بالذات كيعرفو يحملو المسؤولية ديال أخطاءهم بلا ما يلقاو لها مبرر. التعاطف معاهم بزاف، ولكن هذا ما يمنعهمش من الانضباط فحياتهم اليومية. الاستقلالية الفكرية والمادية كتبقى هدف أساسي عندهم، حتى ولو الطريق طويلة وصعيبة.",words:["المسؤولية","التعاطف","الانضباط","الاستقلالية"],category:"psychologie"},
+{id:2,title:"المجتمع والتناقض",text:"التضامن بين الناس كيبان واضح فأوقات الأزمات، ولكن المجتمع كيعيش أحياناً نوع من الإقصاء الممنهج ضد بعض الفئات. التهميش الاقتصادي والاجتماعي كيخلق فجوة عميقة، خاصة ملي كيوقع التطبيع مع هاد الوضع بدل ما نواجهوه بجرأة.",words:["التضامن","الإقصاء","التهميش","التطبيع"],category:"société"},
+{id:3,title:"السياسة والإصلاح",text:"الشفافية والنزاهة شرطان أساسيان لمحاربة الفساد المستشري فبعض المؤسسات. الإصلاح الحقيقي ما كيبانش غير بالأفعال، وماشي بالخطابات. ولكن المشكل أن الاستقطاب السياسي كيصعب أي نقاش هادئ حول هاد المواضيع.",words:["الشفافية","النزاهة","الفساد","الإصلاح","الاستقطاب"],category:"politique"},
+{id:4,title:"العالم الرقمي",text:"الهوية الرقمية ديال بزاف ديال الشباب أصبحات أهم من الهوية الواقعية. الإدمان الرقمي كيأثر على التركيز والنوم، وكاين ناس كيمارسو الرقابة الذاتية باش ما يبانوش بصورة سيئة قدام الآخرين.",words:["الهوية الرقمية","الإدمان الرقمي","الرقابة الذاتية"],category:"numérique"},
+{id:5,title:"التفكير والنضج",text:"التفكير النقدي كيتطلب وعي بالتحيز اللي عند كل واحد فينا. التعميم السريع على الناس أو الأفكار كيخلق أحكام مسبقة خاطئة. الاعتدال فالمواقف أصعب بزاف من التطرف، ولكنه أكثر نضجاً.",words:["التفكير النقدي","التحيز","التعميم","الاعتدال","التطرف"],category:"pensée critique"}
+];
+
+// ── PASSERELLES MOTS ↔ IMMERSION ──
+function getTextVocab(t){return t?VOCABULARY.filter(v=>t.words.includes(v.arabic)):[]}
+function findTextsForWord(wordId){
+const w=VOCABULARY.find(v=>v.id===wordId);
+if(!w)return[];
+return IMMERSION_TEXTS.filter(t=>t.words.includes(w.arabic));
+}
 
 const CATEGORIES=[{id:"psychologie",label:"Psychologie",icon:"🧠",color:"#5E5CE6"},{id:"émotions complexes",label:"Émotions",icon:"💫",color:"#FF6B6B"},{id:"société",label:"Société",icon:"🏛️",color:"#FF9F0A"},{id:"débat",label:"Débat",icon:"⚡",color:"#30D158"},{id:"relations humaines",label:"Relations",icon:"🤝",color:"#64D2FF"},{id:"politique",label:"Politique",icon:"🎯",color:"#FF453A"},{id:"pensée critique",label:"Pensée critique",icon:"🔍",color:"#BF5AF2"},{id:"personnalité",label:"Personnalité",icon:"✨",color:"#FFD60A"},{id:"philosophie",label:"Philosophie",icon:"📖",color:"#0A84FF"},{id:"éthique",label:"Éthique",icon:"⚖️",color:"#34C759"},{id:"économie",label:"Économie",icon:"💰",color:"#FFD60A"},{id:"numérique",label:"Numérique",icon:"📱",color:"#5AC8FA"}];
 
@@ -196,11 +210,12 @@ function LevelBadge({level}){const f=LEVELS.find(l=>l.id===level)||LEVELS[1];ret
 function DiffDots({n}){return React.createElement('div',{className:'diff-dots'},...[1,2,3,4,5].map(i=>React.createElement('div',{key:i,className:'diff-dot'+(i<=n?' filled':'')})))}
 
 // ── WORD DETAIL ──
-function WordDetail({word,onBack,onSRS,srsData}){
+function WordDetail({word,onBack,onSRS,srsData,onGoToImmersion}){
   const[showAll,setShowAll]=useState(false);
   const card=srsData[word.id]||null;
   const[chosen,setChosen]=useState(card?card.status:null);
   const handle=q=>{const c=q===0?'unknown':q===1?'medium':'known';setChosen(c);const n=reviewCard(srsData,word.id,q);saveSRS(n);setTimeout(()=>onSRS(n),200)};
+  const contextTexts=findTextsForWord(word.id);
   return React.createElement('div',{className:'fade-up',style:{paddingBottom:20}},
     React.createElement('div',{className:'word-detail-header'},
       React.createElement('button',{className:'back-btn',onClick:onBack},'←'),
@@ -216,6 +231,9 @@ function WordDetail({word,onBack,onSRS,srsData}){
         React.createElement('div',{className:'transliteration'},word.transliteration),
         React.createElement('div',{className:'definition-text'},word.definition)
       )
+    ),
+    contextTexts.length>0&&React.createElement('div',{style:{padding:'0 16px 16px'}},
+      React.createElement('button',{onClick:()=>onGoToImmersion(contextTexts[0].id),style:{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:8,background:'rgba(94,92,230,.15)',border:'1px solid rgba(94,92,230,.4)',borderRadius:12,padding:'12px',color:'#A8A6FF',fontSize:13,fontWeight:600,cursor:'pointer'}},'📖 Voir ce concept en contexte — '+contextTexts[0].title)
     ),
     React.createElement('div',{style:{display:'flex',gap:8,padding:'0 16px 16px',flexWrap:'wrap',alignItems:'center'}},
       React.createElement(LevelBadge,{level:word.level}),
@@ -274,12 +292,14 @@ function WordDetail({word,onBack,onSRS,srsData}){
 }
 
 // ── HOME ──
-function HomeTab({onOpen,srsData,stats}){
+function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQuizDue,onGoToProgress}){
   const isInstalled=window.navigator.standalone||window.matchMedia('(display-mode:standalone)').matches;
   const todayWord=VOCABULARY[dayOfYear(new Date())%VOCABULARY.length];
   const known=Object.values(srsData).filter(v=>v.status==='known').length;
   const medium=Object.values(srsData).filter(v=>v.status==='medium').length;
-  const dueWords=VOCABULARY.filter(w=>isDue(srsData[w.id])).slice(0,5);
+  const dueWords=VOCABULARY.filter(w=>isDue(srsData[w.id]));
+  const pctKnown=Math.round((known/VOCABULARY.length)*100);
+  const lastText=IMMERSION_TEXTS.find(t=>t.id===lastImmersionId)||IMMERSION_TEXTS[0];
   return React.createElement('div',null,
     !isInstalled&&React.createElement('div',{className:'install-tip'},
       React.createElement('strong',null,'📲 Installer l\'app : '),'Safari → ',React.createElement('strong',null,'⬆ Partager'),' → ',React.createElement('strong',null,'"Sur l\'écran d\'accueil"')
@@ -293,6 +313,7 @@ function HomeTab({onOpen,srsData,stats}){
       React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En révision')),
       React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'Série 🔥'))
     ),
+
     React.createElement('div',{style:{padding:'8px 16px 4px'}},
       React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'MOT DU JOUR')
     ),
@@ -305,10 +326,43 @@ function HomeTab({onOpen,srsData,stats}){
         React.createElement('div',{style:{marginTop:12,fontSize:12,color:'rgba(255,255,255,.4)'}},'Toucher pour explorer →')
       )
     ),
+
+    React.createElement('div',{style:{padding:'16px 16px 4px'}},
+      React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'CONTINUER')
+    ),
+    React.createElement('div',{style:{padding:'0 16px',display:'flex',flexDirection:'column',gap:10}},
+      React.createElement('div',{onClick:()=>onGoToImmersion(lastText.id),style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
+        React.createElement('div',{style:{fontSize:24}},'📖'),
+        React.createElement('div',{style:{flex:1}},
+          React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Continuer ma lecture'),
+          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},lastText.title)
+        ),
+        React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+      ),
+      React.createElement('div',{onClick:onGoToQuizDue,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
+        React.createElement('div',{style:{fontSize:24}},'⚡'),
+        React.createElement('div',{style:{flex:1}},
+          React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Défi Quiz du jour'),
+          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},dueWords.length+' mot'+(dueWords.length>1?'s':'')+' en souffrance à réviser')
+        ),
+        React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+      ),
+      React.createElement('div',{onClick:onGoToProgress,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
+        React.createElement('div',{style:{position:'relative',width:36,height:36,borderRadius:'50%',background:'conic-gradient(var(--accent) '+(pctKnown*3.6)+'deg,var(--bg5) 0deg)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},
+          React.createElement('div',{style:{width:26,height:26,borderRadius:'50%',background:'var(--bg3)',fontSize:9,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700}},pctKnown+'%')
+        ),
+        React.createElement('div',{style:{flex:1}},
+          React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Ma progression globale'),
+          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},known+' / '+VOCABULARY.length+' mots maîtrisés')
+        ),
+        React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+      )
+    ),
+
     React.createElement('div',{className:'section',style:{marginTop:8}},
       React.createElement('div',{className:'section-title'},'À réviser'),
       React.createElement('div',{className:'card'},
-        dueWords.map(w=>
+        dueWords.slice(0,5).map(w=>
           React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
             React.createElement('div',{className:'word-list-left'},
               React.createElement('div',null,
@@ -371,9 +425,10 @@ function LibraryTab({onOpen,srsData}){
 }
 
 // ── IMMERSION ──
-function ImmersionTab({onOpen}){
-  const[active,setActive]=useState(IMMERSION_TEXTS[0]);
+function ImmersionTab({onOpen,activeId,onSetActiveId,onRead}){
+  const active=IMMERSION_TEXTS.find(t=>t.id===activeId)||IMMERSION_TEXTS[0];
   const[toast,setToast]=useState(null);
+  useEffect(()=>{onRead(active.id)},[active.id]);
   const renderText=(text,kws)=>{
     let parts=[{text,isWord:false}];
     kws.forEach(kw=>{
@@ -393,6 +448,7 @@ function ImmersionTab({onOpen}){
     const f=VOCABULARY.find(v=>word.includes(v.arabic)||v.arabic.includes(word));
     if(f){setToast('"'+f.arabic+'" → '+f.transliteration);setTimeout(()=>setToast(null),2000);onOpen(f);}
   };
+  const keyWords=getTextVocab(active);
   return React.createElement('div',null,
     toast&&React.createElement('div',{className:'toast'},toast),
     React.createElement('div',{style:{padding:'20px 16px 12px'}},
@@ -400,7 +456,7 @@ function ImmersionTab({onOpen}){
       React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Touchez les mots surlignés')
     ),
     React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
-      IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'chip'+(active.id===t.id?' active':''),onClick:()=>setActive(t)},t.title))
+      IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'chip'+(active.id===t.id?' active':''),onClick:()=>onSetActiveId(t.id)},t.title))
     ),
     React.createElement('div',{className:'section'},
       React.createElement('div',{className:'card'},
@@ -413,39 +469,90 @@ function ImmersionTab({onOpen}){
           )
         )
       )
+    ),
+    keyWords.length>0&&React.createElement('div',{className:'section'},
+      React.createElement('div',{className:'section-title'},'📌 Mots-clés de ce texte'),
+      React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:8}},
+        keyWords.map(w=>React.createElement('div',{key:w.id,onClick:()=>onOpen(w),style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 4px',cursor:'pointer',borderBottom:'1px solid var(--border)'}},
+          React.createElement('div',null,
+            React.createElement('div',{style:{fontSize:15,fontWeight:600,direction:'rtl'}},w.arabic),
+            React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},w.transliteration)
+          ),
+          React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+        ))
+      )
     )
   );
 }
 
 // ── QUIZ ──
-function QuizTab({srsData,onSRS}){
-  const pool=VOCABULARY;
+function QuizTab({srsData,onSRS,initialMode,initialTextId,onModeConsumed}){
+  const[mode,setMode]=useState(initialMode||'menu');
+  const[textId,setTextId]=useState(initialTextId||IMMERSION_TEXTS[0].id);
+  useEffect(()=>{if(initialMode){setMode(initialMode);if(initialTextId)setTextId(initialTextId);onModeConsumed&&onModeConsumed();}},[initialMode]);
+
+  const pool=useMemo(()=>{
+    if(mode==='text'){const t=IMMERSION_TEXTS.find(x=>x.id===textId);return getTextVocab(t)}
+    if(mode==='due'){const due=VOCABULARY.filter(w=>isDue(srsData[w.id]));return due.length>=4?due:VOCABULARY}
+    return VOCABULARY;
+  },[mode,textId]);
+
   const[idx,setIdx]=useState(0);
   const[selected,setSelected]=useState(null);
   const pickWord=lastId=>{
     const candidates=pool.filter(w=>w.id!==lastId);
-    return candidates[Math.floor(Math.random()*candidates.length)]||pool[0];
+    return(candidates.length?candidates:pool)[Math.floor(Math.random()*(candidates.length||pool.length))];
   };
   const makeQ=lastId=>{
     const word=pickWord(lastId);
-    const sameCat=pool.filter(w=>w.id!==word.id&&w.category===word.category);
-    const wrongPool=sameCat.length>=3?sameCat:pool.filter(w=>w.id!==word.id);
+    const sameCat=VOCABULARY.filter(w=>w.id!==word.id&&w.category===word.category);
+    const wrongPool=sameCat.length>=3?sameCat:VOCABULARY.filter(w=>w.id!==word.id);
     const wrong=wrongPool.sort(()=>Math.random()-.5).slice(0,3).map(w=>w.definition);
     const opts=[word.definition,...wrong].sort(()=>Math.random()-.5);
     return{word,options:opts,correct:word.definition};
   };
-  const[q,setQ]=useState(()=>makeQ(null));
+  const[q,setQ]=useState(null);
+  useEffect(()=>{if(mode!=='menu'){setQ(makeQ(null));setIdx(0);setSelected(null)}},[mode,textId]);
+
   const handle=opt=>{
-    if(selected)return;
+    if(selected||!q)return;
     setSelected(opt);
     const quality=opt===q.correct?2:0;
     const n=reviewCard(srsData,q.word.id,quality);saveSRS(n);onSRS(n);
     setTimeout(()=>{setIdx(p=>p+1);setQ(makeQ(q.word.id));setSelected(null);},1200);
   };
-  return React.createElement('div',null,
+
+  if(mode==='menu')return React.createElement('div',null,
     React.createElement('div',{style:{padding:'20px 16px 8px'}},
       React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Quiz'),
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Question '+(idx+1)+' · '+pool.length+' mots au total')
+      React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Choisis ton mode')
+    ),
+    React.createElement('div',{className:'section'},
+      React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('general')},
+        React.createElement('div',{style:{fontSize:15,fontWeight:600}},'🎯 Quiz Général'),
+        React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},'Sur les '+VOCABULARY.length+' mots du dictionnaire')
+      ),
+      React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('due')},
+        React.createElement('div',{style:{fontSize:15,fontWeight:600}},'⏳ Mots à réviser'),
+        React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},'Cible les mots arrivés à échéance')
+      ),
+      React.createElement('div',{className:'section-title',style:{marginTop:8}},'Quiz ciblé par texte'),
+      ...IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer'},onClick:()=>{setTextId(t.id);setMode('text')}},
+        React.createElement('div',{style:{fontSize:15,fontWeight:600}},t.title),
+        React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},getTextVocab(t).length+' mots dans ce texte')
+      ))
+    )
+  );
+
+  if(!q)return null;
+
+  return React.createElement('div',null,
+    React.createElement('div',{style:{padding:'20px 16px 8px',display:'flex',justifyContent:'space-between',alignItems:'center'}},
+      React.createElement('div',null,
+        React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Quiz'),
+        React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Question '+(idx+1)+' · '+pool.length+' mots dans ce mode')
+      ),
+      React.createElement('button',{onClick:()=>setMode('menu'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'Changer')
     ),
     React.createElement('div',{className:'section',style:{marginTop:8}},
       React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
@@ -466,10 +573,15 @@ function QuizTab({srsData,onSRS}){
 }
 
 // ── PROGRESS ──
-function ProgressTab({srsData,stats,onImport}){
+function ProgressTab({srsData,stats,onImport,readTexts}){
   const known=Object.values(srsData).filter(v=>v.status==='known').length;
   const medium=Object.values(srsData).filter(v=>v.status==='medium').length;
   const unknown=Object.values(srsData).filter(v=>v.status==='unknown').length;
+  const pctKnown=Math.round((known/VOCABULARY.length)*100);
+  const hasReadImmersion=(readTexts||[]).length>0;
+  const badge=pctKnown>70&&hasReadImmersion?{ar:'المفكر',fr:'Penseur',color:'#BF5AF2',icon:'🧠'}
+    :pctKnown>=30?{ar:'المشارك',fr:'Participant au débat',color:'#0A84FF',icon:'💬'}
+    :{ar:'الملاحظ',fr:'Observateur',color:'#8E8E93',icon:'👁️'};
   const fileRef=useRef(null);
   const handleExport=()=>{
     try{
@@ -498,6 +610,15 @@ function ProgressTab({srsData,stats,onImport}){
     React.createElement('div',{style:{padding:'20px 16px 8px'}},
       React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Progression'),
       React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Votre parcours vers l\'élite')
+    ),
+    React.createElement('div',{style:{padding:'0 16px 16px'}},
+      React.createElement('div',{style:{display:'flex',alignItems:'center',gap:12,background:badge.color+'22',border:'1px solid '+badge.color+'55',borderRadius:16,padding:'14px 18px'}},
+        React.createElement('div',{style:{fontSize:28}},badge.icon),
+        React.createElement('div',null,
+          React.createElement('div',{style:{fontSize:16,fontWeight:700,color:'#fff'}},badge.ar+' · '+badge.fr),
+          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},pctKnown+'% du dictionnaire maîtrisé'+(hasReadImmersion?' · immersion active':''))
+        )
+      )
     ),
     React.createElement('div',{style:{padding:'0 16px 16px'}},
       React.createElement('div',{style:{background:'linear-gradient(135deg,#1a1a2e,#16213e)',border:'1px solid rgba(94,92,230,.3)',borderRadius:24,padding:28,textAlign:'center',position:'relative',overflow:'hidden'}},
@@ -583,6 +704,10 @@ function App(){
     }
     return s;
   });
+  const[immersionId,setImmersionIdState]=useState(()=>{try{return JSON.parse(localStorage.getItem('darija_last_immersion'))||IMMERSION_TEXTS[0].id}catch(e){return IMMERSION_TEXTS[0].id}});
+  const[readTexts,setReadTexts]=useState(()=>{try{return JSON.parse(localStorage.getItem('darija_read_texts'))||[]}catch(e){return[]}});
+  const[quizInit,setQuizInit]=useState(null);
+
   const scrollRef=useRef(null);
   const go=t=>{setTab(t);setWord(null);scrollRef.current?.scrollTo(0,0)};
   const open=w=>{setWord(w);scrollRef.current?.scrollTo(0,0)};
@@ -593,13 +718,20 @@ function App(){
     setStats(st);saveStats(st);
   };
 
+  const setImmersionId=id=>{setImmersionIdState(id);try{localStorage.setItem('darija_last_immersion',JSON.stringify(id))}catch(e){}};
+  const markTextRead=id=>{setReadTexts(prev=>{if(prev.includes(id))return prev;const n=[...prev,id];try{localStorage.setItem('darija_read_texts',JSON.stringify(n))}catch(e){}return n})};
+  const goToImmersion=id=>{setImmersionId(id);setWord(null);setTab('immersion');scrollRef.current?.scrollTo(0,0)};
+  const goToQuizDue=()=>{setQuizInit({mode:'due'});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
+  const goToProgress=()=>go('progress');
+  const consumeQuizInit=()=>setQuizInit(null);
+
   let content;
-  if(word)content=React.createElement(WordDetail,{word,onBack:back,onSRS:updateSRS,srsData});
-  else if(tab==='home')content=React.createElement(HomeTab,{onOpen:open,srsData,stats});
+  if(word)content=React.createElement(WordDetail,{word,onBack:back,onSRS:updateSRS,srsData,onGoToImmersion:goToImmersion});
+  else if(tab==='home')content=React.createElement(HomeTab,{onOpen:open,srsData,stats,lastImmersionId:immersionId,onGoToImmersion:goToImmersion,onGoToQuizDue:goToQuizDue,onGoToProgress:goToProgress});
   else if(tab==='library')content=React.createElement(LibraryTab,{onOpen:open,srsData});
-  else if(tab==='immersion')content=React.createElement(ImmersionTab,{onOpen:open});
-  else if(tab==='quiz')content=React.createElement(QuizTab,{srsData,onSRS:updateSRS});
-  else content=React.createElement(ProgressTab,{srsData,stats,onImport});
+  else if(tab==='immersion')content=React.createElement(ImmersionTab,{onOpen:open,activeId:immersionId,onSetActiveId:setImmersionId,onRead:markTextRead});
+  else if(tab==='quiz')content=React.createElement(QuizTab,{srsData,onSRS:updateSRS,initialMode:quizInit&&quizInit.mode,initialTextId:quizInit&&quizInit.textId,onModeConsumed:consumeQuizInit});
+  else content=React.createElement(ProgressTab,{srsData,stats,onImport,readTexts});
 
   return React.createElement('div',{className:'app'},
     React.createElement('div',{className:'scroll-area',ref:scrollRef},content),
