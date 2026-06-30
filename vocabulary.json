@@ -1,813 +1,303 @@
 {
   "words": [
     {
-      "a": "Éloquence",
-      "t": "e-lok-wans",
-      "d": "Art de bien parler.",
-      "n": "L'éloquence est une compétence qui se cultive.",
-      "r": "Soutenu",
-      "o": "Latin",
-      "f": "Courant",
-      "diff": 3,
-      "c": "littérature",
-      "syn": [
-        "Art oratoire"
-      ],
-      "ant": [
-        "Bafouillage"
-      ],
-      "ex": [
-        "L'éloquence de ce discours a conquis tout le monde."
-      ],
-      "err": "Ne pas confondre 'éloquence' et 'verbeux'.",
-      "l": "B2",
-      "tip": "هاد الكلمة كتستعمل فالنقاشات الرسمية.",
       "id": 1,
-      "glose": "يعني كتهضر بطريقة زوينة ومقنعة، الكلام كيخرج فصيح ومرتب.",
-      "errTip": "ماشي معناها كتهضر بزاف، معناها كتهضر مزيان."
-    },
-    {
-      "a": "Pertinent",
-      "t": "per-ti-nan",
-      "d": "Qui est en rapport parfait avec le sujet.",
-      "n": "Une remarque pertinente est une remarque qui tombe juste.",
-      "r": "Professionnel",
-      "o": "Latin",
+      "a": "Titre de séjour",
+      "t": "ti-tre de se-jour",
+      "d": "Document officiel qui permet de rester en France.",
+      "n": "C'est un document indispensable pour les étrangers. Il faut le renouveler régulièrement.",
+      "r": "Administratif",
+      "o": "Français",
       "f": "Très courant",
       "diff": 2,
-      "c": "travail",
-      "syn": [
-        "Opportun"
-      ],
-      "ant": [
-        "Hors sujet"
-      ],
-      "ex": [
-        "Ta question est très pertinente."
-      ],
-      "err": "On dit 'pertinente' et non 'pertinante'.",
+      "c": "administratif",
       "l": "B1",
-      "tip": "هاذ الكلمة كتجي بزاف فالمقابلات.",
+      "syn": ["Permis de séjour"],
+      "ant": ["Expulsion"],
+      "ex": ["J'ai demandé mon titre de séjour à la préfecture.", "Mon titre de séjour expire dans 3 mois."],
+      "err": "Ne pas confondre 'titre de séjour' et 'carte d'identité'.",
+      "tip": "هاد الكلمة كاتستعمل بزاف فالإجراءات الإدارية. خاصك تحفظها كاملة.",
+      "glose": "يعني الورقة الرسمية اللي كاتخليك تسكن ففرنسا",
+      "errTip": "بزاف ديال الناس كيتخلطو بينها وبين 'بطاقة التعريف'",
+      "tipExample": "واش عندك titre de séjour? ديالي غادي ينتهي الشهر الجاي."
+    },
+    {
       "id": 2,
-      "glose": "يعني الكلام ولا السؤال داخل بزاف فالموضوع، ماشي خارج عنه.",
-      "errTip": "احتاط: كنكتبو pertinente بالـ e فالمؤنث، ماشي pertinante."
+      "a": "Rendez-vous",
+      "t": "ran-de-vou",
+      "d": "Convention pour se rencontrer à une date et heure précises.",
+      "n": "Très utilisé dans la vie courante : chez le médecin, à la préfecture, au travail.",
+      "r": "Courant",
+      "o": "Français",
+      "f": "Très courant",
+      "diff": 1,
+      "c": "administratif",
+      "l": "A2",
+      "syn": ["Rencontre", "Entretien"],
+      "ant": ["Annulation"],
+      "ex": ["J'ai pris rendez-vous chez le médecin.", "Le rendez-vous est à 14h."],
+      "err": "On dit 'prendre rendez-vous' et non 'faire rendez-vous'.",
+      "tip": "هاد الكلمة كاتستعمل فكل حاجة: الطبيب، الشغل، الإدارة.",
+      "glose": "يعني الموعد",
+      "errTip": "الغلطة الشائعة: كيڭولو 'faire rendez-vous' ولكن الصحيح 'prendre rendez-vous'",
+      "tipExample": "عندي rendez-vous مع الدكتور غدا."
     },
     {
-      "a": "Nuancer",
-      "t": "nu-an-se",
-      "d": "Exprimer avec précision en tenant compte des différences.",
-      "n": "Nuancer une opinion, c'est ne pas la voir en noir et blanc.",
-      "r": "Intellectuel",
-      "o": "Français",
-      "f": "Courant",
-      "diff": 3,
-      "c": "pensée critique",
-      "syn": [
-        "Modérer"
-      ],
-      "ant": [
-        "Généraliser"
-      ],
-      "ex": [
-        "Il faut nuancer ce propos."
-      ],
-      "err": "Nuancer ne signifie pas 'contredire'.",
-      "l": "B2",
-      "tip": "فاش كتخاصم واحد، حاول تnuance كلامك.",
       "id": 3,
-      "glose": "معناها متشوفش الأمور غير أبيض و كحل، خود بعين الاعتبار التفاصيل.",
-      "errTip": "Nuancer ماشي معناها تخالف، معناها كتفصّل وكتدقق فالرأي."
-    },
-    {
-      "a": "Ambigüité",
-      "t": "an-bi-gui-te",
-      "d": "Caractère de ce qui peut avoir plusieurs sens.",
-      "n": "L'ambigüité peut être voulue ou involontaire.",
-      "r": "Débat",
-      "o": "Latin",
-      "f": "Courant",
-      "diff": 3,
-      "c": "débat",
-      "syn": [
-        "Flou"
-      ],
-      "ant": [
-        "Clarté"
-      ],
-      "ex": [
-        "L'ambigüité de cette phrase prête à confusion."
-      ],
-      "err": "Attention à l'orthographe : 'ambigüité' avec un tréma.",
-      "l": "B2",
-      "tip": "هاد الكلمة كاتكتب بالtréma فوق الu.",
-      "id": 4,
-      "glose": "كلمة ولا جملة فيها أكثر من معنى، صعيب تفهم شنو المقصود بالضبط.",
-      "errTip": "نتبه للكتابة: ambigüité فيها tréma فوق الـ u."
-    },
-    {
-      "a": "Vulnérabilité",
-      "t": "vul-ne-ra-bi-li-te",
-      "d": "Caractère de ce qui est fragile.",
-      "n": "La vulnérabilité n'est pas une faiblesse. C'est une force.",
-      "r": "Psychologie",
-      "o": "Latin",
-      "f": "Très courant",
-      "diff": 3,
-      "c": "psychologie",
-      "syn": [
-        "Fragilité"
-      ],
-      "ant": [
-        "Force"
-      ],
-      "ex": [
-        "Montrer sa vulnérabilité est un signe de courage."
-      ],
-      "err": "Ne pas utiliser pour décrire une simple faiblesse physique.",
-      "l": "B2",
-      "tip": "الضعف ماشي عيب. بالعكس، هو قوة.",
-      "id": 5,
-      "glose": "هي الجانب الهش ديالك، اللي ممكن تتأذى منه بسهولة.",
-      "errTip": "الضعف ماشي عيب، بالعكس كيبيّن الشجاعة والصدق مع الذات."
-    },
-    {
-      "a": "Mérite",
-      "t": "me-rit",
-      "d": "Ce qui rend quelqu'un digne d'estime.",
-      "n": "Le mérite est souvent opposé à la chance.",
-      "r": "Société",
-      "o": "Latin",
-      "f": "Courant",
-      "diff": 2,
-      "c": "société",
-      "syn": [
-        "Valeur"
-      ],
-      "ant": [
-        "Indignité"
-      ],
-      "ex": [
-        "Il a obtenu cette place à force de mérite."
-      ],
-      "err": "Ne pas confondre 'mérite' et 'arrogance'.",
-      "l": "B1",
-      "tip": "هاد الكلمة هي عكس 'الواسطة'.",
-      "id": 6,
-      "glose": "هو لي تستاهل بجهدك وعملك، ماشي بواسطة ولا بالحظ.",
-      "errTip": "المريت عكس الواسطة، ماشي عكس التواضع."
-    },
-    {
-      "a": "Hésitation",
-      "t": "e-zi-ta-syon",
-      "d": "État de quelqu'un qui ne peut pas se décider.",
-      "n": "L'hésitation peut être le signe d'une réflexion profonde.",
-      "r": "Psychologie",
-      "o": "Latin",
-      "f": "Très fréquent",
-      "diff": 1,
-      "c": "psychologie",
-      "syn": [
-        "Indécision"
-      ],
-      "ant": [
-        "Décision"
-      ],
-      "ex": [
-        "Son hésitation a fait rater le train."
-      ],
-      "err": "Hésitation ne signifie pas 'paresse'.",
-      "l": "B1",
-      "tip": "التردد كيتعلق بالتفكير، ماشي بالكسل.",
-      "id": 7,
-      "glose": "هي اللحظة اللي كتبقى واقف ماعرفتيش شنو تختار، كتفكر مزيان.",
-      "errTip": "التردد كيدل على التفكير العميق، ماشي على الكسل."
-    },
-    {
-      "a": "Appartenance",
-      "t": "a-par-te-nans",
-      "d": "Sentiment d'être membre d'un groupe.",
-      "n": "L'appartenance est un besoin humain fondamental.",
-      "r": "Société",
+      "a": "Formulaire",
+      "t": "for-mu-lair",
+      "d": "Document à remplir avec des informations personnelles.",
+      "n": "On en trouve partout : à la banque, à l'école, à la préfecture.",
+      "r": "Administratif",
       "o": "Français",
-      "f": "Fréquent",
-      "diff": 2,
-      "c": "société",
-      "syn": [
-        "Identité"
-      ],
-      "ant": [
-        "Exclusion"
-      ],
-      "ex": [
-        "Le sentiment d'appartenance à une équipe est important."
-      ],
-      "err": "Ne pas confondre 'appartenance' et 'identité'.",
-      "l": "B2",
-      "tip": "الشعور بالانتماء ضروري للراحة النفسية.",
-      "id": 8,
-      "glose": "هو الإحساس بأنك جزء من جماعة ولا فريق، وكتحس بالراحة فيها.",
-      "errTip": "الانتماء أعمق من الهوية، هو إحساس بالقبول داخل الجماعة."
-    },
-    {
-      "a": "Élitisme",
-      "t": "e-li-tism",
-      "d": "Attitude qui privilégie une élite.",
-      "n": "Le mot est souvent utilisé de manière critique.",
-      "r": "Critique sociale",
-      "o": "Français",
-      "f": "Courant",
-      "diff": 4,
-      "c": "politique",
-      "syn": [
-        "Arrogance sociale"
-      ],
-      "ant": [
-        "Populisme"
-      ],
-      "ex": [
-        "On lui reproche son élitisme."
-      ],
-      "err": "Ne pas confondre l'élitisme avec la 'méritocratie'.",
-      "l": "C1",
-      "tip": "هاد الكلمة كاتستعمل فالنقاشات السياسية.",
-      "id": 9,
-      "glose": "موقف ديال ناس كيشوفو راسهم أحسن من الآخرين، وكيستثناو العامة.",
-      "errTip": "النخبوية كلمة سلبية فالغالب، ماشي نفس معنى الاستحقاق."
-    },
-    {
-      "a": "Projection",
-      "t": "pro-jek-syon",
-      "d": "Mécanisme par lequel on attribue à l'autre ses sentiments.",
-      "n": "La projection est un mécanisme de défense inconscient.",
-      "r": "Psychologie",
-      "o": "Latin",
-      "f": "Montant",
-      "diff": 4,
-      "c": "psychologie",
-      "syn": [
-        "Attribution"
-      ],
-      "ant": [
-        "Introspection"
-      ],
-      "ex": [
-        "Il fait de la projection : il accuse les autres."
-      ],
-      "err": "La projection est un processus inconscient.",
-      "l": "C1",
-      "tip": "كيعني أنك ترمي عتابك على الناس.",
-      "id": 10,
-      "glose": "فعل لا واعي، كترمي مشاعرك ولا أفكارك على شخص آخر.",
-      "errTip": "Projection معناها كترمي على الآخرين شي حاجة ديالك بلا ما تحس بيها."
-    },
-    {
-      "a": "Ambition",
-      "t": "an-bi-syon",
-      "d": "Désir ardent de réussir.",
-      "n": "L'ambition est généralement positive.",
-      "r": "Développement personnel",
-      "o": "Latin",
       "f": "Très courant",
       "diff": 1,
-      "c": "personnalité",
-      "syn": [
-        "Aspiration"
-      ],
-      "ant": [
-        "Résignation"
-      ],
-      "ex": [
-        "Sa grande ambition est de devenir architecte."
-      ],
-      "err": "L'ambition n'est pas un défaut en soi.",
-      "l": "B1",
-      "tip": "الطموح صفة كاتعجب الناس.",
-      "id": 11,
-      "glose": "هي الرغبة القوية باش توصل لهدف كبير فحياتك.",
-      "errTip": "الطموح صفة إيجابية، ماشي عيب ولا أنانية."
-    },
-    {
-      "a": "Rationalisation",
-      "t": "ra-syo-na-li-za-syon",
-      "d": "Action de justifier ses actes par des raisons logiques.",
-      "n": "En psychologie, c'est un mécanisme de défense.",
-      "r": "Psychologie",
-      "o": "Latin",
-      "f": "Fréquent",
-      "diff": 3,
-      "c": "psychologie",
-      "syn": [
-        "Justification"
-      ],
-      "ant": [
-        "Remise en question"
-      ],
-      "ex": [
-        "Il trouve toujours une rationalisation pour justifier ses retards."
-      ],
-      "err": "Ne pas confondre 'rationalisation' et 'raisonnement'.",
-      "l": "B2",
-      "tip": "كاتعني التفكير المنطقي باش تبرر شي حاجة.",
-      "id": 12,
-      "glose": "كتلقى تبريرات منطقية باش تقنع راسك ولا الآخرين بشي فعل ديالك.",
-      "errTip": "ماشي نفس التفكير المنطقي العادي، هي آلية دفاع نفسية باش تبرر."
-    },
-    {
-      "a": "Limites",
-      "t": "li-mit",
-      "d": "Frontières, ce qu'on ne peut pas dépasser.",
-      "n": "Dans les relations humaines, les limites sont essentielles.",
-      "r": "Relations",
-      "o": "Latin",
-      "f": "Très courant",
-      "diff": 1,
-      "c": "relations humaines",
-      "syn": [
-        "Frontières"
-      ],
-      "ant": [
-        "Liberté totale"
-      ],
-      "ex": [
-        "Il est important de poser des limites."
-      ],
-      "err": "On dit 'poser des limites' et non 'mettre des limites'.",
-      "l": "B1",
-      "tip": "الحدود هي احترام الذات.",
-      "id": 13,
-      "glose": "هي الحدود اللي كتحدد وقتاش وكيفاش تقبل ولا ترفض شي حاجة.",
-      "errTip": "كنقولو poser des limites، ماشي mettre."
-    },
-    {
-      "a": "Discours",
-      "t": "dis-kour",
-      "d": "Ensemble cohérent de paroles sur un sujet.",
-      "n": "Le discours est aussi la manière dont une institution s'exprime.",
-      "r": "Politique",
-      "o": "Latin",
-      "f": "Fréquent",
-      "diff": 4,
-      "c": "politique",
-      "syn": [
-        "Propos"
-      ],
+      "c": "administratif",
+      "l": "A2",
+      "syn": ["Questionnaire"],
       "ant": [],
-      "ex": [
-        "Le discours politique est souvent éloigné de la réalité."
-      ],
-      "err": "Ne pas confondre 'discours' et 'speech'.",
-      "l": "C1",
-      "tip": "الخطاب هو مجموعة أفكار.",
-      "id": 14,
-      "glose": "هو الكلام المنظم اللي كيهضر بيه شخص ولا مؤسسة على موضوع معين.",
-      "errTip": "Discours فالفرنسية أشمل من speech بالإنجليزية."
+      "ex": ["Il faut remplir ce formulaire.", "Le formulaire est en ligne."],
+      "err": "On dit 'remplir un formulaire' et non 'écrire un formulaire'.",
+      "tip": "هاد الكلمة كاتستعمل بزاف فالإجراءات الرسمية.",
+      "glose": "يعني الورقة اللي خاصك تعمّرها",
+      "errTip": "كاينين لي كيڭولو 'écrire un formulaire' ولكن الصحيح 'remplir'",
+      "tipExample": "خاصك تعمّر formulaire ديال البنك."
     },
     {
-      "a": "Dérive",
-      "t": "de-riv",
-      "d": "Écart progressif par rapport à une norme.",
-      "n": "La dérive est insidieuse. Elle se fait petit à petit.",
-      "r": "Philosophie",
-      "o": "Latin",
-      "f": "Courant",
-      "diff": 4,
-      "c": "philosophie",
-      "syn": [
-        "Déviation"
-      ],
-      "ant": [
-        "Stabilité"
-      ],
-      "ex": [
-        "On assiste à une dérive des valeurs."
-      ],
-      "err": "La dérive est un processus graduel.",
-      "l": "C1",
-      "tip": "كاتعني التدهور التدريجي.",
-      "id": 15,
-      "glose": "هو الابتعاد التدريجي على القيم ولا القواعد، شوية بشوية بلا ما تحس.",
-      "errTip": "الانحراف هنا بطيء ومخفي، ماشي فجأة وواضح."
-    },
-    {
-      "a": "Empathie",
-      "t": "em-pa-ti",
-      "d": "Capacité à comprendre et partager les émotions d'autrui.",
-      "n": "L'empathie va au-delà de la simple sympathie.",
-      "r": "Psychologie",
-      "o": "Grec",
-      "f": "Très courant",
-      "diff": 2,
-      "c": "psychologie",
-      "syn": [
-        "Compréhension"
-      ],
-      "ant": [
-        "Indifférence"
-      ],
-      "ex": [
-        "L'empathie est une compétence qui se développe."
-      ],
-      "err": "Ne pas confondre 'empathie' et 'sympathie'.",
-      "l": "B2",
-      "tip": "التعاطف هو أنك تفهم وتحس بلي كيعيشو الآخر.",
-      "id": 16,
-      "glose": "هي تقدر تحس بإحساس الآخر وكأنك حاير معاه، ماشي غير تفهمو من بعيد.",
-      "errTip": "التعاطف أعمق من التعاطف العابر، فيه إحساس حقيقي."
-    },
-    {
-      "a": "Autonomie",
-      "t": "o-to-no-mi",
-      "d": "Capacité de se gouverner soi-même.",
-      "n": "L'autonomie est une valeur forte dans les sociétés modernes.",
-      "r": "Développement personnel",
-      "o": "Grec",
-      "f": "Courant",
-      "diff": 2,
-      "c": "personnalité",
-      "syn": [
-        "Indépendance"
-      ],
-      "ant": [
-        "Dépendance"
-      ],
-      "ex": [
-        "L'autonomie est un objectif éducatif."
-      ],
-      "err": "L'autonomie n'est pas l'isolement.",
-      "l": "B1",
-      "tip": "الاستقلالية هي القدرة على القرار.",
-      "id": 17,
-      "glose": "هي تقدر تدبر راسك وحدك بلا ما تحتاج حد.",
-      "errTip": "الاستقلالية ماشي معناها الانعزال، تقدر تكون مستقل وتبقى مرتبط بالناس."
-    },
-    {
-      "a": "Autonomisation",
-      "t": "o-to-no-mi-za-syon",
-      "d": "Processus qui permet à une personne de gagner en autonomie.",
-      "n": "Autonomiser les femmes, c'est leur donner les moyens d'agir.",
-      "r": "Société",
+      "id": 4,
+      "a": "Justificatif",
+      "t": "jus-ti-fi-catif",
+      "d": "Document qui prouve une information (domicile, identité, revenus).",
+      "n": "Très demandé dans les démarches administratives.",
+      "r": "Administratif",
       "o": "Français",
-      "f": "Fréquent",
+      "f": "Courant",
       "diff": 3,
-      "c": "société",
-      "syn": [
-        "Émancipation"
-      ],
-      "ant": [
-        "Dépendance"
-      ],
-      "ex": [
-        "L'autonomisation des femmes est un combat."
-      ],
-      "err": "Autonomisation n'est pas synonyme d'isolement.",
-      "l": "B2",
-      "tip": "التمكين هو أن تعطي للآخر القوة والثقة.",
-      "id": 18,
-      "glose": "هو المسار اللي كيعطي لشخص القوة والوسائل باش يدبر راسه.",
-      "errTip": "التمكين عملية، ماشي حالة، كيتطلب وقت ودعم."
+      "c": "administratif",
+      "l": "B1",
+      "syn": ["Preuve", "Attestation"],
+      "ant": [],
+      "ex": ["On m'a demandé un justificatif de domicile.", "Je dois fournir un justificatif."],
+      "err": "On dit 'justificatif de domicile' et non 'papier de maison'.",
+      "tip": "هاد الكلمة كاتستعمل بزاف فالإجراءات الإدارية.",
+      "glose": "يعني الورقة اللي كاتبرهن على شي حاجة",
+      "errTip": "ما تقولش 'papier de maison'، ڭول 'justificatif de domicile'",
+      "tipExample": "عندك justificatif ديال العنوان؟"
     },
     {
-      "a": "Discipline",
-      "t": "di-si-plin",
-      "d": "Capacité à suivre des règles, une méthode.",
-      "n": "La discipline peut être imposée ou choisie.",
-      "r": "Développement personnel",
-      "o": "Latin",
+      "id": 5,
+      "a": "Formalités",
+      "t": "for-ma-li-tés",
+      "d": "Ensemble des démarches administratives à accomplir.",
+      "n": "Un mot très utilisé quand on parle de papiers, de préfecture, d'immigration.",
+      "r": "Administratif",
+      "o": "Français",
+      "f": "Courant",
+      "diff": 3,
+      "c": "administratif",
+      "l": "B1",
+      "syn": ["Démarches", "Procédures"],
+      "ant": ["Simplicité"],
+      "ex": ["Les formalités sont longues.", "J'ai fini les formalités d'inscription."],
+      "err": "On dit 'accomplir des formalités' et non 'faire des formalités'.",
+      "tip": "هاد الكلمة كاتستعمل بزاف فالإجراءات الإدارية.",
+      "glose": "يعني مجموعة الإجراءات الرسمية",
+      "errTip": "كاينين لي كيڭولو 'faire des formalités' ولكن الصحيح 'accomplir'",
+      "tipExample": "formalités ديال السكن كاملة؟"
+    },
+    {
+      "id": 6,
+      "a": "Lessivé",
+      "t": "le-si-vé",
+      "d": "Très fatigué, épuisé.",
+      "n": "Expression familière très utilisée pour dire qu'on est exténué.",
+      "r": "Familier",
+      "o": "Français",
       "f": "Très courant",
-      "diff": 1,
-      "c": "personnalité",
-      "syn": [
-        "Rigueur"
-      ],
-      "ant": [
-        "Indiscipline"
-      ],
-      "ex": [
-        "La discipline est la clé du succès."
-      ],
-      "err": "La discipline n'est pas une punition.",
+      "diff": 2,
+      "c": "quotidien",
       "l": "B1",
-      "tip": "الانضباط هو تنظيم نفسك.",
-      "id": 19,
-      "glose": "هي تقدر تتبع قواعد ولا روتين بانتظام باش توصل لهدف.",
-      "errTip": "الانضباط ماشي عقاب، هو تنظيم اختياري للوصول لهدف."
+      "syn": ["Épuisé", "Crevé", "Rincé"],
+      "ant": ["En forme", "Dynamique"],
+      "ex": ["Je suis lessivé après cette journée.", "Il est lessivé, il va se coucher."],
+      "err": "Ne pas utiliser dans un contexte formel. C'est familier.",
+      "tip": "هاد العبارة كاتستعمل باش توصف التعب الشديد. ما تستعملهاش فالمناسبات الرسمية.",
+      "glose": "يعني مرهق بزاف، معيا",
+      "errTip": "هاد الكلمة عامية، ماشي رسمية. ما تقلهاش فالشغل ولا فالإدارة.",
+      "tipExample": "أنا lessivé، مابقيتش قادر نكمل."
     },
     {
-      "a": "Responsabilité",
-      "t": "res-pon-sa-bi-li-te",
-      "d": "Obligation de répondre de ses actes.",
-      "n": "Un adulte responsable assume les conséquences de ses choix.",
-      "r": "Psychologie",
-      "o": "Latin",
-      "f": "Très fréquent",
-      "diff": 1,
-      "c": "psychologie",
-      "syn": [
-        "Charge"
-      ],
-      "ant": [
-        "Irresponsabilité"
-      ],
-      "ex": [
-        "Il assume la responsabilité de son échec."
-      ],
-      "err": "La responsabilité n'est pas la culpabilité.",
+      "id": 7,
+      "a": "Prendre la tête",
+      "t": "pran-dr la têt",
+      "d": "Énerver, embêter, rendre fou.",
+      "n": "Expression familière pour dire que quelqu'un ou quelque chose vous saoule.",
+      "r": "Familier",
+      "o": "Français",
+      "f": "Très courant",
+      "diff": 2,
+      "c": "quotidien",
       "l": "B1",
-      "tip": "المسؤولية هي أنك تتحمل عواقب أفعالك.",
-      "id": 20,
-      "glose": "تقدر تتحمل نتائج الأفعال ديالك، الزوينة والخايبة.",
-      "errTip": "المسؤولية ماشي نفس الذنب، هي تحمل النتائج بلا جلد الذات."
+      "syn": ["Énerver", "Souler", "Agacer"],
+      "ant": ["Apaiser", "Détendre"],
+      "ex": ["Arrête de me prendre la tête !", "Ce bruit me prend la tête."],
+      "err": "Ne pas confondre avec 'avoir la tête prise' qui signifie être très occupé.",
+      "tip": "هاد العبارة كاتستعمل باش تقول باللي شي حاجة ضايقتك أو كاتزعجك.",
+      "glose": "يعني كاتزعجني، كاتحيرني",
+      "errTip": "ما تقلهاش فالشغل مع المدراء. هي عامية.",
+      "tipExample": "هد الضجة كاتاخد لراسي."
+    },
+    {
+      "id": 8,
+      "a": "Avoir le cafard",
+      "t": "a-vwar le ca-far",
+      "d": "Être triste, déprimé, avoir le moral bas.",
+      "n": "Expression imagée : le cafard est un insecte qui vit dans le noir → la tristesse.",
+      "r": "Familier",
+      "o": "Français",
+      "f": "Courant",
+      "diff": 2,
+      "c": "émotions",
+      "l": "B1",
+      "syn": ["Être déprimé", "Être triste", "Morose"],
+      "ant": ["Être joyeux", "Avoir le moral"],
+      "ex": ["Il a le cafard en ce moment.", "Quand il pleut, j'ai le cafard."],
+      "err": "Ne pas utiliser dans un contexte formel. C'est familier.",
+      "tip": "هاد العبارة كاتستعمل باش تعبر على الحالة المزاجية.",
+      "glose": "يعني كاين شي حاجة ضاغطاك، كاتحس بالوحدة",
+      "errTip": "ما تقلهاش فالمناسبات الرسمية. هي عامية.",
+      "tipExample": "من بعد ما سمع الخبر، جاه le cafard."
+    },
+    {
+      "id": 9,
+      "a": "Poser un lapin",
+      "t": "po-zé un la-pin",
+      "d": "Ne pas venir à un rendez-vous sans prévenir.",
+      "n": "Expression familière. On 'pose un lapin' à quelqu'un.",
+      "r": "Familier",
+      "o": "Français",
+      "f": "Courant",
+      "diff": 3,
+      "c": "relations",
+      "l": "B2",
+      "syn": ["Ne pas venir", "Faire faux bond"],
+      "ant": ["Venir", "Être ponctuel"],
+      "ex": ["Il m'a posé un lapin !", "Ne pose pas de lapin à ton ami."],
+      "err": "On dit 'poser un lapin à quelqu'un' et non 'faire un lapin'.",
+      "tip": "هاد العبارة كاتستعمل فالمحادثات اليومية بين الصحاب.",
+      "glose": "يعني تغيب عن موعد بدون ما تخبر",
+      "errTip": "ما تقلهاش مع الناس اللي ما تعرفهمش. هي بين الصحاب.",
+      "tipExample": "غادي تposer un lapin لصحابك؟"
+    },
+    {
+      "id": 10,
+      "a": "Être à côté de la plaque",
+      "t": "êtr a ko-té de la plak",
+      "d": "Ne pas comprendre une situation, être hors sujet.",
+      "n": "Expression familière pour dire que quelqu'un ne comprend pas ce qu'il se passe.",
+      "r": "Familier",
+      "o": "Français",
+      "f": "Courant",
+      "diff": 3,
+      "c": "quotidien",
+      "l": "B2",
+      "syn": ["Être hors sujet", "Ne pas comprendre"],
+      "ant": ["Comprendre", "Être dans le sujet"],
+      "ex": ["Il est complètement à côté de la plaque.", "Excuse-moi, j'étais à côté de la plaque."],
+      "err": "On dit 'être à côté de la plaque' et non 'être à côté de la assiette'.",
+      "tip": "هاد العبارة كاتستعمل باش تقول باللي شي واحد مافاهم والو.",
+      "glose": "يعني مافاهم والو، خارج عن الموضوع",
+      "errTip": "ما تقلهاش مع الناس اللي كبرو منك. هي عامية.",
+      "tipExample": "هضر عليه بزاف ولكنه باقي à côté de la plaque."
+    }
+  ],
+  "expressions": [
+    {
+      "id": 1,
+      "a": "C'est noté",
+      "t": "se no-te",
+      "d": "Utilisé pour confirmer qu'on a bien compris une information.",
+      "n": "Très courant au travail et dans la vie quotidienne.",
+      "ex": ["- Je vous envoie le document. - C'est noté."],
+      "tip": "هاد العبارة كاتستعمل باش تآكد ليهم باللي فهمتي",
+      "unit": 1
+    },
+    {
+      "id": 2,
+      "a": "Je vous prie",
+      "t": "je vu pri",
+      "d": "Formule polie pour inviter ou demander quelque chose.",
+      "n": "Utilisé dans un contexte formel ou poli.",
+      "ex": ["Je vous prie de bien vouloir signer."],
+      "tip": "هاد العبارة كاتستعمل فالمناسبات الرسمية",
+      "unit": 1
+    },
+    {
+      "id": 3,
+      "a": "Ça me saoule",
+      "t": "sa me sowl",
+      "d": "Exprime l'agacement, l'énervement.",
+      "n": "Familier. Utilisé entre amis.",
+      "ex": ["Ça me saoule de faire la queue."],
+      "tip": "هاد العبارة كاتعني شي حاجة مضايقاك",
+      "unit": 6
+    },
+    {
+      "id": 4,
+      "a": "T'inquiète",
+      "t": "tin-kiet",
+      "d": "Ne t'inquiète pas, tout va bien.",
+      "n": "Très utilisé dans le langage parlé.",
+      "ex": ["- Je suis en retard. - T'inquiète !"],
+      "tip": "هاد العبارة كاتستعمل باش ترضي لخوك",
+      "unit": 6
+    },
+    {
+      "id": 5,
+      "a": "Ça me file la pétoche",
+      "t": "sa me fil la pe-toch",
+      "d": "Avoir très peur.",
+      "n": "Expression familière pour dire qu'on est effrayé.",
+      "ex": ["Ce film me file la pétoche."],
+      "tip": "هاد العبارة كاتعني بزاف ديال الخوف",
+      "unit": 8
     }
   ],
   "texts": [
     {
-      "t": "L'art de la communication",
-      "x": "Pour s'exprimer avec éloquence, il faut savoir nuancer son discours. La pertinence d'une remarque dépend du contexte. Une communication réussie demande de l'empathie.",
-      "w": [
-        "Éloquence",
-        "Nuancer",
-        "Pertinent",
-        "Empathie"
-      ],
-      "c": "communication",
-      "id": 1
-    },
-    {
-      "t": "Une société en mutation",
-      "x": "Notre société est marquée par la polarisation des débats et la banalisation de l'exclusion. La marginalisation crée un sentiment d'aliénation. Il faut renforcer la solidarité.",
-      "w": [
-        "Polarisation",
-        "Banalisation",
-        "Exclusion",
-        "Marginalisation",
-        "Aliénation",
-        "Solidarité"
-      ],
-      "c": "société",
-      "id": 2
-    },
-    {
-      "t": "Le monde professionnel",
-      "x": "Dans le monde du travail, la compétence et le mérite sont mis en avant. L'autonomie est un objectif clé. La discipline et la responsabilité sont des qualités recherchées.",
-      "w": [
-        "Compétence",
-        "Mérite",
-        "Autonomie",
-        "Discipline",
-        "Responsabilité"
-      ],
-      "c": "travail",
-      "id": 3
-    },
-    {
-      "t": "L'ère numérique",
-      "x": "L'identité numérique est devenue importante. L'addiction numérique est un vrai problème. Pour s'en protéger, il faut parfois pratiquer l'autocensure.",
-      "w": [
-        "Identité numérique",
-        "Addiction numérique",
-        "Autocensure"
-      ],
-      "c": "numérique",
-      "id": 4
-    },
-    {
-      "t": "Développer son esprit critique",
-      "x": "La pensée critique permet de ne pas tomber dans le piège des généralisations abusives et des biais cognitifs. La modération est souvent plus intelligente que l'extrémisme.",
-      "w": [
-        "Pensée critique",
-        "Généralisation",
-        "Biais",
-        "Modération",
-        "Extrémisme"
-      ],
-      "c": "esprit critique",
-      "id": 5
-    }
-  ],
-  "categories": [
-    {
-      "id": "psychologie",
-      "label": "Psychologie",
-      "icon": "🧠",
-      "color": "#5E5CE6"
-    },
-    {
-      "id": "travail",
-      "label": "Travail",
-      "icon": "💼",
-      "color": "#FF9F0A"
-    },
-    {
-      "id": "société",
-      "label": "Société",
-      "icon": "🏛️",
-      "color": "#FF453A"
-    },
-    {
-      "id": "débat",
-      "label": "Débat",
-      "icon": "⚡",
-      "color": "#30D158"
-    },
-    {
-      "id": "relations humaines",
-      "label": "Relations",
-      "icon": "🤝",
-      "color": "#64D2FF"
-    },
-    {
-      "id": "politique",
-      "label": "Politique",
-      "icon": "🎯",
-      "color": "#FF6B6B"
-    },
-    {
-      "id": "pensée critique",
-      "label": "Esprit critique",
-      "icon": "🔍",
-      "color": "#BF5AF2"
-    },
-    {
-      "id": "personnalité",
-      "label": "Personnalité",
-      "icon": "✨",
-      "color": "#FFD60A"
-    },
-    {
-      "id": "philosophie",
-      "label": "Philosophie",
-      "icon": "📖",
-      "color": "#0A84FF"
-    },
-    {
-      "id": "littérature",
-      "label": "Littérature",
-      "icon": "📚",
-      "color": "#BF5AF2"
-    },
-    {
-      "id": "communication",
-      "label": "Communication",
-      "icon": "🗣️",
-      "color": "#5E5CE6"
-    },
-    {
-      "id": "numérique",
-      "label": "Numérique",
-      "icon": "📱",
-      "color": "#5AC8FA"
-    },
-    {
-      "id": "esprit critique",
-      "label": "Esprit critique",
-      "icon": "💡",
-      "color": "#FF9F0A"
-    }
-  ],
-  "parcours": [
-    {
-      "id": "soi",
-      "title": "Comprendre l'humain",
-      "icon": "🧠",
-      "color": "#5E5CE6",
-      "cats": [
-        "psychologie",
-        "personnalité"
-      ],
-      "texts": [
-        1
-      ]
-    },
-    {
-      "id": "societe",
-      "title": "Vivre ensemble",
-      "icon": "🏛️",
-      "color": "#FF9F0A",
-      "cats": [
-        "société",
-        "relations humaines",
-        "numérique"
-      ],
-      "texts": [
-        2,
-        4
-      ]
-    },
-    {
-      "id": "pouvoir",
-      "title": "Pouvoir et politique",
-      "icon": "🎯",
-      "color": "#FF453A",
-      "cats": [
-        "politique",
-        "philosophie"
-      ],
-      "texts": [
-        3
-      ]
-    },
-    {
-      "id": "penser",
-      "title": "L'art de penser",
-      "icon": "🔍",
-      "color": "#BF5AF2",
-      "cats": [
-        "pensée critique",
-        "débat",
-        "esprit critique"
-      ],
-      "texts": [
-        5
-      ]
-    }
-  ],
-  "units": [
-    {
       "id": 1,
-      "title": "Les bases",
-      "icon": "🌱",
-      "color": "#5E5CE6",
-      "words": [
-        7,
-        13,
-        19,
-        20,
-        11
-      ]
+      "t": "Ahmed à la préfecture",
+      "x": "Ahmed vient d'arriver en France. Il doit faire son titre de séjour à la préfecture. Il a pris rendez-vous sur Internet. À l'accueil, on lui donne un formulaire à remplir. Il doit fournir un justificatif de domicile et son passeport. Heureusement, un agent l'aide à comprendre les formalités. Ahmed est soulagé, il a enfin son récépissé !",
+      "w": ["Titre de séjour","Rendez-vous","Formulaire","Justificatif","Formalités"],
+      "c": "administratif"
     },
     {
       "id": 2,
-      "title": "Qualités",
-      "icon": "🎭",
-      "color": "#FF9F0A",
-      "words": [
-        2,
-        6,
-        17,
-        12,
-        16
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Émotions",
-      "icon": "💭",
-      "color": "#FF453A",
-      "words": [
-        5,
-        8,
-        14,
-        1,
-        3
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Valeurs",
-      "icon": "🤝",
-      "color": "#BF5AF2",
-      "words": [
-        9,
-        10,
-        15,
-        18,
-        4
-      ]
-    },
-    {
-      "id": 5,
-      "title": "Maîtrise",
-      "icon": "👑",
-      "color": "#5AC8FA",
-      "words": [
-        19,
-        20,
-        14,
-        12,
-        15
-      ]
+      "t": "Une journée fatigante",
+      "x": "Aujourd'hui, j'ai eu une journée très longue. Je suis lessivé ! Le matin, j'ai couru pour attraper le bus. Ensuite, j'ai eu une réunion qui m'a pris la tête. Je suis à côté de la plaque depuis ce matin. Heureusement, ce soir je vais me reposer.",
+      "w": ["Lessivé","Prendre la tête","Être à côté de la plaque"],
+      "c": "quotidien"
     }
   ],
+  "categories": [
+    {"id":"administratif","label":"Administratif","icon":"📄","color":"#FF6B6B"},
+    {"id":"quotidien","label":"Quotidien","icon":"🏠","color":"#4ECDC4"},
+    {"id":"émotions","label":"Émotions","icon":"❤️","color":"#FF9F43"},
+    {"id":"relations","label":"Relations","icon":"🤝","color":"#DDA0DD"}
+  ],
+  "parcours": [
+    {"id":"parcours1","title":"Les bases","icon":"🌱","color":"#5E5CE6","cats":["administratif","quotidien"],"texts":[1,2]},
+    {"id":"parcours2","title":"Vivre en France","icon":"🇫🇷","color":"#FF6B6B","cats":["administratif","quotidien","relations"],"texts":[1,2]},
+    {"id":"parcours3","title":"Maîtriser le français","icon":"🎯","color":"#BF5AF2","cats":["quotidien","relations","émotions"],"texts":[2]}
+  ],
+  "units": [
+    {"id":1,"title":"S'installer en France","icon":"🏠","color":"#FF6B6B","words":[1,2,3,4,5]},
+    {"id":2,"title":"La vie quotidienne","icon":"🏙️","color":"#4ECDC4","words":[6,7,8,9,10]}
+  ],
   "levels": [
-    {
-      "id": "B1",
-      "label": "B1",
-      "color": "#30D158"
-    },
-    {
-      "id": "B2",
-      "label": "B2",
-      "color": "#0A84FF"
-    },
-    {
-      "id": "C1",
-      "label": "C1",
-      "color": "#BF5AF2"
-    },
-    {
-      "id": "C2",
-      "label": "C2",
-      "color": "#FF9F0A"
-    }
+    {"id":"A2","label":"A2","color":"#30D158"},
+    {"id":"B1","label":"B1","color":"#0A84FF"},
+    {"id":"B2","label":"B2","color":"#BF5AF2"},
+    {"id":"C1","label":"C1","color":"#FF9F0A"}
   ]
 }
