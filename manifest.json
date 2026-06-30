@@ -1,20 +1,773 @@
 {
-  "name": "Français Elevate",
-  "short_name": "Français",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
-  "icons": [
+  "words": [
     {
-      "src": "icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "a": "Éloquence",
+      "t": "e-lok-wans",
+      "d": "Art de bien parler.",
+      "n": "L'éloquence est une compétence qui se cultive.",
+      "r": "Soutenu",
+      "o": "Latin",
+      "f": "Courant",
+      "diff": 3,
+      "c": "littérature",
+      "syn": [
+        "Art oratoire"
+      ],
+      "ant": [
+        "Bafouillage"
+      ],
+      "ex": [
+        "L'éloquence de ce discours a conquis tout le monde."
+      ],
+      "err": "Ne pas confondre 'éloquence' et 'verbeux'.",
+      "l": "B2",
+      "tip": "هاد الكلمة كتستعمل فالنقاشات الرسمية.",
+      "id": 1
     },
     {
-      "src": "icon.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "a": "Pertinent",
+      "t": "per-ti-nan",
+      "d": "Qui est en rapport parfait avec le sujet.",
+      "n": "Une remarque pertinente est une remarque qui tombe juste.",
+      "r": "Professionnel",
+      "o": "Latin",
+      "f": "Très courant",
+      "diff": 2,
+      "c": "travail",
+      "syn": [
+        "Opportun"
+      ],
+      "ant": [
+        "Hors sujet"
+      ],
+      "ex": [
+        "Ta question est très pertinente."
+      ],
+      "err": "On dit 'pertinente' et non 'pertinante'.",
+      "l": "B1",
+      "tip": "هاذ الكلمة كتجي بزاف فالمقابلات.",
+      "id": 2
+    },
+    {
+      "a": "Nuancer",
+      "t": "nu-an-se",
+      "d": "Exprimer avec précision en tenant compte des différences.",
+      "n": "Nuancer une opinion, c'est ne pas la voir en noir et blanc.",
+      "r": "Intellectuel",
+      "o": "Français",
+      "f": "Courant",
+      "diff": 3,
+      "c": "pensée critique",
+      "syn": [
+        "Modérer"
+      ],
+      "ant": [
+        "Généraliser"
+      ],
+      "ex": [
+        "Il faut nuancer ce propos."
+      ],
+      "err": "Nuancer ne signifie pas 'contredire'.",
+      "l": "B2",
+      "tip": "فاش كتخاصم واحد، حاول تnuance كلامك.",
+      "id": 3
+    },
+    {
+      "a": "Ambigüité",
+      "t": "an-bi-gui-te",
+      "d": "Caractère de ce qui peut avoir plusieurs sens.",
+      "n": "L'ambigüité peut être voulue ou involontaire.",
+      "r": "Débat",
+      "o": "Latin",
+      "f": "Courant",
+      "diff": 3,
+      "c": "débat",
+      "syn": [
+        "Flou"
+      ],
+      "ant": [
+        "Clarté"
+      ],
+      "ex": [
+        "L'ambigüité de cette phrase prête à confusion."
+      ],
+      "err": "Attention à l'orthographe : 'ambigüité' avec un tréma.",
+      "l": "B2",
+      "tip": "هاد الكلمة كاتكتب بالtréma فوق الu.",
+      "id": 4
+    },
+    {
+      "a": "Vulnérabilité",
+      "t": "vul-ne-ra-bi-li-te",
+      "d": "Caractère de ce qui est fragile.",
+      "n": "La vulnérabilité n'est pas une faiblesse. C'est une force.",
+      "r": "Psychologie",
+      "o": "Latin",
+      "f": "Très courant",
+      "diff": 3,
+      "c": "psychologie",
+      "syn": [
+        "Fragilité"
+      ],
+      "ant": [
+        "Force"
+      ],
+      "ex": [
+        "Montrer sa vulnérabilité est un signe de courage."
+      ],
+      "err": "Ne pas utiliser pour décrire une simple faiblesse physique.",
+      "l": "B2",
+      "tip": "الضعف ماشي عيب. بالعكس، هو قوة.",
+      "id": 5
+    },
+    {
+      "a": "Mérite",
+      "t": "me-rit",
+      "d": "Ce qui rend quelqu'un digne d'estime.",
+      "n": "Le mérite est souvent opposé à la chance.",
+      "r": "Société",
+      "o": "Latin",
+      "f": "Courant",
+      "diff": 2,
+      "c": "société",
+      "syn": [
+        "Valeur"
+      ],
+      "ant": [
+        "Indignité"
+      ],
+      "ex": [
+        "Il a obtenu cette place à force de mérite."
+      ],
+      "err": "Ne pas confondre 'mérite' et 'arrogance'.",
+      "l": "B1",
+      "tip": "هاد الكلمة هي عكس 'الواسطة'.",
+      "id": 6
+    },
+    {
+      "a": "Hésitation",
+      "t": "e-zi-ta-syon",
+      "d": "État de quelqu'un qui ne peut pas se décider.",
+      "n": "L'hésitation peut être le signe d'une réflexion profonde.",
+      "r": "Psychologie",
+      "o": "Latin",
+      "f": "Très fréquent",
+      "diff": 1,
+      "c": "psychologie",
+      "syn": [
+        "Indécision"
+      ],
+      "ant": [
+        "Décision"
+      ],
+      "ex": [
+        "Son hésitation a fait rater le train."
+      ],
+      "err": "Hésitation ne signifie pas 'paresse'.",
+      "l": "B1",
+      "tip": "التردد كيتعلق بالتفكير، ماشي بالكسل.",
+      "id": 7
+    },
+    {
+      "a": "Appartenance",
+      "t": "a-par-te-nans",
+      "d": "Sentiment d'être membre d'un groupe.",
+      "n": "L'appartenance est un besoin humain fondamental.",
+      "r": "Société",
+      "o": "Français",
+      "f": "Fréquent",
+      "diff": 2,
+      "c": "société",
+      "syn": [
+        "Identité"
+      ],
+      "ant": [
+        "Exclusion"
+      ],
+      "ex": [
+        "Le sentiment d'appartenance à une équipe est important."
+      ],
+      "err": "Ne pas confondre 'appartenance' et 'identité'.",
+      "l": "B2",
+      "tip": "الشعور بالانتماء ضروري للراحة النفسية.",
+      "id": 8
+    },
+    {
+      "a": "Élitisme",
+      "t": "e-li-tism",
+      "d": "Attitude qui privilégie une élite.",
+      "n": "Le mot est souvent utilisé de manière critique.",
+      "r": "Critique sociale",
+      "o": "Français",
+      "f": "Courant",
+      "diff": 4,
+      "c": "politique",
+      "syn": [
+        "Arrogance sociale"
+      ],
+      "ant": [
+        "Populisme"
+      ],
+      "ex": [
+        "On lui reproche son élitisme."
+      ],
+      "err": "Ne pas confondre l'élitisme avec la 'méritocratie'.",
+      "l": "C1",
+      "tip": "هاد الكلمة كاتستعمل فالنقاشات السياسية.",
+      "id": 9
+    },
+    {
+      "a": "Projection",
+      "t": "pro-jek-syon",
+      "d": "Mécanisme par lequel on attribue à l'autre ses sentiments.",
+      "n": "La projection est un mécanisme de défense inconscient.",
+      "r": "Psychologie",
+      "o": "Latin",
+      "f": "Montant",
+      "diff": 4,
+      "c": "psychologie",
+      "syn": [
+        "Attribution"
+      ],
+      "ant": [
+        "Introspection"
+      ],
+      "ex": [
+        "Il fait de la projection : il accuse les autres."
+      ],
+      "err": "La projection est un processus inconscient.",
+      "l": "C1",
+      "tip": "كيعني أنك ترمي عتابك على الناس.",
+      "id": 10
+    },
+    {
+      "a": "Ambition",
+      "t": "an-bi-syon",
+      "d": "Désir ardent de réussir.",
+      "n": "L'ambition est généralement positive.",
+      "r": "Développement personnel",
+      "o": "Latin",
+      "f": "Très courant",
+      "diff": 1,
+      "c": "personnalité",
+      "syn": [
+        "Aspiration"
+      ],
+      "ant": [
+        "Résignation"
+      ],
+      "ex": [
+        "Sa grande ambition est de devenir architecte."
+      ],
+      "err": "L'ambition n'est pas un défaut en soi.",
+      "l": "B1",
+      "tip": "الطموح صفة كاتعجب الناس.",
+      "id": 11
+    },
+    {
+      "a": "Rationalisation",
+      "t": "ra-syo-na-li-za-syon",
+      "d": "Action de justifier ses actes par des raisons logiques.",
+      "n": "En psychologie, c'est un mécanisme de défense.",
+      "r": "Psychologie",
+      "o": "Latin",
+      "f": "Fréquent",
+      "diff": 3,
+      "c": "psychologie",
+      "syn": [
+        "Justification"
+      ],
+      "ant": [
+        "Remise en question"
+      ],
+      "ex": [
+        "Il trouve toujours une rationalisation pour justifier ses retards."
+      ],
+      "err": "Ne pas confondre 'rationalisation' et 'raisonnement'.",
+      "l": "B2",
+      "tip": "كاتعني التفكير المنطقي باش تبرر شي حاجة.",
+      "id": 12
+    },
+    {
+      "a": "Limites",
+      "t": "li-mit",
+      "d": "Frontières, ce qu'on ne peut pas dépasser.",
+      "n": "Dans les relations humaines, les limites sont essentielles.",
+      "r": "Relations",
+      "o": "Latin",
+      "f": "Très courant",
+      "diff": 1,
+      "c": "relations humaines",
+      "syn": [
+        "Frontières"
+      ],
+      "ant": [
+        "Liberté totale"
+      ],
+      "ex": [
+        "Il est important de poser des limites."
+      ],
+      "err": "On dit 'poser des limites' et non 'mettre des limites'.",
+      "l": "B1",
+      "tip": "الحدود هي احترام الذات.",
+      "id": 13
+    },
+    {
+      "a": "Discours",
+      "t": "dis-kour",
+      "d": "Ensemble cohérent de paroles sur un sujet.",
+      "n": "Le discours est aussi la manière dont une institution s'exprime.",
+      "r": "Politique",
+      "o": "Latin",
+      "f": "Fréquent",
+      "diff": 4,
+      "c": "politique",
+      "syn": [
+        "Propos"
+      ],
+      "ant": [],
+      "ex": [
+        "Le discours politique est souvent éloigné de la réalité."
+      ],
+      "err": "Ne pas confondre 'discours' et 'speech'.",
+      "l": "C1",
+      "tip": "الخطاب هو مجموعة أفكار.",
+      "id": 14
+    },
+    {
+      "a": "Dérive",
+      "t": "de-riv",
+      "d": "Écart progressif par rapport à une norme.",
+      "n": "La dérive est insidieuse. Elle se fait petit à petit.",
+      "r": "Philosophie",
+      "o": "Latin",
+      "f": "Courant",
+      "diff": 4,
+      "c": "philosophie",
+      "syn": [
+        "Déviation"
+      ],
+      "ant": [
+        "Stabilité"
+      ],
+      "ex": [
+        "On assiste à une dérive des valeurs."
+      ],
+      "err": "La dérive est un processus graduel.",
+      "l": "C1",
+      "tip": "كاتعني التدهور التدريجي.",
+      "id": 15
+    },
+    {
+      "a": "Empathie",
+      "t": "em-pa-ti",
+      "d": "Capacité à comprendre et partager les émotions d'autrui.",
+      "n": "L'empathie va au-delà de la simple sympathie.",
+      "r": "Psychologie",
+      "o": "Grec",
+      "f": "Très courant",
+      "diff": 2,
+      "c": "psychologie",
+      "syn": [
+        "Compréhension"
+      ],
+      "ant": [
+        "Indifférence"
+      ],
+      "ex": [
+        "L'empathie est une compétence qui se développe."
+      ],
+      "err": "Ne pas confondre 'empathie' et 'sympathie'.",
+      "l": "B2",
+      "tip": "التعاطف هو أنك تفهم وتحس بلي كيعيشو الآخر.",
+      "id": 16
+    },
+    {
+      "a": "Autonomie",
+      "t": "o-to-no-mi",
+      "d": "Capacité de se gouverner soi-même.",
+      "n": "L'autonomie est une valeur forte dans les sociétés modernes.",
+      "r": "Développement personnel",
+      "o": "Grec",
+      "f": "Courant",
+      "diff": 2,
+      "c": "personnalité",
+      "syn": [
+        "Indépendance"
+      ],
+      "ant": [
+        "Dépendance"
+      ],
+      "ex": [
+        "L'autonomie est un objectif éducatif."
+      ],
+      "err": "L'autonomie n'est pas l'isolement.",
+      "l": "B1",
+      "tip": "الاستقلالية هي القدرة على القرار.",
+      "id": 17
+    },
+    {
+      "a": "Autonomisation",
+      "t": "o-to-no-mi-za-syon",
+      "d": "Processus qui permet à une personne de gagner en autonomie.",
+      "n": "Autonomiser les femmes, c'est leur donner les moyens d'agir.",
+      "r": "Société",
+      "o": "Français",
+      "f": "Fréquent",
+      "diff": 3,
+      "c": "société",
+      "syn": [
+        "Émancipation"
+      ],
+      "ant": [
+        "Dépendance"
+      ],
+      "ex": [
+        "L'autonomisation des femmes est un combat."
+      ],
+      "err": "Autonomisation n'est pas synonyme d'isolement.",
+      "l": "B2",
+      "tip": "التمكين هو أن تعطي للآخر القوة والثقة.",
+      "id": 18
+    },
+    {
+      "a": "Discipline",
+      "t": "di-si-plin",
+      "d": "Capacité à suivre des règles, une méthode.",
+      "n": "La discipline peut être imposée ou choisie.",
+      "r": "Développement personnel",
+      "o": "Latin",
+      "f": "Très courant",
+      "diff": 1,
+      "c": "personnalité",
+      "syn": [
+        "Rigueur"
+      ],
+      "ant": [
+        "Indiscipline"
+      ],
+      "ex": [
+        "La discipline est la clé du succès."
+      ],
+      "err": "La discipline n'est pas une punition.",
+      "l": "B1",
+      "tip": "الانضباط هو تنظيم نفسك.",
+      "id": 19
+    },
+    {
+      "a": "Responsabilité",
+      "t": "res-pon-sa-bi-li-te",
+      "d": "Obligation de répondre de ses actes.",
+      "n": "Un adulte responsable assume les conséquences de ses choix.",
+      "r": "Psychologie",
+      "o": "Latin",
+      "f": "Très fréquent",
+      "diff": 1,
+      "c": "psychologie",
+      "syn": [
+        "Charge"
+      ],
+      "ant": [
+        "Irresponsabilité"
+      ],
+      "ex": [
+        "Il assume la responsabilité de son échec."
+      ],
+      "err": "La responsabilité n'est pas la culpabilité.",
+      "l": "B1",
+      "tip": "المسؤولية هي أنك تتحمل عواقب أفعالك.",
+      "id": 20
+    }
+  ],
+  "texts": [
+    {
+      "t": "L'art de la communication",
+      "x": "Pour s'exprimer avec éloquence, il faut savoir nuancer son discours. La pertinence d'une remarque dépend du contexte. Une communication réussie demande de l'empathie.",
+      "w": [
+        "Éloquence",
+        "Nuancer",
+        "Pertinent",
+        "Empathie"
+      ],
+      "c": "communication",
+      "id": 1
+    },
+    {
+      "t": "Une société en mutation",
+      "x": "Notre société est marquée par la polarisation des débats et la banalisation de l'exclusion. La marginalisation crée un sentiment d'aliénation. Il faut renforcer la solidarité.",
+      "w": [
+        "Polarisation",
+        "Banalisation",
+        "Exclusion",
+        "Marginalisation",
+        "Aliénation",
+        "Solidarité"
+      ],
+      "c": "société",
+      "id": 2
+    },
+    {
+      "t": "Le monde professionnel",
+      "x": "Dans le monde du travail, la compétence et le mérite sont mis en avant. L'autonomie est un objectif clé. La discipline et la responsabilité sont des qualités recherchées.",
+      "w": [
+        "Compétence",
+        "Mérite",
+        "Autonomie",
+        "Discipline",
+        "Responsabilité"
+      ],
+      "c": "travail",
+      "id": 3
+    },
+    {
+      "t": "L'ère numérique",
+      "x": "L'identité numérique est devenue importante. L'addiction numérique est un vrai problème. Pour s'en protéger, il faut parfois pratiquer l'autocensure.",
+      "w": [
+        "Identité numérique",
+        "Addiction numérique",
+        "Autocensure"
+      ],
+      "c": "numérique",
+      "id": 4
+    },
+    {
+      "t": "Développer son esprit critique",
+      "x": "La pensée critique permet de ne pas tomber dans le piège des généralisations abusives et des biais cognitifs. La modération est souvent plus intelligente que l'extrémisme.",
+      "w": [
+        "Pensée critique",
+        "Généralisation",
+        "Biais",
+        "Modération",
+        "Extrémisme"
+      ],
+      "c": "esprit critique",
+      "id": 5
+    }
+  ],
+  "categories": [
+    {
+      "id": "psychologie",
+      "label": "Psychologie",
+      "icon": "🧠",
+      "color": "#5E5CE6"
+    },
+    {
+      "id": "travail",
+      "label": "Travail",
+      "icon": "💼",
+      "color": "#FF9F0A"
+    },
+    {
+      "id": "société",
+      "label": "Société",
+      "icon": "🏛️",
+      "color": "#FF453A"
+    },
+    {
+      "id": "débat",
+      "label": "Débat",
+      "icon": "⚡",
+      "color": "#30D158"
+    },
+    {
+      "id": "relations humaines",
+      "label": "Relations",
+      "icon": "🤝",
+      "color": "#64D2FF"
+    },
+    {
+      "id": "politique",
+      "label": "Politique",
+      "icon": "🎯",
+      "color": "#FF6B6B"
+    },
+    {
+      "id": "pensée critique",
+      "label": "Esprit critique",
+      "icon": "🔍",
+      "color": "#BF5AF2"
+    },
+    {
+      "id": "personnalité",
+      "label": "Personnalité",
+      "icon": "✨",
+      "color": "#FFD60A"
+    },
+    {
+      "id": "philosophie",
+      "label": "Philosophie",
+      "icon": "📖",
+      "color": "#0A84FF"
+    },
+    {
+      "id": "littérature",
+      "label": "Littérature",
+      "icon": "📚",
+      "color": "#BF5AF2"
+    },
+    {
+      "id": "communication",
+      "label": "Communication",
+      "icon": "🗣️",
+      "color": "#5E5CE6"
+    },
+    {
+      "id": "numérique",
+      "label": "Numérique",
+      "icon": "📱",
+      "color": "#5AC8FA"
+    },
+    {
+      "id": "esprit critique",
+      "label": "Esprit critique",
+      "icon": "💡",
+      "color": "#FF9F0A"
+    }
+  ],
+  "parcours": [
+    {
+      "id": "soi",
+      "title": "Comprendre l'humain",
+      "icon": "🧠",
+      "color": "#5E5CE6",
+      "cats": [
+        "psychologie",
+        "personnalité"
+      ],
+      "texts": [
+        1
+      ]
+    },
+    {
+      "id": "societe",
+      "title": "Vivre ensemble",
+      "icon": "🏛️",
+      "color": "#FF9F0A",
+      "cats": [
+        "société",
+        "relations humaines",
+        "numérique"
+      ],
+      "texts": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "pouvoir",
+      "title": "Pouvoir et politique",
+      "icon": "🎯",
+      "color": "#FF453A",
+      "cats": [
+        "politique",
+        "philosophie"
+      ],
+      "texts": [
+        3
+      ]
+    },
+    {
+      "id": "penser",
+      "title": "L'art de penser",
+      "icon": "🔍",
+      "color": "#BF5AF2",
+      "cats": [
+        "pensée critique",
+        "débat",
+        "esprit critique"
+      ],
+      "texts": [
+        5
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "title": "Les bases",
+      "icon": "🌱",
+      "color": "#5E5CE6",
+      "words": [
+        7,
+        13,
+        19,
+        20,
+        11
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Qualités",
+      "icon": "🎭",
+      "color": "#FF9F0A",
+      "words": [
+        2,
+        6,
+        17,
+        12,
+        16
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Émotions",
+      "icon": "💭",
+      "color": "#FF453A",
+      "words": [
+        5,
+        8,
+        14,
+        1,
+        3
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Valeurs",
+      "icon": "🤝",
+      "color": "#BF5AF2",
+      "words": [
+        9,
+        10,
+        15,
+        18,
+        4
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Maîtrise",
+      "icon": "👑",
+      "color": "#5AC8FA",
+      "words": [
+        19,
+        20,
+        14,
+        12,
+        15
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "id": "B1",
+      "label": "B1",
+      "color": "#30D158"
+    },
+    {
+      "id": "B2",
+      "label": "B2",
+      "color": "#0A84FF"
+    },
+    {
+      "id": "C1",
+      "label": "C1",
+      "color": "#BF5AF2"
+    },
+    {
+      "id": "C2",
+      "label": "C2",
+      "color": "#FF9F0A"
     }
   ]
 }
