@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Français">
@@ -94,11 +95,9 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 <div id="root"></div>
 <script>
 const{useState,useEffect,useRef,useCallback,useMemo}=React;
-  // ============================================================
-// VOCABULAIRE FRANÇAIS (50 mots)
-// ============================================================
+
 const VOCABULARY = [
-{id:1,arabic:"Éloquence",transliteration:"e-lok-wans",definition:"Art de bien parler, de persuader par un discours fluide.",nuance:"L'éloquence est une compétence qui se cultive. Elle ne se limite pas à un langage soutenu.",register:"Soutenu · Littéraire",origin:"Latin",frequency:"Courant",difficulty:3,category:"littérature",synonyms:["Art oratoire","Fluidité"],antonyms:["Bafouillage","Lourdeur"],examples:["L'éloquence de ce discours a conquis tout le public.","Un bon débat nécessite de l'éloquence."],errors:"Ne pas confondre 'éloquence' et 'verbeux'.",level:"B2",tip_darija:"هاد الكلمة كتستعمل فالنقاشات الرسمية."},
+{id:1,arabic:"Éloquence",transliteration:"e-lok-wans",definition:"Art de bien parler, de persuader par un discours fluide.",nuance:"L'éloquence est une compétence qui se cultive.",register:"Soutenu · Littéraire",origin:"Latin",frequency:"Courant",difficulty:3,category:"littérature",synonyms:["Art oratoire","Fluidité"],antonyms:["Bafouillage","Lourdeur"],examples:["L'éloquence de ce discours a conquis tout le public.","Un bon débat nécessite de l'éloquence."],errors:"Ne pas confondre 'éloquence' et 'verbeux'.",level:"B2",tip_darija:"هاد الكلمة كتستعمل فالنقاشات الرسمية."},
 {id:2,arabic:"Pertinent",transliteration:"per-ti-nan",definition:"Qui est en rapport parfait avec le sujet.",nuance:"Une remarque pertinente est une remarque qui tombe juste.",register:"Professionnel",origin:"Latin",frequency:"Très courant",difficulty:2,category:"travail",synonyms:["Opportun","Judicieux"],antonyms:["Hors sujet","Inopportun"],examples:["Ta question est très pertinente.","Dans un entretien, il faut donner des exemples pertinents."],errors:"On dit 'une remarque pertinente' et non 'pertinante'.",level:"B1",tip_darija:"هاذ الكلمة كتجي بزاف فالمقابلات."},
 {id:3,arabic:"Nuancer",transliteration:"nu-an-se",definition:"Exprimer avec précision en tenant compte des différences subtiles.",nuance:"Nuancer une opinion, c'est ne pas la voir en noir et blanc.",register:"Intellectuel",origin:"Français",frequency:"Courant",difficulty:3,category:"pensée critique",synonyms:["Modérer","Préciser"],antonyms:["Généraliser","Simplifier"],examples:["Il faut nuancer ce propos.","Son discours nuancé a été très apprécié."],errors:"Nuancer ne signifie pas 'contredire'.",level:"B2",tip_darija:"فاش كتخاصم واحد، حاول تnuance كلامك."},
 {id:4,arabic:"Ambigüité",transliteration:"an-bi-gui-te",definition:"Caractère de ce qui peut avoir plusieurs sens.",nuance:"L'ambigüité peut être voulue ou involontaire.",register:"Débat",origin:"Latin",frequency:"Courant",difficulty:3,category:"débat",synonyms:["Flou","Équivoque"],antonyms:["Clarté","Précision"],examples:["L'ambigüité de cette phrase prête à confusion.","Il y a une certaine ambigüité dans ses intentions."],errors:"Attention à l'orthographe : 'ambigüité' avec un tréma.",level:"B2",tip_darija:"هاد الكلمة كاتكتب بالtréma فوق الu."},
@@ -122,7 +121,7 @@ const VOCABULARY = [
 {id:22,arabic:"Durabilité",transliteration:"du-ra-bi-li-te",definition:"Capacité à durer dans le temps.",nuance:"La durabilité est au cœur des préoccupations écologiques et économiques.",register:"Écologie",origin:"Français",frequency:"Montant",difficulty:3,category:"société",synonyms:["Pérennité","Continuité"],antonyms:["Précarité","Éphémère"],examples:["La durabilité est un enjeu majeur.","Il faut investir dans des solutions durables."],errors:"La durabilité ne se limite pas à l'écologie.",level:"B2",tip_darija:"كاتستعمل بزاف فالنقاشات البيئية."},
 {id:23,arabic:"Transparence",transliteration:"tran-spa-rans",definition:"Caractère de ce qui est clair, sans dissimulation.",nuance:"La transparence est une qualité très valorisée dans les institutions.",register:"Politique",origin:"Latin",frequency:"Fréquent",difficulty:3,category:"politique",synonyms:["Clarté","Loyauté"],antonyms:["Opacité","Dissimulation"],examples:["On exige plus de transparence.","La transparence est gage de confiance."],errors:"La transparence n'est pas la naïveté.",level:"B2",tip_darija:"الشفافية هي الوضوح في التعامل."},
 {id:24,arabic:"Intégrité",transliteration:"in-te-gri-te",definition:"Qualité de quelqu'un qui agit avec honnêteté.",nuance:"Une personne intègre ne transige pas sur ses principes.",register:"Éthique",origin:"Latin",frequency:"Courant",difficulty:3,category:"éthique",synonyms:["Honnêteté","Droiture"],antonyms:["Corruption","Malhonnêteté"],examples:["Son intégrité professionnelle est reconnue.","Il a refusé le pot-de-vin par intégrité."],errors:"L'intégrité ne se réduit pas à la probité financière.",level:"B2",tip_darija:"النزاهة هي أنك تبقى صادق حتى كيما أحد ما شافك."},
-{id:25,arabic:"Compétence",transliteration:"kom-pe-tans",definition:"Capacité reconnue à accomplir une tâche.",nuance:"La compétence désigne à la fois le savoir-faire et le savoir-être.",register:"Travail",origin:"Latin",frequency:"Très fréquent",difficulty:2,category:"travail",synonyms:["Habileté","Qualification"],antonyms:["Incompétence","Incapacité"],examples:["Ses compétences en gestion sont appréciées.","On recrute sur la base des compétences."],errors:"La compétence n'est pas innée.",level:"B1",tip_darija:"الكفاءة هي المهارة. كاتكتسب بالممارسة."}
+{id:25,arabic:"Compétence",transliteration:"kom-pe-tans",definition:"Capacité reconnue à accomplir une tâche.",nuance:"La compétence désigne à la fois le savoir-faire et le savoir-être.",register:"Travail",origin:"Latin",frequency:"Très fréquent",difficulty:2,category:"travail",synonyms:["Habileté","Qualification"],antonyms:["Incompétence","Incapacité"],examples:["Ses compétences en gestion sont appréciées.","On recrute sur la base des compétences."],errors:"La compétence n'est pas innée.",level:"B1",tip_darija:"الكفاءة هي المهارة. كاتكتسب بالممارسة."},
 {id:26,arabic:"Exclusion",transliteration:"eks-klu-zyon",definition:"Action de rejeter, d'écarter quelqu'un d'un groupe.",nuance:"L'exclusion est un phénomène social grave.",register:"Société",origin:"Latin",frequency:"Fréquent",difficulty:3,category:"société",synonyms:["Rejet","Mise à l'écart"],antonyms:["Inclusion","Intégration"],examples:["L'exclusion sociale touche les plus vulnérables.","Il a vécu une situation d'exclusion."],errors:"L'exclusion est souvent un processus actif.",level:"B2",tip_darija:"الإقصاء هو أنك تبعّد شي واحد بشكل متعمد."},
 {id:27,arabic:"Marginalisation",transliteration:"mar-ji-na-li-za-syon",definition:"Fait de reléguer un individu à la périphérie.",nuance:"La marginalisation est souvent plus passive que l'exclusion.",register:"Société",origin:"Français",frequency:"Fréquent",difficulty:3,category:"société",synonyms:["Mise au banc","Relégation"],antonyms:["Insertion","Participation"],examples:["La marginalisation des jeunes est une réalité.","Les politiques contre la marginalisation sont insuffisantes."],errors:"La marginalisation est souvent un processus structurel.",level:"B2",tip_darija:"التهميش هو الإقصاء الغير مباشر."},
 {id:28,arabic:"Aliénation",transliteration:"a-lye-na-syon",definition:"Sentiment d'être étranger à soi-même.",nuance:"L'aliénation est un concept philosophique et psychologique profond.",register:"Philosophie",origin:"Latin",frequency:"Rare",difficulty:4,category:"psychologie",synonyms:["Étrangeté","Dépossession"],antonyms:["Appartenance","Épanouissement"],examples:["L'aliénation du travail est une réalité.","Il ressent une profonde aliénation."],errors:"L'aliénation ne se limite pas à l'exil géographique.",level:"C1",tip_darija:"الاغتراب هو شعور بالغربة حتى فبلادك."},
@@ -130,14 +129,14 @@ const VOCABULARY = [
 {id:30,arabic:"Polarisation",transliteration:"po-la-ri-za-syon",definition:"Division en deux camps opposés.",nuance:"La polarisation est très présente dans le débat politique et sur les réseaux sociaux.",register:"Politique",origin:"Français",frequency:"Fréquent",difficulty:4,category:"politique",synonyms:["Clivage","Division"],antonyms:["Consensus","Modération"],examples:["La polarisation du débat public est inquiétante.","Les réseaux sociaux accentuent la polarisation."],errors:"La polarisation est un phénomène de groupe.",level:"C1",tip_darija:"الاستقطاب هو الإنقسام لجوج قطبيين."},
 {id:31,arabic:"Solidarité",transliteration:"so-li-da-ri-te",definition:"Lien d'entraide et de soutien mutuel.",nuance:"La solidarité est une valeur fondamentale. Elle peut être spontanée ou organisée.",register:"Société",origin:"Français",frequency:"Très courant",difficulty:1,category:"société",synonyms:["Entraide","Fraternité"],antonyms:["Individualisme","Égoïsme"],examples:["La solidarité s'est manifestée après l'ouragan.","La solidarité est un rempart contre l'exclusion."],errors:"La solidarité n'est pas la charité.",level:"B1",tip_darija:"التضامن هو التآزر."},
 {id:32,arabic:"Rente",transliteration:"rant",definition:"Revenu perçu sans effort productif.",nuance:"Le terme est souvent critique. Il désigne une situation où l'on gagne de l'argent sans travailler.",register:"Économie",origin:"Français",frequency:"Courant",difficulty:4,category:"économie",synonyms:["Privilège","Revenu passif"],antonyms:["Travail","Production"],examples:["Certaines entreprises vivent de la rente.","La rente immobilière est un sujet de débat."],errors:"La rente a une connotation négative.",level:"C1",tip_darija:"الريع هو المال اللي كايجي بلا خدمة."},
-{id:33,arabic:"Corruption",transliteration:"ko-rup-syon",definition:"Abus de pouvoir ou de fonction pour un gain personnel.",nuance:"La corruption est un fléau dans de nombreux pays. Elle peut être politique, administrative ou morale.",register:"Politique",origin:"Latin",frequency:"Très fréquent",difficulty:2,category:"politique",synonyms:["Pots-de-vin","Détournement"],antonyms:["Intégrité","Probité"],examples:["La corruption est un obstacle au développement.","Il a été accusé de corruption."],errors:"La corruption ne se limite pas aux grands scandales.",level:"B2",tip_darija:"الفساد هو استغلال المنصب."},
-{id:34,arabic:"Réforme",transliteration:"re-form",definition:"Changement structuré visant à améliorer un système.",nuance:"La réforme est souvent débattue en politique. Elle est présentée comme une amélioration.",register:"Politique",origin:"Latin",frequency:"Fréquent",difficulty:2,category:"politique",synonyms:["Changement","Modernisation"],antonyms:["Conservatisme","Statut quo"],examples:["La réforme de l'éducation est en cours.","Il a proposé une réforme ambitieuse."],errors:"Une réforme n'est pas un simple changement.",level:"B2",tip_darija:"الإصلاح هو تغيير هيكلي."},
-{id:35,arabic:"Bureaucratie",transliteration:"by-ro-kra-si",definition:"Administration caractérisée par des procédures lourdes.",nuance:"La bureaucratie est souvent critiquée pour sa lenteur et sa rigidité.",register:"Administration",origin:"Français",frequency:"Très courant",difficulty:2,category:"économie",synonyms:["Administration lourde","Paperasserie"],antonyms:["Simplification","Flexibilité"],examples:["La bureaucratie décourage les investisseurs.","Il a passé des heures à lutter contre la bureaucratie."],errors:"La bureaucratie désigne un système, pas un simple employé.",level:"B2",tip_darija:"البيروقراطية هي الروتين الإداري."},
+{id:33,arabic:"Corruption",transliteration:"ko-rup-syon",definition:"Abus de pouvoir ou de fonction pour un gain personnel.",nuance:"La corruption est un fléau dans de nombreux pays.",register:"Politique",origin:"Latin",frequency:"Très fréquent",difficulty:2,category:"politique",synonyms:["Pots-de-vin","Détournement"],antonyms:["Intégrité","Probité"],examples:["La corruption est un obstacle au développement.","Il a été accusé de corruption."],errors:"La corruption ne se limite pas aux grands scandales.",level:"B2",tip_darija:"الفساد هو استغلال المنصب."},
+{id:34,arabic:"Réforme",transliteration:"re-form",definition:"Changement structuré visant à améliorer un système.",nuance:"La réforme est souvent débattue en politique.",register:"Politique",origin:"Latin",frequency:"Fréquent",difficulty:2,category:"politique",synonyms:["Changement","Modernisation"],antonyms:["Conservatisme","Statut quo"],examples:["La réforme de l'éducation est en cours.","Il a proposé une réforme ambitieuse."],errors:"Une réforme n'est pas un simple changement.",level:"B2",tip_darija:"الإصلاح هو تغيير هيكلي."},
+{id:35,arabic:"Bureaucratie",transliteration:"by-ro-kra-si",definition:"Administration caractérisée par des procédures lourdes.",nuance:"La bureaucratie est souvent critiquée pour sa lenteur.",register:"Administration",origin:"Français",frequency:"Très courant",difficulty:2,category:"économie",synonyms:["Administration lourde","Paperasserie"],antonyms:["Simplification","Flexibilité"],examples:["La bureaucratie décourage les investisseurs.","Il a passé des heures à lutter contre la bureaucratie."],errors:"La bureaucratie désigne un système.",level:"B2",tip_darija:"البيروقراطية هي الروتين الإداري."},
 {id:36,arabic:"Autosuffisance",transliteration:"o-to-sy-fi-zans",definition:"Capacité à subvenir à ses propres besoins.",nuance:"L'autosuffisance est souvent un objectif individuel ou collectif.",register:"Économie",origin:"Français",frequency:"Courant",difficulty:3,category:"économie",synonyms:["Indépendance","Autonomie"],antonyms:["Dépendance","Assistance"],examples:["Il recherche l'autosuffisance énergétique.","L'autosuffisance alimentaire est un enjeu stratégique."],errors:"L'autosuffisance ne signifie pas l'isolement.",level:"B2",tip_darija:"الكفاية الذاتية هي أنك تكون معتمد على نفسك."},
-{id:37,arabic:"Identité numérique",transliteration:"i-dan-ti-te nu-me-rik",definition:"L'ensemble des traces d'une personne sur Internet.",nuance:"L'identité numérique est une notion de plus en plus importante. Elle est construite par nos activités en ligne.",register:"Numérique",origin:"Anglais",frequency:"Montant",difficulty:3,category:"numérique",synonyms:["Empreinte numérique","Présence en ligne"],antonyms:["Vie privée","Anonymat"],examples:["Il faut gérer son identité numérique avec soin.","L'identité numérique peut vous ouvrir des portes."],errors:"L'identité numérique est une construction.",level:"B2",tip_darija:"هويتك الرقمية هي صورتك على الانترنت."},
+{id:37,arabic:"Identité numérique",transliteration:"i-dan-ti-te nu-me-rik",definition:"L'ensemble des traces d'une personne sur Internet.",nuance:"L'identité numérique est une notion de plus en plus importante.",register:"Numérique",origin:"Anglais",frequency:"Montant",difficulty:3,category:"numérique",synonyms:["Empreinte numérique","Présence en ligne"],antonyms:["Vie privée","Anonymat"],examples:["Il faut gérer son identité numérique avec soin.","L'identité numérique peut vous ouvrir des portes."],errors:"L'identité numérique est une construction.",level:"B2",tip_darija:"هويتك الرقمية هي صورتك على الانترنت."},
 {id:38,arabic:"Addiction numérique",transliteration:"a-dik-syon nu-me-rik",definition:"Dépendance excessive aux écrans et aux réseaux sociaux.",nuance:"L'addiction numérique est un trouble comportemental reconnu.",register:"Psychologie",origin:"Anglais",frequency:"Très courant",difficulty:2,category:"numérique",synonyms:["Cyberaddiction","Nomophobie"],antonyms:["Déconnexion","Modération"],examples:["L'addiction numérique touche de plus en plus de jeunes.","Il a reconnu son addiction numérique."],errors:"L'addiction numérique est une vraie addiction.",level:"B2",tip_darija:"الإدمان الرقمي خطر على الصحة النفسية."},
 {id:39,arabic:"Autocensure",transliteration:"o-to-san-syr",definition:"Fait de se restreindre dans ce que l'on dit par peur.",nuance:"L'autocensure est une forme de contrainte intériorisée.",register:"Société",origin:"Français",frequency:"Courant",difficulty:4,category:"psychologie",synonyms:["Réserve","Prudence excessive"],antonyms:["Liberté d'expression","Franchise"],examples:["L'autocensure est le pire ennemi de la créativité.","Il pratique l'autocensure par peur de représailles."],errors:"L'autocensure est une suppression de la pensée.",level:"C1",tip_darija:"الرقابة الذاتية هي أنك توقف أفكارك بنفسك."},
-{id:40,arabic:"Clivage",transliteration:"kli-vaj",definition:"Division profonde entre deux groupes.",nuance:"Le clivage est une notion psychologique et sociale. On parle de 'clivage générationnel'.",register:"Psychologie",origin:"Français",frequency:"Courant",difficulty:4,category:"psychologie",synonyms:["Fracture","Divorce"],antonyms:["Union","Harmonie"],examples:["Il existe un clivage profond entre les générations.","Le clivage gauche-droite est moins net aujourd'hui."],errors:"Le clivage est une division radicale.",level:"C1",tip_darija:"الانفصام هو الإنقسام العميق."},
+{id:40,arabic:"Clivage",transliteration:"kli-vaj",definition:"Division profonde entre deux groupes.",nuance:"Le clivage est une notion psychologique et sociale.",register:"Psychologie",origin:"Français",frequency:"Courant",difficulty:4,category:"psychologie",synonyms:["Fracture","Divorce"],antonyms:["Union","Harmonie"],examples:["Il existe un clivage profond entre les générations.","Le clivage gauche-droite est moins net aujourd'hui."],errors:"Le clivage est une division radicale.",level:"C1",tip_darija:"الانفصام هو الإنقسام العميق."},
 {id:41,arabic:"Extrémisme",transliteration:"eks-tre-mism",definition:"Position radicale, sans nuance ni compromis.",nuance:"L'extrémisme peut être politique, religieux ou idéologique.",register:"Politique",origin:"Français",frequency:"Fréquent",difficulty:3,category:"politique",synonyms:["Radicalisme","Fanatisme"],antonyms:["Modération","Centre"],examples:["L'extrémisme est un danger pour la démocratie.","Il a condamné l'extrémisme sous toutes ses formes."],errors:"L'extrémisme ne se limite pas à la violence.",level:"B2",tip_darija:"التطرف هو التشدد."},
 {id:42,arabic:"Modération",transliteration:"mo-de-ra-syon",definition:"Attitude qui évite les excès, qui cherche l'équilibre.",nuance:"La modération est une valeur souvent promue dans les sociétés démocratiques.",register:"Société",origin:"Latin",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["Mesure","Tempérance"],antonyms:["Excès","Extrémisme"],examples:["Il faut agir avec modération.","Sa modération est appréciée dans les débats."],errors:"La modération n'est pas l'indécision.",level:"B1",tip_darija:"الاعتدال هو التوازن."},
 {id:43,arabic:"Pensée critique",transliteration:"pan-se kri-tik",definition:"Capacité à analyser, questionner et évaluer les informations.",nuance:"La pensée critique permet de ne pas se laisser manipuler.",register:"Éducation",origin:"Français",frequency:"Montant",difficulty:3,category:"pensée critique",synonyms:["Esprit critique","Analyse"],antonyms:["Crédulité","Naïveté"],examples:["Le développement de la pensée critique est un objectif.","La pensée critique permet de déceler les manipulations."],errors:"La pensée critique n'est pas un scepticisme systématique.",level:"B2",tip_darija:"التفكير النقدي هو التفكير التحليلي."},
@@ -149,74 +148,60 @@ const VOCABULARY = [
 {id:49,arabic:"Exploitation",transliteration:"eks-plwa-ta-syon",definition:"Fait de tirer profit de quelqu'un de manière abusive.",nuance:"L'exploitation a une connotation très négative.",register:"Société",origin:"Latin",frequency:"Fréquent",difficulty:2,category:"société",synonyms:["Abus","Profit"],antonyms:["Équité","Partage"],examples:["L'exploitation des travailleurs est un scandale.","Il dénonce l'exploitation des ressources."],errors:"L'exploitation est toujours négative.",level:"B2",tip_darija:"الاستغلال هو استخدام الآخر لمصلحتك."},
 {id:50,arabic:"Guérison",transliteration:"ge-ri-zon",definition:"Rétablissement après une maladie, une blessure ou un traumatisme.",nuance:"La guérison est un processus, pas un événement soudain.",register:"Psychologie",origin:"Français",frequency:"Très courant",difficulty:2,category:"psychologie",synonyms:["Rétablissement","Rémission"],antonyms:["Rechute","Aggravation"],examples:["Sa guérison a été longue et difficile.","Il a enfin trouvé le chemin de la guérison."],errors:"La guérison n'est pas l'oubli.",level:"B2",tip_darija:"التعافي هو الشفاء."}
 ];
-  // ============================================================
-// TEXTES D'IMMERSION
-// ============================================================
+
 const IMMERSION_TEXTS = [
-  {id:1,title:"L'art de la communication",text:"Pour s'exprimer avec éloquence, il ne suffit pas de maîtriser le vocabulaire. Il faut aussi savoir nuancer son discours, reconnaître l'ambigüité de certaines situations, et poser des limites claires. La pertinence d'une remarque dépend souvent du contexte. Une communication réussie demande de l'empathie et une vraie discipline.",words:["Éloquence","Nuancer","Ambigüité","Pertinent","Limites","Empathie","Discipline"],category:"communication"},
-  {id:2,title:"Une société en mutation",text:"Notre société est marquée par la polarisation des débats et la banalisation de l'exclusion. La marginalisation de certains groupes crée un sentiment d'aliénation. Pour y remédier, il faut renforcer la solidarité et lutter contre la corruption. Les réformes structurelles sont nécessaires, mais elles doivent s'accompagner d'une vraie transparence et d'un respect de l'intégrité.",words:["Polarisation","Banalisation","Exclusion","Marginalisation","Aliénation","Solidarité","Corruption","Réforme","Transparence","Intégrité"],category:"société"},
-  {id:3,title:"Le monde professionnel",text:"Dans le monde du travail, la compétence et le mérite sont souvent mis en avant, mais la réalité est parfois différente. L'autonomie et l'autonomisation sont des objectifs clés. La discipline et la responsabilité sont des qualités très recherchées. Enfin, il faut savoir reconnaître et dénoncer les situations d'exploitation et de bureaucratie excessive.",words:["Compétence","Mérite","Autonomie","Autonomisation","Discipline","Responsabilité","Exploitation","Bureaucratie"],category:"travail"},
-  {id:4,title:"L'ère numérique",text:"L'identité numérique est devenue aussi importante que l'identité réelle. L'addiction numérique est un vrai problème de santé publique. Elle peut conduire à une forme d'aliénation. Pour s'en protéger, il faut parfois pratiquer une certaine forme d'autocensure. Mais attention, une autocensure excessive peut aussi nuire à la liberté d'expression.",words:["Identité numérique","Addiction numérique","Aliénation","Autocensure"],category:"numérique"},
-  {id:5,title:"Développer son esprit critique",text:"La pensée critique est une compétence essentielle à notre époque. Elle permet de ne pas tomber dans le piège des généralisations abusives et des biais cognitifs. La modération est souvent plus difficile que l'extrémisme, mais elle est aussi plus intelligente. La naïveté peut être un frein, mais la ruse excessive n'est pas une solution. La guérison d'un esprit dogmatique passe par la nuance.",words:["Pensée critique","Généralisation","Biais","Modération","Extrémisme","Naïveté","Ruse","Guérison","Nuancer"],category:"esprit critique"}
+{id:1,title:"L'art de la communication",text:"Pour s'exprimer avec éloquence, il ne suffit pas de maîtriser le vocabulaire. Il faut aussi savoir nuancer son discours, reconnaître l'ambigüité de certaines situations, et poser des limites claires. La pertinence d'une remarque dépend souvent du contexte. Une communication réussie demande de l'empathie et une vraie discipline.",words:["Éloquence","Nuancer","Ambigüité","Pertinent","Limites","Empathie","Discipline"],category:"communication"},
+{id:2,title:"Une société en mutation",text:"Notre société est marquée par la polarisation des débats et la banalisation de l'exclusion. La marginalisation de certains groupes crée un sentiment d'aliénation. Pour y remédier, il faut renforcer la solidarité et lutter contre la corruption. Les réformes structurelles sont nécessaires, mais elles doivent s'accompagner d'une vraie transparence et d'un respect de l'intégrité.",words:["Polarisation","Banalisation","Exclusion","Marginalisation","Aliénation","Solidarité","Corruption","Réforme","Transparence","Intégrité"],category:"société"},
+{id:3,title:"Le monde professionnel",text:"Dans le monde du travail, la compétence et le mérite sont souvent mis en avant, mais la réalité est parfois différente. L'autonomie et l'autonomisation sont des objectifs clés. La discipline et la responsabilité sont des qualités très recherchées. Enfin, il faut savoir reconnaître et dénoncer les situations d'exploitation et de bureaucratie excessive.",words:["Compétence","Mérite","Autonomie","Autonomisation","Discipline","Responsabilité","Exploitation","Bureaucratie"],category:"travail"},
+{id:4,title:"L'ère numérique",text:"L'identité numérique est devenue aussi importante que l'identité réelle. L'addiction numérique est un vrai problème de santé publique. Elle peut conduire à une forme d'aliénation. Pour s'en protéger, il faut parfois pratiquer une certaine forme d'autocensure. Mais attention, une autocensure excessive peut aussi nuire à la liberté d'expression.",words:["Identité numérique","Addiction numérique","Aliénation","Autocensure"],category:"numérique"},
+{id:5,title:"Développer son esprit critique",text:"La pensée critique est une compétence essentielle à notre époque. Elle permet de ne pas tomber dans le piège des généralisations abusives et des biais cognitifs. La modération est souvent plus difficile que l'extrémisme, mais elle est aussi plus intelligente. La naïveté peut être un frein, mais la ruse excessive n'est pas une solution. La guérison d'un esprit dogmatique passe par la nuance.",words:["Pensée critique","Généralisation","Biais","Modération","Extrémisme","Naïveté","Ruse","Guérison","Nuancer"],category:"esprit critique"}
 ];
 
-// ============================================================
-// CATÉGORIES
-// ============================================================
 const CATEGORIES = [
-  {id:"psychologie",label:"Psychologie",icon:"🧠",color:"#5E5CE6"},
-  {id:"travail",label:"Travail",icon:"💼",color:"#FF9F0A"},
-  {id:"société",label:"Société",icon:"🏛️",color:"#FF453A"},
-  {id:"débat",label:"Débat",icon:"⚡",color:"#30D158"},
-  {id:"relations humaines",label:"Relations",icon:"🤝",color:"#64D2FF"},
-  {id:"politique",label:"Politique",icon:"🎯",color:"#FF6B6B"},
-  {id:"pensée critique",label:"Pensée critique",icon:"🔍",color:"#BF5AF2"},
-  {id:"personnalité",label:"Personnalité",icon:"✨",color:"#FFD60A"},
-  {id:"philosophie",label:"Philosophie",icon:"📖",color:"#0A84FF"},
-  {id:"éthique",label:"Éthique",icon:"⚖️",color:"#34C759"},
-  {id:"économie",label:"Économie",icon:"💰",color:"#FFD60A"},
-  {id:"numérique",label:"Numérique",icon:"📱",color:"#5AC8FA"},
-  {id:"littérature",label:"Littérature",icon:"📚",color:"#BF5AF2"},
-  {id:"communication",label:"Communication",icon:"🗣️",color:"#5E5CE6"},
-  {id:"esprit critique",label:"Esprit critique",icon:"💡",color:"#FF9F0A"}
+{id:"psychologie",label:"Psychologie",icon:"🧠",color:"#5E5CE6"},
+{id:"travail",label:"Travail",icon:"💼",color:"#FF9F0A"},
+{id:"société",label:"Société",icon:"🏛️",color:"#FF453A"},
+{id:"débat",label:"Débat",icon:"⚡",color:"#30D158"},
+{id:"relations humaines",label:"Relations",icon:"🤝",color:"#64D2FF"},
+{id:"politique",label:"Politique",icon:"🎯",color:"#FF6B6B"},
+{id:"pensée critique",label:"Pensée critique",icon:"🔍",color:"#BF5AF2"},
+{id:"personnalité",label:"Personnalité",icon:"✨",color:"#FFD60A"},
+{id:"philosophie",label:"Philosophie",icon:"📖",color:"#0A84FF"},
+{id:"éthique",label:"Éthique",icon:"⚖️",color:"#34C759"},
+{id:"économie",label:"Économie",icon:"💰",color:"#FFD60A"},
+{id:"numérique",label:"Numérique",icon:"📱",color:"#5AC8FA"},
+{id:"littérature",label:"Littérature",icon:"📚",color:"#BF5AF2"},
+{id:"communication",label:"Communication",icon:"🗣️",color:"#5E5CE6"},
+{id:"esprit critique",label:"Esprit critique",icon:"💡",color:"#FF9F0A"}
 ];
 
-// ============================================================
-// PARCOURS
-// ============================================================
 const PARCOURS = [
-  {id:'soi',title:'Comprendre l\'humain',subtitle:'Psychologie, émotions, personnalité',icon:'🧠',color:'#5E5CE6',categories:['psychologie','personnalité'],textIds:[1]},
-  {id:'societe',title:'Vivre ensemble',subtitle:'Société, solidarité, numérique',icon:'🏛️',color:'#FF9F0A',categories:['société','relations humaines','numérique'],textIds:[2,4]},
-  {id:'pouvoir',title:'Pouvoir et politique',subtitle:'Institutions, éthique, économie',icon:'🎯',color:'#FF453A',categories:['politique','éthique','économie'],textIds:[3]},
-  {id:'penser',title:'L\'art de penser',subtitle:'Esprit critique, débat, philosophie',icon:'🔍',color:'#BF5AF2',categories:['pensée critique','débat','philosophie'],textIds:[5]}
+{id:'soi',title:'Comprendre l\'humain',subtitle:'Psychologie, émotions, personnalité',icon:'🧠',color:'#5E5CE6',categories:['psychologie','personnalité'],textIds:[1]},
+{id:'societe',title:'Vivre ensemble',subtitle:'Société, solidarité, numérique',icon:'🏛️',color:'#FF9F0A',categories:['société','relations humaines','numérique'],textIds:[2,4]},
+{id:'pouvoir',title:'Pouvoir et politique',subtitle:'Institutions, éthique, économie',icon:'🎯',color:'#FF453A',categories:['politique','éthique','économie'],textIds:[3]},
+{id:'penser',title:'L\'art de penser',subtitle:'Esprit critique, débat, philosophie',icon:'🔍',color:'#BF5AF2',categories:['pensée critique','débat','philosophie'],textIds:[5]}
 ];
 
-// ============================================================
-// UNITÉS
-// ============================================================
 const UNITS = [
-  {id:1,title:'Les bases',icon:'🌱',color:'#5E5CE6',wordIds:[20,31,19,46,7]},
-  {id:2,title:'Qualités et défauts',icon:'🎭',color:'#FF9F0A',wordIds:[2,25,11,42,47]},
-  {id:3,title:'Émotions et limites',icon:'💭',color:'#FF453A',wordIds:[45,5,8,13,16]},
-  {id:4,title:'Valeurs humaines',icon:'🤝',color:'#BF5AF2',wordIds:[21,17,33,24,6]},
-  {id:5,title:'Dynamiques sociales',icon:'🌓',color:'#30D158',wordIds:[48,49,50,26,27]},
-  {id:6,title:'Débat et société',icon:'⚡',color:'#0A84FF',wordIds:[23,34,35,41,29]},
-  {id:7,title:'Nuances avancées',icon:'🌫️',color:'#64D2FF',wordIds:[3,1,4,18,22]},
-  {id:8,title:'Le monde moderne',icon:'🧭',color:'#FFD60A',wordIds:[37,38,43,36,44]},
-  {id:9,title:'Discours et pouvoir',icon:'🎙️',color:'#34C759',wordIds:[14,30,9,28,40]},
-  {id:10,title:'Maîtrise totale',icon:'👑',color:'#5AC8FA',wordIds:[32,39,15,12,10]}
+{id:1,title:'Les bases',icon:'🌱',color:'#5E5CE6',wordIds:[20,31,19,46,7]},
+{id:2,title:'Qualités et défauts',icon:'🎭',color:'#FF9F0A',wordIds:[2,25,11,42,47]},
+{id:3,title:'Émotions et limites',icon:'💭',color:'#FF453A',wordIds:[45,5,8,13,16]},
+{id:4,title:'Valeurs humaines',icon:'🤝',color:'#BF5AF2',wordIds:[21,17,33,24,6]},
+{id:5,title:'Dynamiques sociales',icon:'🌓',color:'#30D158',wordIds:[48,49,50,26,27]},
+{id:6,title:'Débat et société',icon:'⚡',color:'#0A84FF',wordIds:[23,34,35,41,29]},
+{id:7,title:'Nuances avancées',icon:'🌫️',color:'#64D2FF',wordIds:[3,1,4,18,22]},
+{id:8,title:'Le monde moderne',icon:'🧭',color:'#FFD60A',wordIds:[37,38,43,36,44]},
+{id:9,title:'Discours et pouvoir',icon:'🎙️',color:'#34C759',wordIds:[14,30,9,28,40]},
+{id:10,title:'Maîtrise totale',icon:'👑',color:'#5AC8FA',wordIds:[32,39,15,12,10]}
 ];
 
 const LEVELS = [
-  {id:"B1",label:"B1",color:"#30D158"},
-  {id:"B2",label:"B2",color:"#0A84FF"},
-  {id:"C1",label:"C1",color:"#BF5AF2"},
-  {id:"C2",label:"C2",color:"#FF9F0A"}
+{id:"B1",label:"B1",color:"#30D158"},
+{id:"B2",label:"B2",color:"#0A84FF"},
+{id:"C1",label:"C1",color:"#BF5AF2"},
+{id:"C2",label:"C2",color:"#FF9F0A"}
 ];
 
-// ============================================================
-// FONCTIONS UTILITAIRES
-// ============================================================
 function getTextVocab(t){return t?VOCABULARY.filter(v=>t.words.includes(v.arabic)):[]}
 function findTextsForWord(wordId){const w=VOCABULARY.find(v=>v.id===wordId);if(!w)return[];return IMMERSION_TEXTS.filter(t=>t.words.includes(w.arabic))}
 function getParcoursWords(p){return VOCABULARY.filter(w=>p.categories.includes(w.category))}
@@ -233,765 +218,718 @@ function loadStats(){try{return JSON.parse(localStorage.getItem('francais_stats'
 function saveStats(s){try{localStorage.setItem('francais_stats',JSON.stringify(s));return true}catch(e){return false}}
 
 function reviewCard(srsData,id,quality){
-  const prev=srsData[id]||{ease:2.5,interval:0,reps:0,due:new Date().toISOString()};
-  let{ease,interval,reps}=prev;
-  if(quality===0){reps=0;interval=1;ease=Math.max(1.3,ease-0.25)}
-  else if(quality===1){reps=reps+1;interval=reps<=1?1:Math.max(1,Math.round(interval*1.2));ease=Math.max(1.3,ease-0.05)}
-  else{reps=reps+1;interval=reps<=1?3:Math.round(interval*ease);ease=Math.min(2.8,ease+0.1)}
-  const due=new Date(Date.now()+interval*86400000).toISOString();
-  const status=quality===0?'unknown':quality===1?'medium':'known';
-  const card={ease,interval,reps,due,status,lastReview:new Date().toISOString()};
-  return{...srsData,[id]:card};
+const prev=srsData[id]||{ease:2.5,interval:0,reps:0,due:new Date().toISOString()};
+let{ease,interval,reps}=prev;
+if(quality===0){reps=0;interval=1;ease=Math.max(1.3,ease-0.25)}
+else if(quality===1){reps=reps+1;interval=reps<=1?1:Math.max(1,Math.round(interval*1.2));ease=Math.max(1.3,ease-0.05)}
+else{reps=reps+1;interval=reps<=1?3:Math.round(interval*ease);ease=Math.min(2.8,ease+0.1)}
+const due=new Date(Date.now()+interval*86400000).toISOString();
+const status=quality===0?'unknown':quality===1?'medium':'known';
+const card={ease,interval,reps,due,status,lastReview:new Date().toISOString()};
+return{...srsData,[id]:card};
 }
 function isDue(card){if(!card)return true;return new Date(card.due)<=new Date()}
 function dayOfYear(d){return Math.floor((d-new Date(d.getFullYear(),0,0))/86400000)}
 
 let _voicesCache=[];
-function warmUpVoices(){
-  try{
-    if(!('speechSynthesis' in window))return;
-    const synth=window.speechSynthesis;
-    const grab=()=>{const v=synth.getVoices();if(v&&v.length)_voicesCache=v};
-    grab();
-    synth.addEventListener('voiceschanged',grab);
-  }catch(e){}
-}
-function speakFrench(text){
-  try{
-    if(!('speechSynthesis' in window))return;
-    const synth=window.speechSynthesis;
-    synth.cancel();
-    const voices=(_voicesCache&&_voicesCache.length)?_voicesCache:synth.getVoices();
-    const u=new SpeechSynthesisUtterance(text);
-    const frVoice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('fr'));
-    if(frVoice)u.voice=frVoice;
-    u.lang=frVoice?frVoice.lang:'fr-FR';
-    u.rate=0.85;
-    u.pitch=1;
-    synth.speak(u);
-  }catch(e){}
-}
+function warmUpVoices(){try{if(!('speechSynthesis' in window))return;const synth=window.speechSynthesis;const grab=()=>{const v=synth.getVoices();if(v&&v.length)_voicesCache=v};grab();synth.addEventListener('voiceschanged',grab);}catch(e){}}
+function speakFrench(text){try{if(!('speechSynthesis' in window))return;const synth=window.speechSynthesis;synth.cancel();const voices=(_voicesCache&&_voicesCache.length)?_voicesCache:synth.getVoices();const u=new SpeechSynthesisUtterance(text);const frVoice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('fr'));if(frVoice)u.voice=frVoice;u.lang=frVoice?frVoice.lang:'fr-FR';u.rate=0.85;u.pitch=1;synth.speak(u);}catch(e){}}
 
 function LevelBadge({level}){const f=LEVELS.find(l=>l.id===level)||LEVELS[0];return React.createElement('span',{className:'level-badge',style:{color:f.color,borderColor:f.color+'44'}},f.label)}
 function DiffDots({n}){return React.createElement('div',{className:'diff-dots'},...[1,2,3,4,5].map(i=>React.createElement('div',{key:i,className:'diff-dot'+(i<=n?' filled':'')})))}
-  // ============================================================
-// COMPOSANT WORD DETAIL
-// ============================================================
+
 function WordDetail({word,onBack,onSRS,srsData,onGoToImmersion}){
-  const[showAll,setShowAll]=useState(false);
-  const card=srsData[word.id]||null;
-  const[chosen,setChosen]=useState(card?card.status:null);
-  const handle=q=>{const c=q===0?'unknown':q===1?'medium':'known';setChosen(c);const n=reviewCard(srsData,word.id,q);saveSRS(n);setTimeout(()=>onSRS(n),200)};
-  const contextTexts=findTextsForWord(word.id);
-  return React.createElement('div',{className:'fade-up',style:{paddingBottom:20}},
-    React.createElement('div',{className:'word-detail-header'},
-      React.createElement('button',{className:'back-btn',onClick:onBack},'←'),
-      React.createElement('span',{style:{fontSize:14,color:'var(--text3)',fontWeight:500}},'Détail du mot')
-    ),
-    React.createElement('div',{className:'word-hero',style:{cursor:'default',marginTop:16}},
-      React.createElement('div',{className:'word-hero-content'},
-        React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
-          React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),word.register),
-          React.createElement('button',{onClick:()=>speakFrench(word.arabic),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer',flexShrink:0}},'🔊')
-        ),
-        React.createElement('div',{className:'french-word'},word.arabic),
-        React.createElement('div',{className:'transliteration'},word.transliteration),
-        React.createElement('div',{className:'definition-text'},word.definition)
-      )
-    ),
-    contextTexts.length>0&&React.createElement('div',{style:{padding:'0 16px 16px'}},
-      React.createElement('button',{onClick:()=>onGoToImmersion(contextTexts[0].id),style:{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:8,background:'rgba(94,92,230,.15)',border:'1px solid rgba(94,92,230,.4)',borderRadius:12,padding:'12px',color:'#A8A6FF',fontSize:13,fontWeight:600,cursor:'pointer'}},'📖 Voir ce concept en contexte — '+contextTexts[0].title)
-    ),
-    React.createElement('div',{style:{display:'flex',gap:8,padding:'0 16px 16px',flexWrap:'wrap',alignItems:'center'}},
-      React.createElement(LevelBadge,{level:word.level}),
-      React.createElement('span',{className:'tag'},'🌍 '+word.origin),
-      React.createElement('span',{className:'tag'},'📊 '+word.frequency),
-      card&&React.createElement('span',{className:'tag'},'⏳ révision '+new Date(card.due).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})),
-      React.createElement(DiffDots,{n:word.difficulty})
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'card'},
-        React.createElement('div',{style:{padding:16}},
-          React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'NUANCE'),
-          React.createElement('div',{style:{fontSize:14,color:'var(--text2)',lineHeight:1.6}},word.nuance)
-        )
-      )
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'card'},
-        React.createElement('div',{className:'detail-row'},
-          React.createElement('span',{className:'detail-label'},'Synonymes'),
-          React.createElement('span',{className:'detail-value'},word.synonyms.join(' · ')||'—')
-        ),
-        React.createElement('div',{className:'detail-row'},
-          React.createElement('span',{className:'detail-label'},'Antonymes'),
-          React.createElement('span',{className:'detail-value'},word.antonyms.join(' · ')||'—')
-        )
-      )
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},
-        React.createElement('div',{className:'section-title',style:{marginBottom:0}},'Exemples naturels'),
-        React.createElement('button',{onClick:()=>setShowAll(!showAll),style:{background:'none',border:'none',color:'var(--accent)',fontSize:13,cursor:'pointer'}},showAll?'Réduire':'Voir tout')
-      ),
-      ...(showAll?word.examples:word.examples.slice(0,2)).map((ex,i)=>React.createElement('div',{key:i,className:'example-card'},ex))
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'card',style:{borderColor:'rgba(255,69,58,.2)',background:'rgba(255,69,58,.04)'}},
-        React.createElement('div',{style:{padding:16}},
-          React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'#FF453A',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'⚠ ERREURS FRÉQUENTES'),
-          React.createElement('div',{style:{fontSize:13,color:'var(--text2)',lineHeight:1.6}},word.errors)
-        )
-      )
-    ),
-    word.tip_darija && React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'tip-darija'},word.tip_darija)
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)',textAlign:'center',marginBottom:12}},'Tu connais ce mot ?'),
-      React.createElement('div',{className:'card'},
-        React.createElement('div',{className:'srs-row'},
-          ['unknown','medium','known'].map((c,i)=>React.createElement('button',{key:c,className:'srs-btn '+c,onClick:()=>handle(i),style:{opacity:chosen&&chosen!==c?.45:1}},
-            React.createElement('span',{className:'srs-icon'},[' ❌','🤔','✅'][i]),
-            React.createElement('span',null,['Inconnu','Moyen','Je connais'][i])
-          ))
-        )
-      )
-    )
-  );
+const[showAll,setShowAll]=useState(false);
+const card=srsData[word.id]||null;
+const[chosen,setChosen]=useState(card?card.status:null);
+const handle=q=>{const c=q===0?'unknown':q===1?'medium':'known';setChosen(c);const n=reviewCard(srsData,word.id,q);saveSRS(n);setTimeout(()=>onSRS(n),200)};
+const contextTexts=findTextsForWord(word.id);
+return React.createElement('div',{className:'fade-up',style:{paddingBottom:20}},
+React.createElement('div',{className:'word-detail-header'},
+React.createElement('button',{className:'back-btn',onClick:onBack},'←'),
+React.createElement('span',{style:{fontSize:14,color:'var(--text3)',fontWeight:500}},'Détail du mot')
+),
+React.createElement('div',{className:'word-hero',style:{cursor:'default',marginTop:16}},
+React.createElement('div',{className:'word-hero-content'},
+React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
+React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),word.register),
+React.createElement('button',{onClick:()=>speakFrench(word.arabic),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer',flexShrink:0}},'🔊')
+),
+React.createElement('div',{className:'french-word'},word.arabic),
+React.createElement('div',{className:'transliteration'},word.transliteration),
+React.createElement('div',{className:'definition-text'},word.definition)
+)
+),
+contextTexts.length>0&&React.createElement('div',{style:{padding:'0 16px 16px'}},
+React.createElement('button',{onClick:()=>onGoToImmersion(contextTexts[0].id),style:{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:8,background:'rgba(94,92,230,.15)',border:'1px solid rgba(94,92,230,.4)',borderRadius:12,padding:'12px',color:'#A8A6FF',fontSize:13,fontWeight:600,cursor:'pointer'}},'📖 Voir ce concept en contexte — '+contextTexts[0].title)
+),
+React.createElement('div',{style:{display:'flex',gap:8,padding:'0 16px 16px',flexWrap:'wrap',alignItems:'center'}},
+React.createElement(LevelBadge,{level:word.level}),
+React.createElement('span',{className:'tag'},'🌍 '+word.origin),
+React.createElement('span',{className:'tag'},'📊 '+word.frequency),
+card&&React.createElement('span',{className:'tag'},'⏳ révision '+new Date(card.due).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})),
+React.createElement(DiffDots,{n:word.difficulty})
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'card'},
+React.createElement('div',{style:{padding:16}},
+React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'NUANCE'),
+React.createElement('div',{style:{fontSize:14,color:'var(--text2)',lineHeight:1.6}},word.nuance)
+)
+)
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'card'},
+React.createElement('div',{className:'detail-row'},
+React.createElement('span',{className:'detail-label'},'Synonymes'),
+React.createElement('span',{className:'detail-value'},word.synonyms.join(' · ')||'—')
+),
+React.createElement('div',{className:'detail-row'},
+React.createElement('span',{className:'detail-label'},'Antonymes'),
+React.createElement('span',{className:'detail-value'},word.antonyms.join(' · ')||'—')
+)
+)
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},
+React.createElement('div',{className:'section-title',style:{marginBottom:0}},'Exemples naturels'),
+React.createElement('button',{onClick:()=>setShowAll(!showAll),style:{background:'none',border:'none',color:'var(--accent)',fontSize:13,cursor:'pointer'}},showAll?'Réduire':'Voir tout')
+),
+...(showAll?word.examples:word.examples.slice(0,2)).map((ex,i)=>React.createElement('div',{key:i,className:'example-card'},ex))
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'card',style:{borderColor:'rgba(255,69,58,.2)',background:'rgba(255,69,58,.04)'}},
+React.createElement('div',{style:{padding:16}},
+React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'#FF453A',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'⚠ ERREURS FRÉQUENTES'),
+React.createElement('div',{style:{fontSize:13,color:'var(--text2)',lineHeight:1.6}},word.errors)
+)
+)
+),
+word.tip_darija && React.createElement('div',{className:'section'},
+React.createElement('div',{className:'tip-darija'},word.tip_darija)
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',textAlign:'center',marginBottom:12}},'Tu connais ce mot ?'),
+React.createElement('div',{className:'card'},
+React.createElement('div',{className:'srs-row'},
+['unknown','medium','known'].map((c,i)=>React.createElement('button',{key:c,className:'srs-btn '+c,onClick:()=>handle(i),style:{opacity:chosen&&chosen!==c?.45:1}},
+React.createElement('span',{className:'srs-icon'},[' ❌','🤔','✅'][i]),
+React.createElement('span',null,['Inconnu','Moyen','Je connais'][i])
+))
+)
+)
+)
 }
 
-// ============================================================
-// COMPOSANT HOME
-// ============================================================
 function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQuizDue,onGoToProgress}){
-  const isInstalled=window.navigator.standalone||window.matchMedia('(display-mode:standalone)').matches;
-  const todayWord=VOCABULARY[dayOfYear(new Date())%VOCABULARY.length];
-  const known=Object.values(srsData).filter(v=>v.status==='known').length;
-  const medium=Object.values(srsData).filter(v=>v.status==='medium').length;
-  const dueWords=VOCABULARY.filter(w=>isDue(srsData[w.id]));
-  const pctKnown=Math.round((known/VOCABULARY.length)*100);
-  const lastText=IMMERSION_TEXTS.find(t=>t.id===lastImmersionId)||IMMERSION_TEXTS[0];
-  return React.createElement('div',null,
-    !isInstalled&&React.createElement('div',{className:'install-tip'},
-      React.createElement('strong',null,'📲 Installer l\'app : '),'Safari → ',React.createElement('strong',null,'⬆ Partager'),' → ',React.createElement('strong',null,'"Sur l\'écran d\'accueil"')
-    ),
-    React.createElement('div',{style:{padding:'16px 16px 8px'}},
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginBottom:4}},'Bonjour 👋'),
-      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Français Elevate')
-    ),
-    React.createElement('div',{style:{display:'flex',gap:10,padding:'12px 16px'}},
-      React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--green)'}},known),React.createElement('div',{className:'stat-label'},'Connus')),
-      React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En révision')),
-      React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'Série 🔥'))
-    ),
-    React.createElement('div',{style:{padding:'8px 16px 4px'}},
-      React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'MOT DU JOUR')
-    ),
-    React.createElement('div',{className:'word-hero',onClick:()=>onOpen(todayWord)},
-      React.createElement('div',{className:'word-hero-content'},
-        React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),todayWord.register),
-        React.createElement('div',{className:'french-word'},todayWord.arabic),
-        React.createElement('div',{className:'transliteration'},todayWord.transliteration),
-        React.createElement('div',{className:'definition-text'},todayWord.definition),
-        React.createElement('div',{style:{marginTop:12,fontSize:12,color:'rgba(255,255,255,.4)'}},'Toucher pour explorer →')
-      )
-    ),
-    React.createElement('div',{style:{padding:'16px 16px 4px'}},
-      React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'CONTINUER')
-    ),
-    React.createElement('div',{style:{padding:'0 16px',display:'flex',flexDirection:'column',gap:10}},
-      React.createElement('div',{onClick:()=>onGoToImmersion(lastText.id),style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
-        React.createElement('div',{style:{fontSize:24}},'📖'),
-        React.createElement('div',{style:{flex:1}},
-          React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Continuer ma lecture'),
-          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},lastText.title)
-        ),
-        React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
-      ),
-      React.createElement('div',{onClick:onGoToQuizDue,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
-        React.createElement('div',{style:{fontSize:24}},'⚡'),
-        React.createElement('div',{style:{flex:1}},
-          React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Défi Quiz du jour'),
-          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},dueWords.length+' mot'+(dueWords.length>1?'s':'')+' en souffrance à réviser')
-        ),
-        React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
-      ),
-      React.createElement('div',{onClick:onGoToProgress,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
-        React.createElement('div',{style:{position:'relative',width:36,height:36,borderRadius:'50%',background:'conic-gradient(var(--accent) '+(pctKnown*3.6)+'deg,var(--bg5) 0deg)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},
-          React.createElement('div',{style:{width:26,height:26,borderRadius:'50%',background:'var(--bg3)',fontSize:9,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700}},pctKnown+'%')
-        ),
-        React.createElement('div',{style:{flex:1}},
-          React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Ma progression globale'),
-          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},known+' / '+VOCABULARY.length+' mots maîtrisés')
-        ),
-        React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
-      )
-    ),
-    React.createElement('div',{className:'section',style:{marginTop:8}},
-      React.createElement('div',{className:'section-title'},'À réviser'),
-      React.createElement('div',{className:'card'},
-        dueWords.slice(0,5).map(w=>
-          React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
-            React.createElement('div',{className:'word-list-left'},
-              React.createElement('div',null,
-                React.createElement('div',{className:'word-french-sm'},w.arabic),
-                React.createElement('div',{className:'word-translit-sm'},w.transliteration)
-              )
-            ),
-            React.createElement('div',{style:{display:'flex',alignItems:'center',gap:8}},
-              React.createElement(LevelBadge,{level:w.level}),
-              React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
-            )
-          )
-        )
-      )
-    )
-  );
+const isInstalled=window.navigator.standalone||window.matchMedia('(display-mode:standalone)').matches;
+const todayWord=VOCABULARY[dayOfYear(new Date())%VOCABULARY.length];
+const known=Object.values(srsData).filter(v=>v.status==='known').length;
+const medium=Object.values(srsData).filter(v=>v.status==='medium').length;
+const dueWords=VOCABULARY.filter(w=>isDue(srsData[w.id]));
+const pctKnown=Math.round((known/VOCABULARY.length)*100);
+const lastText=IMMERSION_TEXTS.find(t=>t.id===lastImmersionId)||IMMERSION_TEXTS[0];
+return React.createElement('div',null,
+!isInstalled&&React.createElement('div',{className:'install-tip'},
+React.createElement('strong',null,'📲 Installer l\'app : '),'Safari → ',React.createElement('strong',null,'⬆ Partager'),' → ',React.createElement('strong',null,'"Sur l\'écran d\'accueil"')
+),
+React.createElement('div',{style:{padding:'16px 16px 8px'}},
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginBottom:4}},'Bonjour 👋'),
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Français Elevate')
+),
+React.createElement('div',{style:{display:'flex',gap:10,padding:'12px 16px'}},
+React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--green)'}},known),React.createElement('div',{className:'stat-label'},'Connus')),
+React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En révision')),
+React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'Série 🔥'))
+),
+React.createElement('div',{style:{padding:'8px 16px 4px'}},
+React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'MOT DU JOUR')
+),
+React.createElement('div',{className:'word-hero',onClick:()=>onOpen(todayWord)},
+React.createElement('div',{className:'word-hero-content'},
+React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),todayWord.register),
+React.createElement('div',{className:'french-word'},todayWord.arabic),
+React.createElement('div',{className:'transliteration'},todayWord.transliteration),
+React.createElement('div',{className:'definition-text'},todayWord.definition),
+React.createElement('div',{style:{marginTop:12,fontSize:12,color:'rgba(255,255,255,.4)'}},'Toucher pour explorer →')
+)
+),
+React.createElement('div',{style:{padding:'16px 16px 4px'}},
+React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'CONTINUER')
+),
+React.createElement('div',{style:{padding:'0 16px',display:'flex',flexDirection:'column',gap:10}},
+React.createElement('div',{onClick:()=>onGoToImmersion(lastText.id),style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
+React.createElement('div',{style:{fontSize:24}},'📖'),
+React.createElement('div',{style:{flex:1}},
+React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Continuer ma lecture'),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},lastText.title)
+),
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+),
+React.createElement('div',{onClick:onGoToQuizDue,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
+React.createElement('div',{style:{fontSize:24}},'⚡'),
+React.createElement('div',{style:{flex:1}},
+React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Défi Quiz du jour'),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},dueWords.length+' mot'+(dueWords.length>1?'s':'')+' en souffrance à réviser')
+),
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+),
+React.createElement('div',{onClick:onGoToProgress,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
+React.createElement('div',{style:{position:'relative',width:36,height:36,borderRadius:'50%',background:'conic-gradient(var(--accent) '+(pctKnown*3.6)+'deg,var(--bg5) 0deg)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},
+React.createElement('div',{style:{width:26,height:26,borderRadius:'50%',background:'var(--bg3)',fontSize:9,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700}},pctKnown+'%')
+),
+React.createElement('div',{style:{flex:1}},
+React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Ma progression globale'),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},known+' / '+VOCABULARY.length+' mots maîtrisés')
+),
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+)
+),
+React.createElement('div',{className:'section',style:{marginTop:8}},
+React.createElement('div',{className:'section-title'},'À réviser'),
+React.createElement('div',{className:'card'},
+dueWords.slice(0,5).map(w=>
+React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
+React.createElement('div',{className:'word-list-left'},
+React.createElement('div',null,
+React.createElement('div',{className:'word-french-sm'},w.arabic),
+React.createElement('div',{className:'word-translit-sm'},w.transliteration)
+)
+),
+React.createElement('div',{style:{display:'flex',alignItems:'center',gap:8}},
+React.createElement(LevelBadge,{level:w.level}),
+React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
+)
+)
+)
+)
+)
 }
 
-// ============================================================
-// COMPOSANT LIBRARY
-// ============================================================
 function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizUnit,unitProgress}){
-  const[view,setView]=useState('tree');
-  const[activeUnit,setActiveUnit]=useState(null);
-  const[search,setSearch]=useState('');
-  const[cat,setCat]=useState('all');
-  const srsColor=v=>v==='known'?'#30D158':v==='medium'?'#FF9F0A':v==='unknown'?'#FF453A':'var(--bg5)';
+const[view,setView]=useState('tree');
+const[activeUnit,setActiveUnit]=useState(null);
+const[search,setSearch]=useState('');
+const[cat,setCat]=useState('all');
+const srsColor=v=>v==='known'?'#30D158':v==='medium'?'#FF9F0A':v==='unknown'?'#FF453A':'var(--bg5)';
 
-  const renderWordRow=w=>{
-    const catObj=CATEGORIES.find(c=>c.id===w.category);
-    return React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
-      React.createElement('div',{className:'word-list-left'},
-        React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(catObj?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}},catObj?.icon||'📝'),
-        React.createElement('div',null,
-          React.createElement('div',{className:'word-french-sm'},w.arabic),
-          React.createElement('div',{className:'word-translit-sm'},w.transliteration+' · '+w.register.split(' · ')[0])
-        )
-      ),
-      React.createElement('div',{style:{display:'flex',alignItems:'center',gap:8}},
-        React.createElement('div',{style:{width:8,height:8,borderRadius:'50%',background:srsColor(srsData[w.id]?srsData[w.id].status:null),flexShrink:0}}),
-        React.createElement(DiffDots,{n:w.difficulty}),
-        React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
-      )
-    );
-  };
+const renderWordRow=w=>{
+const catObj=CATEGORIES.find(c=>c.id===w.category);
+return React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
+React.createElement('div',{className:'word-list-left'},
+React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(catObj?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}},catObj?.icon||'📝'),
+React.createElement('div',null,
+React.createElement('div',{className:'word-french-sm'},w.arabic),
+React.createElement('div',{className:'word-translit-sm'},w.transliteration+' · '+w.register.split(' · ')[0])
+)
+),
+React.createElement('div',{style:{display:'flex',alignItems:'center',gap:8}},
+React.createElement('div',{style:{width:8,height:8,borderRadius:'50%',background:srsColor(srsData[w.id]?srsData[w.id].status:null),flexShrink:0}}),
+React.createElement(DiffDots,{n:w.difficulty}),
+React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
+)
+);
+};
 
-  if(view==='all'){
-    const filtered=VOCABULARY.filter(w=>{
-      const ms=!search||w.arabic.includes(search)||w.transliteration.toLowerCase().includes(search.toLowerCase())||w.definition.toLowerCase().includes(search.toLowerCase());
-      return ms&&(cat==='all'||w.category===cat);
-    });
-    return React.createElement('div',null,
-      React.createElement('div',{style:{padding:'20px 16px 12px'}},
-        React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}},
-          React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Tous les mots'),
-          React.createElement('button',{onClick:()=>setView('tree'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'🧗 Parcours')
-        ),
-        React.createElement('input',{className:'search-bar',placeholder:'Rechercher...',value:search,onChange:e=>setSearch(e.target.value)})
-      ),
-      React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
-        React.createElement('div',{className:'chip'+(cat==='all'?' active':''),onClick:()=>setCat('all')},'Tout ('+VOCABULARY.length+')'),
-        ...CATEGORIES.map(c=>React.createElement('div',{key:c.id,className:'chip'+(cat===c.id?' active':''),onClick:()=>setCat(c.id)},c.icon+' '+c.label))
-      ),
-      React.createElement('div',{className:'section'},
-        React.createElement('div',{className:'card'},
-          filtered.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun résultat'):filtered.map(renderWordRow)
-        )
-      )
-    );
-  }
-
-  if(view==='unit'&&activeUnit){
-    const u=activeUnit;
-    const words=getUnitWords(u);
-    const completed=isUnitCompleted(u.id,unitProgress);
-    const best=(unitProgress[u.id]&&unitProgress[u.id].bestScore)||0;
-    const text=IMMERSION_TEXTS.find(t=>words.some(w=>t.words.includes(w.arabic)));
-    return React.createElement('div',null,
-      React.createElement('div',{className:'word-detail-header',style:{padding:'20px 16px 0'}},
-        React.createElement('button',{className:'back-btn',onClick:()=>{setView('tree');setActiveUnit(null)}},'←'),
-        React.createElement('span',{style:{fontSize:14,color:'var(--text3)',fontWeight:500}},'Unité '+u.id+' / '+UNITS.length)
-      ),
-      React.createElement('div',{style:{padding:'16px 16px 8px'}},
-        React.createElement('div',{style:{fontSize:34,marginBottom:6}},u.icon),
-        React.createElement('div',{style:{fontSize:24,fontWeight:700,letterSpacing:-.5}},u.title),
-        React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},words.length+' mots'+(completed?' · palier validé ✓ ('+best+'%)':' · palier non validé'))
-      ),
-      React.createElement('div',{style:{padding:'0 16px 16px',display:'flex',gap:10}},
-        text&&React.createElement('button',{onClick:()=>onGoToImmersion(text.id),style:{flex:1,background:u.color+'22',border:'1px solid '+u.color+'55',borderRadius:12,padding:'12px 8px',color:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'📖 Lire en contexte'),
-        React.createElement('button',{onClick:()=>onGoToQuizUnit(u.id),style:{flex:1,background:u.color,border:'none',borderRadius:12,padding:'12px 8px',color:'#fff',fontSize:12,fontWeight:700,cursor:'pointer'}},completed?'🔁 Repasser le palier':'🚀 Démarrer le palier')
-      ),
-      React.createElement('div',{className:'section'},
-        React.createElement('div',{className:'section-title'},'Mots de l\'unité'),
-        React.createElement('div',{className:'card'},words.map(renderWordRow))
-      )
-    );
-  }
-
-  return React.createElement('div',null,
-    React.createElement('div',{style:{padding:'20px 16px 4px'}},
-      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Parcours'),
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Progresse unité par unité')
-    ),
-    React.createElement('div',{style:{padding:'16px 16px 8px',display:'flex',flexDirection:'column',alignItems:'center'}},
-      UNITS.map((u,i)=>{
-        const unlocked=isUnitUnlocked(u.id,unitProgress);
-        const completed=isUnitCompleted(u.id,unitProgress);
-        const offset=i%2===0?-36:36;
-        return React.createElement('div',{key:u.id,style:{display:'flex',flexDirection:'column',alignItems:'center'}},
-          i>0&&React.createElement('div',{style:{width:3,height:22,background:unlocked?'var(--border)':'var(--bg5)',opacity:.6}}),
-          React.createElement('div',{onClick:()=>{if(unlocked){setActiveUnit(u);setView('unit')}},style:{transform:'translateX('+offset+'px)',display:'flex',flexDirection:'column',alignItems:'center',cursor:unlocked?'pointer':'default'}},
-            React.createElement('div',{style:{width:64,height:64,borderRadius:'50%',background:completed?u.color:(unlocked?u.color+'33':'var(--bg4)'),border:'2px solid '+(unlocked?u.color:'var(--border)'),display:'flex',alignItems:'center',justifyContent:'center',fontSize:26,position:'relative',boxShadow:completed?'0 0 0 4px '+u.color+'22':'none'}},
-              unlocked?u.icon:'🔒',
-              completed&&React.createElement('div',{style:{position:'absolute',bottom:-4,right:-4,background:'var(--green)',borderRadius:'50%',width:20,height:20,display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,border:'2px solid var(--bg1)'}},'✓')
-            ),
-            React.createElement('div',{style:{fontSize:11,fontWeight:600,marginTop:6,color:unlocked?'#fff':'var(--text3)',maxWidth:90,textAlign:'center'}},u.title)
-          )
-        );
-      })
-    ),
-    React.createElement('div',{style:{padding:'12px 16px 20px'}},
-      React.createElement('button',{onClick:()=>setView('all'),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:13,fontWeight:600,cursor:'pointer'}},'📚 Voir tous les mots ('+VOCABULARY.length+')')
-    )
-  );
+if(view==='all'){
+const filtered=VOCABULARY.filter(w=>{
+const ms=!search||w.arabic.includes(search)||w.transliteration.toLowerCase().includes(search.toLowerCase())||w.definition.toLowerCase().includes(search.toLowerCase());
+return ms&&(cat==='all'||w.category===cat);
+});
+return React.createElement('div',null,
+React.createElement('div',{style:{padding:'20px 16px 12px'}},
+React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}},
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Tous les mots'),
+React.createElement('button',{onClick:()=>setView('tree'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'🧗 Parcours')
+),
+React.createElement('input',{className:'search-bar',placeholder:'Rechercher...',value:search,onChange:e=>setSearch(e.target.value)})
+),
+React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
+React.createElement('div',{className:'chip'+(cat==='all'?' active':''),onClick:()=>setCat('all')},'Tout ('+VOCABULARY.length+')'),
+...CATEGORIES.map(c=>React.createElement('div',{key:c.id,className:'chip'+(cat===c.id?' active':''),onClick:()=>setCat(c.id)},c.icon+' '+c.label))
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'card'},
+filtered.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun résultat'):filtered.map(renderWordRow)
+)
+)
+);
 }
 
-// ============================================================
-// COMPOSANT IMMERSION
-// ============================================================
+if(view==='unit'&&activeUnit){
+const u=activeUnit;
+const words=getUnitWords(u);
+const completed=isUnitCompleted(u.id,unitProgress);
+const best=(unitProgress[u.id]&&unitProgress[u.id].bestScore)||0;
+const text=IMMERSION_TEXTS.find(t=>words.some(w=>t.words.includes(w.arabic)));
+return React.createElement('div',null,
+React.createElement('div',{className:'word-detail-header',style:{padding:'20px 16px 0'}},
+React.createElement('button',{className:'back-btn',onClick:()=>{setView('tree');setActiveUnit(null)}},'←'),
+React.createElement('span',{style:{fontSize:14,color:'var(--text3)',fontWeight:500}},'Unité '+u.id+' / '+UNITS.length)
+),
+React.createElement('div',{style:{padding:'16px 16px 8px'}},
+React.createElement('div',{style:{fontSize:34,marginBottom:6}},u.icon),
+React.createElement('div',{style:{fontSize:24,fontWeight:700,letterSpacing:-.5}},u.title),
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},words.length+' mots'+(completed?' · palier validé ✓ ('+best+'%)':' · palier non validé'))
+),
+React.createElement('div',{style:{padding:'0 16px 16px',display:'flex',gap:10}},
+text&&React.createElement('button',{onClick:()=>onGoToImmersion(text.id),style:{flex:1,background:u.color+'22',border:'1px solid '+u.color+'55',borderRadius:12,padding:'12px 8px',color:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'📖 Lire en contexte'),
+React.createElement('button',{onClick:()=>onGoToQuizUnit(u.id),style:{flex:1,background:u.color,border:'none',borderRadius:12,padding:'12px 8px',color:'#fff',fontSize:12,fontWeight:700,cursor:'pointer'}},completed?'🔁 Repasser le palier':'🚀 Démarrer le palier')
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'Mots de l\'unité'),
+React.createElement('div',{className:'card'},words.map(renderWordRow))
+)
+);
+}
+
+return React.createElement('div',null,
+React.createElement('div',{style:{padding:'20px 16px 4px'}},
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Parcours'),
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Progresse unité par unité')
+),
+React.createElement('div',{style:{padding:'16px 16px 8px',display:'flex',flexDirection:'column',alignItems:'center'}},
+UNITS.map((u,i)=>{
+const unlocked=isUnitUnlocked(u.id,unitProgress);
+const completed=isUnitCompleted(u.id,unitProgress);
+const offset=i%2===0?-36:36;
+return React.createElement('div',{key:u.id,style:{display:'flex',flexDirection:'column',alignItems:'center'}},
+i>0&&React.createElement('div',{style:{width:3,height:22,background:unlocked?'var(--border)':'var(--bg5)',opacity:.6}}),
+React.createElement('div',{onClick:()=>{if(unlocked){setActiveUnit(u);setView('unit')}},style:{transform:'translateX('+offset+'px)',display:'flex',flexDirection:'column',alignItems:'center',cursor:unlocked?'pointer':'default'}},
+React.createElement('div',{style:{width:64,height:64,borderRadius:'50%',background:completed?u.color:(unlocked?u.color+'33':'var(--bg4)'),border:'2px solid '+(unlocked?u.color:'var(--border)'),display:'flex',alignItems:'center',justifyContent:'center',fontSize:26,position:'relative',boxShadow:completed?'0 0 0 4px '+u.color+'22':'none'}},
+unlocked?u.icon:'🔒',
+completed&&React.createElement('div',{style:{position:'absolute',bottom:-4,right:-4,background:'var(--green)',borderRadius:'50%',width:20,height:20,display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,border:'2px solid var(--bg1)'}},'✓')
+),
+React.createElement('div',{style:{fontSize:11,fontWeight:600,marginTop:6,color:unlocked?'#fff':'var(--text3)',maxWidth:90,textAlign:'center'}},u.title)
+)
+);
+})
+),
+React.createElement('div',{style:{padding:'12px 16px 20px'}},
+React.createElement('button',{onClick:()=>setView('all'),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:13,fontWeight:600,cursor:'pointer'}},'📚 Voir tous les mots ('+VOCABULARY.length+')')
+)
+);
+}
+
 function ImmersionTab({onOpen,activeId,onSetActiveId,onRead}){
-  const active=IMMERSION_TEXTS.find(t=>t.id===activeId)||IMMERSION_TEXTS[0];
-  const[toast,setToast]=useState(null);
-  useEffect(()=>{onRead(active.id)},[active.id]);
-  const renderText=(text,kws)=>{
-    let parts=[{text,isWord:false}];
-    kws.forEach(kw=>{
-      const np=[];
-      parts.forEach(p=>{
-        if(p.isWord||!p.text.includes(kw)){np.push(p);return;}
-        const idx=p.text.indexOf(kw);
-        if(idx>0)np.push({text:p.text.slice(0,idx),isWord:false});
-        np.push({text:kw,isWord:true});
-        if(idx+kw.length<p.text.length)np.push({text:p.text.slice(idx+kw.length),isWord:false});
-      });
-      parts=np;
-    });
-    return parts;
-  };
-  const tap=word=>{
-    const f=VOCABULARY.find(v=>word.includes(v.arabic)||v.arabic.includes(word));
-    if(f){setToast('"'+f.arabic+'" → '+f.transliteration);setTimeout(()=>setToast(null),2000);onOpen(f);}
-  };
-  const keyWords=getTextVocab(active);
-  return React.createElement('div',null,
-    toast&&React.createElement('div',{className:'toast'},toast),
-    React.createElement('div',{style:{padding:'20px 16px 12px'}},
-      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Mode Immersion'),
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Touchez les mots surlignés')
-    ),
-    React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
-      IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'chip'+(active.id===t.id?' active':''),onClick:()=>onSetActiveId(t.id)},t.title))
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'card'},
-        React.createElement('div',{style:{padding:20}},
-          React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'var(--text3)',marginBottom:12,textTransform:'uppercase',letterSpacing:1}},active.category.toUpperCase()),
-          React.createElement('div',{style:{fontSize:16,lineHeight:1.9,color:'var(--text2)'}},
-            ...renderText(active.text,active.words).map((p,i)=>
-              p.isWord?React.createElement('span',{key:i,className:'immersion-word',onClick:()=>tap(p.text)},p.text):React.createElement('span',{key:i},p.text)
-            )
-          )
-        )
-      )
-    ),
-    keyWords.length>0&&React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'section-title'},'📌 Mots-clés de ce texte'),
-      React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:8}},
-        keyWords.map(w=>React.createElement('div',{key:w.id,onClick:()=>onOpen(w),style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 4px',cursor:'pointer',borderBottom:'1px solid var(--border)'}},
-          React.createElement('div',null,
-            React.createElement('div',{style:{fontSize:15,fontWeight:600}},w.arabic),
-            React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},w.transliteration)
-          ),
-          React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
-        ))
-      )
-    )
-  );
+const active=IMMERSION_TEXTS.find(t=>t.id===activeId)||IMMERSION_TEXTS[0];
+const[toast,setToast]=useState(null);
+useEffect(()=>{onRead(active.id)},[active.id]);
+const renderText=(text,kws)=>{
+let parts=[{text,isWord:false}];
+kws.forEach(kw=>{
+const np=[];
+parts.forEach(p=>{
+if(p.isWord||!p.text.includes(kw)){np.push(p);return;}
+const idx=p.text.indexOf(kw);
+if(idx>0)np.push({text:p.text.slice(0,idx),isWord:false});
+np.push({text:kw,isWord:true});
+if(idx+kw.length<p.text.length)np.push({text:p.text.slice(idx+kw.length),isWord:false});
+});
+parts=np;
+});
+return parts;
+};
+const tap=word=>{
+const f=VOCABULARY.find(v=>word.includes(v.arabic)||v.arabic.includes(word));
+if(f){setToast('"'+f.arabic+'" → '+f.transliteration);setTimeout(()=>setToast(null),2000);onOpen(f);}
+};
+const keyWords=getTextVocab(active);
+return React.createElement('div',null,
+toast&&React.createElement('div',{className:'toast'},toast),
+React.createElement('div',{style:{padding:'20px 16px 12px'}},
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Mode Immersion'),
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Touchez les mots surlignés')
+),
+React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
+IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'chip'+(active.id===t.id?' active':''),onClick:()=>onSetActiveId(t.id)},t.title))
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'card'},
+React.createElement('div',{style:{padding:20}},
+React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'var(--text3)',marginBottom:12,textTransform:'uppercase',letterSpacing:1}},active.category.toUpperCase()),
+React.createElement('div',{style:{fontSize:16,lineHeight:1.9,color:'var(--text2)'}},
+...renderText(active.text,active.words).map((p,i)=>
+p.isWord?React.createElement('span',{key:i,className:'immersion-word',onClick:()=>tap(p.text)},p.text):React.createElement('span',{key:i},p.text)
+)
+)
+)
+)
+),
+keyWords.length>0&&React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'📌 Mots-clés de ce texte'),
+React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:8}},
+keyWords.map(w=>React.createElement('div',{key:w.id,onClick:()=>onOpen(w),style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 4px',cursor:'pointer',borderBottom:'1px solid var(--border)'}},
+React.createElement('div',null,
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},w.arabic),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},w.transliteration)
+),
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+))
+)
+)
+);
 }
 
-// ============================================================
-// COMPOSANT QUIZ
-// ============================================================
 function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,initialUnitId,onModeConsumed,onUnitComplete,onExitToLibrary}){
-  const[mode,setMode]=useState(initialMode||'menu');
-  const[textId,setTextId]=useState(initialTextId||IMMERSION_TEXTS[0].id);
-  const[parcoursId,setParcoursId]=useState(initialParcoursId||PARCOURS[0].id);
-  const[unitId,setUnitId]=useState(initialUnitId||UNITS[0].id);
-  useEffect(()=>{if(initialMode){setMode(initialMode);if(initialTextId)setTextId(initialTextId);if(initialParcoursId)setParcoursId(initialParcoursId);if(initialUnitId)setUnitId(initialUnitId);onModeConsumed&&onModeConsumed();}},[initialMode]);
+const[mode,setMode]=useState(initialMode||'menu');
+const[textId,setTextId]=useState(initialTextId||IMMERSION_TEXTS[0].id);
+const[parcoursId,setParcoursId]=useState(initialParcoursId||PARCOURS[0].id);
+const[unitId,setUnitId]=useState(initialUnitId||UNITS[0].id);
+useEffect(()=>{if(initialMode){setMode(initialMode);if(initialTextId)setTextId(initialTextId);if(initialParcoursId)setParcoursId(initialParcoursId);if(initialUnitId)setUnitId(initialUnitId);onModeConsumed&&onModeConsumed();}},[initialMode]);
 
-  const pool=useMemo(()=>{
-    if(mode==='text'){const t=IMMERSION_TEXTS.find(x=>x.id===textId);return getTextVocab(t)}
-    if(mode==='parcours'){const p=PARCOURS.find(x=>x.id===parcoursId);return p?getParcoursWords(p):VOCABULARY}
-    if(mode==='unit'){const u=UNITS.find(x=>x.id===unitId);return u?getUnitWords(u):VOCABULARY}
-    if(mode==='due'){const due=VOCABULARY.filter(w=>isDue(srsData[w.id]));return due.length>=4?due:VOCABULARY}
-    return VOCABULARY;
-  },[mode,textId,parcoursId,unitId]);
+const pool=useMemo(()=>{
+if(mode==='text'){const t=IMMERSION_TEXTS.find(x=>x.id===textId);return getTextVocab(t)}
+if(mode==='parcours'){const p=PARCOURS.find(x=>x.id===parcoursId);return p?getParcoursWords(p):VOCABULARY}
+if(mode==='unit'){const u=UNITS.find(x=>x.id===unitId);return u?getUnitWords(u):VOCABULARY}
+if(mode==='due'){const due=VOCABULARY.filter(w=>isDue(srsData[w.id]));return due.length>=4?due:VOCABULARY}
+return VOCABULARY;
+},[mode,textId,parcoursId,unitId]);
 
-  const makeQFor=word=>{
-    const sameCat=VOCABULARY.filter(w=>w.id!==word.id&&w.category===word.category);
-    const wrongPool=sameCat.length>=3?sameCat:VOCABULARY.filter(w=>w.id!==word.id);
-    const wrong=wrongPool.sort(()=>Math.random()-.5).slice(0,3).map(w=>w.definition);
-    const opts=[word.definition,...wrong].sort(()=>Math.random()-.5);
-    return{word,options:opts,correct:word.definition};
-  };
+const makeQFor=word=>{
+const sameCat=VOCABULARY.filter(w=>w.id!==word.id&&w.category===word.category);
+const wrongPool=sameCat.length>=3?sameCat:VOCABULARY.filter(w=>w.id!==word.id);
+const wrong=wrongPool.sort(()=>Math.random()-.5).slice(0,3).map(w=>w.definition);
+const opts=[word.definition,...wrong].sort(()=>Math.random()-.5);
+return{word,options:opts,correct:word.definition};
+};
 
-  const[session,setSession]=useState([]);
-  const[sessionIdx,setSessionIdx]=useState(0);
-  const[correctCount,setCorrectCount]=useState(0);
-  const[finished,setFinished]=useState(false);
-  const completedRef=useRef(false);
-  useEffect(()=>{
-    if(mode==='unit'){
-      const u=UNITS.find(x=>x.id===unitId);
-      const words=u?getUnitWords(u):[];
-      setSession([...words].sort(()=>Math.random()-.5));
-      setSessionIdx(0);setCorrectCount(0);setFinished(false);completedRef.current=false;
-    }
-  },[mode,unitId]);
-  const sessionQ=mode==='unit'&&session.length?makeQFor(session[sessionIdx]):null;
+const[session,setSession]=useState([]);
+const[sessionIdx,setSessionIdx]=useState(0);
+const[correctCount,setCorrectCount]=useState(0);
+const[finished,setFinished]=useState(false);
+const completedRef=useRef(false);
+useEffect(()=>{
+if(mode==='unit'){
+const u=UNITS.find(x=>x.id===unitId);
+const words=u?getUnitWords(u):[];
+setSession([...words].sort(()=>Math.random()-.5));
+setSessionIdx(0);setCorrectCount(0);setFinished(false);completedRef.current=false;
+}
+},[mode,unitId]);
+const sessionQ=mode==='unit'&&session.length?makeQFor(session[sessionIdx]):null;
 
-  const[idx,setIdx]=useState(0);
-  const[selected,setSelected]=useState(null);
-  const pickWord=lastId=>{
-    const candidates=pool.filter(w=>w.id!==lastId);
-    return(candidates.length?candidates:pool)[Math.floor(Math.random()*(candidates.length||pool.length))];
-  };
-  const[q,setQ]=useState(null);
-  useEffect(()=>{if(mode!=='menu'&&mode!=='unit'){setQ(makeQFor(pickWord(null)));setIdx(0);setSelected(null)}},[mode,textId,parcoursId]);
+const[idx,setIdx]=useState(0);
+const[selected,setSelected]=useState(null);
+const pickWord=lastId=>{
+const candidates=pool.filter(w=>w.id!==lastId);
+return(candidates.length?candidates:pool)[Math.floor(Math.random()*(candidates.length||pool.length))];
+};
+const[q,setQ]=useState(null);
+useEffect(()=>{if(mode!=='menu'&&mode!=='unit'){setQ(makeQFor(pickWord(null)));setIdx(0);setSelected(null)}},[mode,textId,parcoursId]);
 
-  const handle=opt=>{
-    if(mode==='unit'){
-      if(selected||!sessionQ)return;
-      setSelected(opt);
-      const isCorrect=opt===sessionQ.correct;
-      const quality=isCorrect?2:0;
-      const n=reviewCard(srsData,sessionQ.word.id,quality);saveSRS(n);onSRS(n);
-      if(isCorrect)setCorrectCount(c=>c+1);
-      setTimeout(()=>{
-        setSelected(null);
-        if(sessionIdx+1<session.length){setSessionIdx(i=>i+1)}
-        else{setFinished(true)}
-      },1200);
-      return;
-    }
-    if(selected||!q)return;
-    setSelected(opt);
-    const quality=opt===q.correct?2:0;
-    const n=reviewCard(srsData,q.word.id,quality);saveSRS(n);onSRS(n);
-    setTimeout(()=>{setIdx(p=>p+1);setQ(makeQFor(pickWord(q.word.id)));setSelected(null);},1200);
-  };
+const handle=opt=>{
+if(mode==='unit'){
+if(selected||!sessionQ)return;
+setSelected(opt);
+const isCorrect=opt===sessionQ.correct;
+const quality=isCorrect?2:0;
+const n=reviewCard(srsData,sessionQ.word.id,quality);saveSRS(n);onSRS(n);
+if(isCorrect)setCorrectCount(c=>c+1);
+setTimeout(()=>{
+setSelected(null);
+if(sessionIdx+1<session.length){setSessionIdx(i=>i+1)}
+else{setFinished(true)}
+},1200);
+return;
+}
+if(selected||!q)return;
+setSelected(opt);
+const quality=opt===q.correct?2:0;
+const n=reviewCard(srsData,q.word.id,quality);saveSRS(n);onSRS(n);
+setTimeout(()=>{setIdx(p=>p+1);setQ(makeQFor(pickWord(q.word.id)));setSelected(null);},1200);
+};
 
-  useEffect(()=>{
-    if(mode==='unit'&&finished&&!completedRef.current){
-      completedRef.current=true;
-      const score=session.length?Math.round((correctCount/session.length)*100):0;
-      const passed=score>=80;
-      onUnitComplete&&onUnitComplete(unitId,passed,score);
-    }
-  },[finished]);
+useEffect(()=>{
+if(mode==='unit'&&finished&&!completedRef.current){
+completedRef.current=true;
+const score=session.length?Math.round((correctCount/session.length)*100):0;
+const passed=score>=80;
+onUnitComplete&&onUnitComplete(unitId,passed,score);
+}
+},[finished]);
 
-  if(mode==='menu')return React.createElement('div',null,
-    React.createElement('div',{style:{padding:'20px 16px 8px'}},
-      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Quiz'),
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Choisis ton mode')
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('general')},
-        React.createElement('div',{style:{fontSize:15,fontWeight:600}},'🎯 Quiz Général'),
-        React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},'Sur les '+VOCABULARY.length+' mots du dictionnaire')
-      ),
-      React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('due')},
-        React.createElement('div',{style:{fontSize:15,fontWeight:600}},'⏳ Mots à réviser'),
-        React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},'Cible les mots arrivés à échéance')
-      ),
-      React.createElement('div',{className:'section-title',style:{marginTop:8}},'Par parcours thématique'),
-      ...PARCOURS.map(p=>React.createElement('div',{key:p.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer',display:'flex',alignItems:'center',gap:12},onClick:()=>{setParcoursId(p.id);setMode('parcours')}},
-        React.createElement('div',{style:{fontSize:22}},p.icon),
-        React.createElement('div',null,
-          React.createElement('div',{style:{fontSize:15,fontWeight:600}},p.title),
-          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},getParcoursWords(p).length+' mots du module')
-        )
-      )),
-      React.createElement('div',{className:'section-title',style:{marginTop:8}},'Quiz ciblé par texte'),
-      ...IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer'},onClick:()=>{setTextId(t.id);setMode('text')}},
-        React.createElement('div',{style:{fontSize:15,fontWeight:600}},t.title),
-        React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},getTextVocab(t).length+' mots dans ce texte')
-      ))
-    )
-  );
+if(mode==='menu')return React.createElement('div',null,
+React.createElement('div',{style:{padding:'20px 16px 8px'}},
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Quiz'),
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Choisis ton mode')
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('general')},
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},'🎯 Quiz Général'),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},'Sur les '+VOCABULARY.length+' mots du dictionnaire')
+),
+React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('due')},
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},'⏳ Mots à réviser'),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},'Cible les mots arrivés à échéance')
+),
+React.createElement('div',{className:'section-title',style:{marginTop:8}},'Par parcours thématique'),
+...PARCOURS.map(p=>React.createElement('div',{key:p.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer',display:'flex',alignItems:'center',gap:12},onClick:()=>{setParcoursId(p.id);setMode('parcours')}},
+React.createElement('div',{style:{fontSize:22}},p.icon),
+React.createElement('div',null,
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},p.title),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},getParcoursWords(p).length+' mots du module')
+)
+)),
+React.createElement('div',{className:'section-title',style:{marginTop:8}},'Quiz ciblé par texte'),
+...IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer'},onClick:()=>{setTextId(t.id);setMode('text')}},
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},t.title),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},getTextVocab(t).length+' mots dans ce texte')
+))
+)
+);
 
-  if(mode==='unit'&&finished){
-    const u=UNITS.find(x=>x.id===unitId);
-    const score=session.length?Math.round((correctCount/session.length)*100):0;
-    const passed=score>=80;
-    return React.createElement('div',{style:{padding:'40px 24px',textAlign:'center'}},
-      React.createElement('div',{style:{fontSize:54,marginBottom:12}},passed?'🎉':'💪'),
-      React.createElement('div',{style:{fontSize:22,fontWeight:700,marginBottom:6}},passed?'Palier validé !':'Pas encore'),
-      React.createElement('div',{style:{fontSize:14,color:'var(--text3)',marginBottom:24}},correctCount+' / '+session.length+' bonnes réponses ('+score+'%)'),
-      !passed&&React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginBottom:20,lineHeight:1.5}},'Il te faut au moins 80% pour débloquer l\'unité suivante. Retente !'),
-      React.createElement('button',{onClick:()=>{setMode('unit');setSession([...getUnitWords(u)].sort(()=>Math.random()-.5));setSessionIdx(0);setCorrectCount(0);setFinished(false);completedRef.current=false;},style:{width:'100%',background:u.color,border:'none',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer',marginBottom:10}},'🔁 Recommencer le palier'),
-      React.createElement('button',{onClick:()=>onExitToLibrary&&onExitToLibrary(),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'← Retour au parcours')
-    );
-  }
-
-  if(mode==='unit'){
-    if(!sessionQ)return null;
-    return React.createElement('div',null,
-      React.createElement('div',{style:{padding:'20px 16px 8px'}},
-        React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Palier'),
-        React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Question '+(sessionIdx+1)+' / '+session.length)
-      ),
-      React.createElement('div',{style:{display:'flex',gap:6,padding:'0 16px 16px'}},
-        session.map((w,i)=>React.createElement('div',{key:i,style:{flex:1,height:5,borderRadius:3,background:i<sessionIdx?'var(--green)':i===sessionIdx?'var(--accent)':'var(--bg5)'}}))
-      ),
-      React.createElement('div',{className:'section',style:{marginTop:0}},
-        React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
-          React.createElement('div',{className:'word-hero-content'},
-            React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
-            React.createElement('div',{className:'french-word'},sessionQ.word.arabic),
-            React.createElement('div',{className:'transliteration'},sessionQ.word.transliteration),
-            React.createElement('div',{style:{marginTop:10}},React.createElement(LevelBadge,{level:sessionQ.word.level}))
-          )
-        ),
-        ...sessionQ.options.map((opt,i)=>{
-          let cls='quiz-option';
-          if(selected){if(opt===sessionQ.correct)cls+=' correct';else if(opt===selected)cls+=' wrong';}
-          return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt)},opt);
-        })
-      )
-    );
-  }
-
-  if(!q)return null;
-
-  return React.createElement('div',null,
-    React.createElement('div',{style:{padding:'20px 16px 8px',display:'flex',justifyContent:'space-between',alignItems:'center'}},
-      React.createElement('div',null,
-        React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Quiz'),
-        React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Question '+(idx+1)+' · '+pool.length+' mots dans ce mode')
-      ),
-      React.createElement('button',{onClick:()=>setMode('menu'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'Changer')
-    ),
-    React.createElement('div',{className:'section',style:{marginTop:8}},
-      React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
-        React.createElement('div',{className:'word-hero-content'},
-          React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
-          React.createElement('div',{className:'french-word'},q.word.arabic),
-          React.createElement('div',{className:'transliteration'},q.word.transliteration),
-          React.createElement('div',{style:{marginTop:10}},React.createElement(LevelBadge,{level:q.word.level}))
-        )
-      ),
-      ...q.options.map((opt,i)=>{
-        let cls='quiz-option';
-        if(selected){if(opt===q.correct)cls+=' correct';else if(opt===selected)cls+=' wrong';}
-        return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt)},opt);
-      })
-    )
-  );
+if(mode==='unit'&&finished){
+const u=UNITS.find(x=>x.id===unitId);
+const score=session.length?Math.round((correctCount/session.length)*100):0;
+const passed=score>=80;
+return React.createElement('div',{style:{padding:'40px 24px',textAlign:'center'}},
+React.createElement('div',{style:{fontSize:54,marginBottom:12}},passed?'🎉':'💪'),
+React.createElement('div',{style:{fontSize:22,fontWeight:700,marginBottom:6}},passed?'Palier validé !':'Pas encore'),
+React.createElement('div',{style:{fontSize:14,color:'var(--text3)',marginBottom:24}},correctCount+' / '+session.length+' bonnes réponses ('+score+'%)'),
+!passed&&React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginBottom:20,lineHeight:1.5}},'Il te faut au moins 80% pour débloquer l\'unité suivante. Retente !'),
+React.createElement('button',{onClick:()=>{setMode('unit');setSession([...getUnitWords(u)].sort(()=>Math.random()-.5));setSessionIdx(0);setCorrectCount(0);setFinished(false);completedRef.current=false;},style:{width:'100%',background:u.color,border:'none',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer',marginBottom:10}},'🔁 Recommencer le palier'),
+React.createElement('button',{onClick:()=>onExitToLibrary&&onExitToLibrary(),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'← Retour au parcours')
+);
 }
 
-// ============================================================
-// COMPOSANT PROGRESS
-// ============================================================
+if(mode==='unit'){
+if(!sessionQ)return null;
+return React.createElement('div',null,
+React.createElement('div',{style:{padding:'20px 16px 8px'}},
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Palier'),
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Question '+(sessionIdx+1)+' / '+session.length)
+),
+React.createElement('div',{style:{display:'flex',gap:6,padding:'0 16px 16px'}},
+session.map((w,i)=>React.createElement('div',{key:i,style:{flex:1,height:5,borderRadius:3,background:i<sessionIdx?'var(--green)':i===sessionIdx?'var(--accent)':'var(--bg5)'}}))
+),
+React.createElement('div',{className:'section',style:{marginTop:0}},
+React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
+React.createElement('div',{className:'word-hero-content'},
+React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
+React.createElement('div',{className:'french-word'},sessionQ.word.arabic),
+React.createElement('div',{className:'transliteration'},sessionQ.word.transliteration),
+React.createElement('div',{style:{marginTop:10}},React.createElement(LevelBadge,{level:sessionQ.word.level}))
+)
+),
+...sessionQ.options.map((opt,i)=>{
+let cls='quiz-option';
+if(selected){if(opt===sessionQ.correct)cls+=' correct';else if(opt===selected)cls+=' wrong';}
+return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt)},opt);
+})
+)
+);
+}
+
+if(!q)return null;
+
+return React.createElement('div',null,
+React.createElement('div',{style:{padding:'20px 16px 8px',display:'flex',justifyContent:'space-between',alignItems:'center'}},
+React.createElement('div',null,
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Quiz'),
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},'Question '+(idx+1)+' · '+pool.length+' mots dans ce mode')
+),
+React.createElement('button',{onClick:()=>setMode('menu'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'Changer')
+),
+React.createElement('div',{className:'section',style:{marginTop:8}},
+React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
+React.createElement('div',{className:'word-hero-content'},
+React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
+React.createElement('div',{className:'french-word'},q.word.arabic),
+React.createElement('div',{className:'transliteration'},q.word.transliteration),
+React.createElement('div',{style:{marginTop:10}},React.createElement(LevelBadge,{level:q.word.level}))
+)
+),
+...q.options.map((opt,i)=>{
+let cls='quiz-option';
+if(selected){if(opt===q.correct)cls+=' correct';else if(opt===selected)cls+=' wrong';}
+return React.createElement('div',{key:i,className:cls,onClick:()=>handle(opt)},opt);
+})
+)
+);
+}
+
 function ProgressTab({srsData,stats,onImport,readTexts}){
-  const known=Object.values(srsData).filter(v=>v.status==='known').length;
-  const medium=Object.values(srsData).filter(v=>v.status==='medium').length;
-  const unknown=Object.values(srsData).filter(v=>v.status==='unknown').length;
-  const pctKnown=Math.round((known/VOCABULARY.length)*100);
-  const hasReadImmersion=(readTexts||[]).length>0;
-  const badge=pctKnown>70&&hasReadImmersion?{ar:'المفكر',fr:'Penseur',color:'#BF5AF2',icon:'🧠'}
-    :pctKnown>=30?{ar:'المشارك',fr:'Participant',color:'#0A84FF',icon:'💬'}
-    :{ar:'الملاحظ',fr:'Observateur',color:'#8E8E93',icon:'👁️'};
-  const fileRef=useRef(null);
-  const handleExport=()=>{
-    try{
-      const data=JSON.stringify({srs:srsData,stats,exportedAt:new Date().toISOString()},null,2);
-      const blob=new Blob([data],{type:'application/json'});
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement('a');
-      a.href=url;a.download='francais-elevate-backup.json';a.click();
-      URL.revokeObjectURL(url);
-    }catch(e){}
-  };
-  const handleImportFile=e=>{
-    const file=e.target.files&&e.target.files[0];
-    if(!file)return;
-    const reader=new FileReader();
-    reader.onload=ev=>{
-      try{
-        const parsed=JSON.parse(ev.target.result);
-        if(parsed&&parsed.srs)onImport(parsed.srs,parsed.stats||{});
-      }catch(err){}
-    };
-    reader.readAsText(file);
-    e.target.value='';
-  };
-  return React.createElement('div',null,
-    React.createElement('div',{style:{padding:'20px 16px 8px'}},
-      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Progression'),
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Votre parcours vers la maîtrise')
-    ),
-    React.createElement('div',{style:{padding:'0 16px 16px'}},
-      React.createElement('div',{style:{display:'flex',alignItems:'center',gap:12,background:badge.color+'22',border:'1px solid '+badge.color+'55',borderRadius:16,padding:'14px 18px'}},
-        React.createElement('div',{style:{fontSize:28}},badge.icon),
-        React.createElement('div',null,
-          React.createElement('div',{style:{fontSize:16,fontWeight:700,color:'#fff'}},badge.ar+' · '+badge.fr),
-          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},pctKnown+'% du dictionnaire maîtrisé'+(hasReadImmersion?' · immersion active':''))
-        )
-      )
-    ),
-    React.createElement('div',{style:{padding:'0 16px 16px'}},
-      React.createElement('div',{style:{background:'linear-gradient(135deg,#1a1a2e,#16213e)',border:'1px solid rgba(94,92,230,.3)',borderRadius:24,padding:28,textAlign:'center',position:'relative',overflow:'hidden'}},
-        React.createElement('div',{style:{position:'absolute',top:-40,right:-40,width:160,height:160,background:'radial-gradient(circle,rgba(94,92,230,.2),transparent 70%)',borderRadius:'50%'}}),
-        React.createElement('div',{style:{fontSize:72,fontWeight:800,color:'white',letterSpacing:-2}},known),
-        React.createElement('div',{style:{fontSize:16,color:'rgba(255,255,255,.5)'}},'mots maîtrisés'),
-        React.createElement('div',{style:{marginTop:16,display:'flex',justifyContent:'center',gap:24}},
-          React.createElement('div',{style:{textAlign:'center'}},React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF9F0A'}},medium),React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)'}},'en révision')),
-          React.createElement('div',{style:{width:1,background:'rgba(255,255,255,.1)'}}),
-          React.createElement('div',{style:{textAlign:'center'}},React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF453A'}},unknown),React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)'}},'inconnus'))
-        )
-      )
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'section-title'},'Par niveau'),
-      React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:10}},
-        LEVELS.map(lv=>{
-          const lvWords=VOCABULARY.filter(w=>w.level===lv.id);
-          const lvKnown=lvWords.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
-          const pct=lvWords.length?Math.round(lvKnown/lvWords.length*100):0;
-          return React.createElement('div',{key:lv.id,className:'card'},
-            React.createElement('div',{style:{padding:16}},
-              React.createElement('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:10}},
-                React.createElement('span',{className:'level-badge',style:{color:lv.color,borderColor:lv.color+'44'}},lv.label),
-                React.createElement('span',{style:{fontSize:13,color:'var(--text3)'}},lvKnown+'/'+lvWords.length)
-              ),
-              React.createElement('div',{className:'progress-bar-bg'},
-                React.createElement('div',{className:'progress-bar-fill',style:{width:pct+'%',background:lv.color}})
-              )
-            )
-          );
-        })
-      )
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'section-title'},'Par parcours'),
-      React.createElement('div',{className:'card'},
-        PARCOURS.map(p=>{
-          const pw=getParcoursWords(p);
-          const pk=pw.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
-          const pct=getParcoursMastery(p,srsData);
-          return React.createElement('div',{key:p.id,className:'detail-row'},
-            React.createElement('div',{style:{display:'flex',alignItems:'center',gap:10}},
-              React.createElement('span',{style:{fontSize:18}},p.icon),
-              React.createElement('span',{className:'detail-label'},p.title)
-            ),
-            React.createElement('div',{style:{textAlign:'right'}},
-              React.createElement('div',{style:{fontSize:14,fontWeight:600,color:p.color}},pk+'/'+pw.length+' ('+pct+'%)'),
-              React.createElement('div',{style:{fontSize:11,color:'var(--text3)'}},'maîtrisés')
-            )
-          );
-        })
-      )
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'section-title'},'Sauvegarde'),
-      React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:10}},
-        React.createElement('div',{style:{fontSize:12,color:'var(--text3)',lineHeight:1.5}},'Tes données sont stockées uniquement sur cet appareil. Exporte-les pour les garder en sécurité ou les transférer.'),
-        React.createElement('button',{onClick:handleExport,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'⬇ Exporter mes données'),
-        React.createElement('button',{onClick:()=>fileRef.current&&fileRef.current.click(),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'⬆ Importer une sauvegarde'),
-        React.createElement('input',{ref:fileRef,type:'file',accept:'application/json',style:{display:'none'},onChange:handleImportFile})
-      )
-    ),
-    React.createElement('div',{style:{height:20}})
-  );
+const known=Object.values(srsData).filter(v=>v.status==='known').length;
+const medium=Object.values(srsData).filter(v=>v.status==='medium').length;
+const unknown=Object.values(srsData).filter(v=>v.status==='unknown').length;
+const pctKnown=Math.round((known/VOCABULARY.length)*100);
+const hasReadImmersion=(readTexts||[]).length>0;
+const badge=pctKnown>70&&hasReadImmersion?{ar:'المفكر',fr:'Penseur',color:'#BF5AF2',icon:'🧠'}
+:pctKnown>=30?{ar:'المشارك',fr:'Participant',color:'#0A84FF',icon:'💬'}
+:{ar:'الملاحظ',fr:'Observateur',color:'#8E8E93',icon:'👁️'};
+const fileRef=useRef(null);
+const handleExport=()=>{
+try{
+const data=JSON.stringify({srs:srsData,stats,exportedAt:new Date().toISOString()},null,2);
+const blob=new Blob([data],{type:'application/json'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;a.download='francais-elevate-backup.json';a.click();
+URL.revokeObjectURL(url);
+}catch(e){}
+};
+const handleImportFile=e=>{
+const file=e.target.files&&e.target.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=ev=>{
+try{
+const parsed=JSON.parse(ev.target.result);
+if(parsed&&parsed.srs)onImport(parsed.srs,parsed.stats||{});
+}catch(err){}
+};
+reader.readAsText(file);
+e.target.value='';
+};
+return React.createElement('div',null,
+React.createElement('div',{style:{padding:'20px 16px 8px'}},
+React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Progression'),
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Votre parcours vers la maîtrise')
+),
+React.createElement('div',{style:{padding:'0 16px 16px'}},
+React.createElement('div',{style:{display:'flex',alignItems:'center',gap:12,background:badge.color+'22',border:'1px solid '+badge.color+'55',borderRadius:16,padding:'14px 18px'}},
+React.createElement('div',{style:{fontSize:28}},badge.icon),
+React.createElement('div',null,
+React.createElement('div',{style:{fontSize:16,fontWeight:700,color:'#fff'}},badge.ar+' · '+badge.fr),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},pctKnown+'% du dictionnaire maîtrisé'+(hasReadImmersion?' · immersion active':''))
+)
+)
+),
+React.createElement('div',{style:{padding:'0 16px 16px'}},
+React.createElement('div',{style:{background:'linear-gradient(135deg,#1a1a2e,#16213e)',border:'1px solid rgba(94,92,230,.3)',borderRadius:24,padding:28,textAlign:'center',position:'relative',overflow:'hidden'}},
+React.createElement('div',{style:{position:'absolute',top:-40,right:-40,width:160,height:160,background:'radial-gradient(circle,rgba(94,92,230,.2),transparent 70%)',borderRadius:'50%'}}),
+React.createElement('div',{style:{fontSize:72,fontWeight:800,color:'white',letterSpacing:-2}},known),
+React.createElement('div',{style:{fontSize:16,color:'rgba(255,255,255,.5)'}},'mots maîtrisés'),
+React.createElement('div',{style:{marginTop:16,display:'flex',justifyContent:'center',gap:24}},
+React.createElement('div',{style:{textAlign:'center'}},React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF9F0A'}},medium),React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)'}},'en révision')),
+React.createElement('div',{style:{width:1,background:'rgba(255,255,255,.1)'}}),
+React.createElement('div',{style:{textAlign:'center'}},React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF453A'}},unknown),React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)'}},'inconnus'))
+)
+)
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'Par niveau'),
+React.createElement('div',{style:{display:'flex',flexDirection:'column',gap:10}},
+LEVELS.map(lv=>{
+const lvWords=VOCABULARY.filter(w=>w.level===lv.id);
+const lvKnown=lvWords.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
+const pct=lvWords.length?Math.round(lvKnown/lvWords.length*100):0;
+return React.createElement('div',{key:lv.id,className:'card'},
+React.createElement('div',{style:{padding:16}},
+React.createElement('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:10}},
+React.createElement('span',{className:'level-badge',style:{color:lv.color,borderColor:lv.color+'44'}},lv.label),
+React.createElement('span',{style:{fontSize:13,color:'var(--text3)'}},lvKnown+'/'+lvWords.length)
+),
+React.createElement('div',{className:'progress-bar-bg'},
+React.createElement('div',{className:'progress-bar-fill',style:{width:pct+'%',background:lv.color}})
+)
+)
+);
+})
+)
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'Par parcours'),
+React.createElement('div',{className:'card'},
+PARCOURS.map(p=>{
+const pw=getParcoursWords(p);
+const pk=pw.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
+const pct=getParcoursMastery(p,srsData);
+return React.createElement('div',{key:p.id,className:'detail-row'},
+React.createElement('div',{style:{display:'flex',alignItems:'center',gap:10}},
+React.createElement('span',{style:{fontSize:18}},p.icon),
+React.createElement('span',{className:'detail-label'},p.title)
+),
+React.createElement('div',{style:{textAlign:'right'}},
+React.createElement('div',{style:{fontSize:14,fontWeight:600,color:p.color}},pk+'/'+pw.length+' ('+pct+'%)'),
+React.createElement('div',{style:{fontSize:11,color:'var(--text3)'}},'maîtrisés')
+)
+);
+})
+)
+),
+React.createElement('div',{className:'section'},
+React.createElement('div',{className:'section-title'},'Sauvegarde'),
+React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:10}},
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)',lineHeight:1.5}},'Tes données sont stockées uniquement sur cet appareil. Exporte-les pour les garder en sécurité ou les transférer.'),
+React.createElement('button',{onClick:handleExport,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'⬇ Exporter mes données'),
+React.createElement('button',{onClick:()=>fileRef.current&&fileRef.current.click(),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'⬆ Importer une sauvegarde'),
+React.createElement('input',{ref:fileRef,type:'file',accept:'application/json',style:{display:'none'},onChange:handleImportFile})
+)
+),
+React.createElement('div',{style:{height:20}})
+);
 }
 
-// ============================================================
-// COMPOSANT APP
-// ============================================================
 const TABS=[{id:'home',icon:'⌂',label:'Accueil'},{id:'library',icon:'◫',label:'Mots'},{id:'immersion',icon:'◉',label:'Immersion'},{id:'quiz',icon:'◈',label:'Quiz'},{id:'progress',icon:'▣',label:'Progrès'}];
 
 function App(){
-  const[tab,setTab]=useState('home');
-  const[word,setWord]=useState(null);
-  const[srsData,setSrsData]=useState(loadSRS);
-  const[stats,setStats]=useState(()=>{
-    const s=loadStats();
-    const today=new Date().toDateString();
-    if(s.lastDay!==today){
-      const y=new Date(Date.now()-86400000).toDateString();
-      const streak=s.lastDay===y?(s.streak||0)+1:1;
-      const ns={...s,streak,lastDay:today};
-      saveStats(ns);return ns;
-    }
-    return s;
-  });
-  const[immersionId,setImmersionIdState]=useState(()=>{try{return JSON.parse(localStorage.getItem('francais_last_immersion'))||IMMERSION_TEXTS[0].id}catch(e){return IMMERSION_TEXTS[0].id}});
-  const[readTexts,setReadTexts]=useState(()=>{try{return JSON.parse(localStorage.getItem('francais_read_texts'))||[]}catch(e){return[]}});
-  const[unitProgress,setUnitProgress]=useState(loadUnitProgress);
-  const[quizInit,setQuizInit]=useState(null);
+const[tab,setTab]=useState('home');
+const[word,setWord]=useState(null);
+const[srsData,setSrsData]=useState(loadSRS);
+const[stats,setStats]=useState(()=>{
+const s=loadStats();
+const today=new Date().toDateString();
+if(s.lastDay!==today){
+const y=new Date(Date.now()-86400000).toDateString();
+const streak=s.lastDay===y?(s.streak||0)+1:1;
+const ns={...s,streak,lastDay:today};
+saveStats(ns);return ns;
+}
+return s;
+});
+const[immersionId,setImmersionIdState]=useState(()=>{try{return JSON.parse(localStorage.getItem('francais_last_immersion'))||IMMERSION_TEXTS[0].id}catch(e){return IMMERSION_TEXTS[0].id}});
+const[readTexts,setReadTexts]=useState(()=>{try{return JSON.parse(localStorage.getItem('francais_read_texts'))||[]}catch(e){return[]}});
+const[unitProgress,setUnitProgress]=useState(loadUnitProgress);
+const[quizInit,setQuizInit]=useState(null);
 
-  const scrollRef=useRef(null);
-  const go=t=>{setTab(t);setWord(null);scrollRef.current?.scrollTo(0,0)};
-  const open=w=>{setWord(w);scrollRef.current?.scrollTo(0,0)};
-  const back=()=>{setWord(null);scrollRef.current?.scrollTo(0,0)};
-  const updateSRS=n=>{setSrsData(n)};
-  const onImport=(srs,st)=>{
-    setSrsData(srs);saveSRS(srs);
-    setStats(st);saveStats(st);
-  };
+const scrollRef=useRef(null);
+const go=t=>{setTab(t);setWord(null);scrollRef.current?.scrollTo(0,0)};
+const open=w=>{setWord(w);scrollRef.current?.scrollTo(0,0)};
+const back=()=>{setWord(null);scrollRef.current?.scrollTo(0,0)};
+const updateSRS=n=>{setSrsData(n)};
+const onImport=(srs,st)=>{
+setSrsData(srs);saveSRS(srs);
+setStats(st);saveStats(st);
+};
 
-  const setImmersionId=id=>{setImmersionIdState(id);try{localStorage.setItem('francais_last_immersion',JSON.stringify(id))}catch(e){}};
-  const markTextRead=id=>{setReadTexts(prev=>{if(prev.includes(id))return prev;const n=[...prev,id];try{localStorage.setItem('francais_read_texts',JSON.stringify(n))}catch(e){}return n})};
-  const goToImmersion=id=>{setImmersionId(id);setWord(null);setTab('immersion');scrollRef.current?.scrollTo(0,0)};
-  const goToQuizDue=()=>{setQuizInit({mode:'due'});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
-  const goToQuizParcours=pid=>{setQuizInit({mode:'parcours',parcoursId:pid});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
-  const goToQuizUnit=uid=>{setQuizInit({mode:'unit',unitId:uid});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
-  const goToProgress=()=>go('progress');
-  const consumeQuizInit=()=>setQuizInit(null);
-  const onUnitComplete=(unitId,passed,score)=>{
-    setUnitProgress(prev=>{
-      const prevBest=(prev[unitId]&&prev[unitId].bestScore)||0;
-      const n={...prev,[unitId]:{completed:passed||(prev[unitId]&&prev[unitId].completed)||false,bestScore:Math.max(score,prevBest)}};
-      saveUnitProgress(n);
-      return n;
-    });
-  };
+const setImmersionId=id=>{setImmersionIdState(id);try{localStorage.setItem('francais_last_immersion',JSON.stringify(id))}catch(e){}};
+const markTextRead=id=>{setReadTexts(prev=>{if(prev.includes(id))return prev;const n=[...prev,id];try{localStorage.setItem('francais_read_texts',JSON.stringify(n))}catch(e){}return n})};
+const goToImmersion=id=>{setImmersionId(id);setWord(null);setTab('immersion');scrollRef.current?.scrollTo(0,0)};
+const goToQuizDue=()=>{setQuizInit({mode:'due'});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
+const goToQuizParcours=pid=>{setQuizInit({mode:'parcours',parcoursId:pid});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
+const goToQuizUnit=uid=>{setQuizInit({mode:'unit',unitId:uid});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
+const goToProgress=()=>go('progress');
+const consumeQuizInit=()=>setQuizInit(null);
+const onUnitComplete=(unitId,passed,score)=>{
+setUnitProgress(prev=>{
+const prevBest=(prev[unitId]&&prev[unitId].bestScore)||0;
+const n={...prev,[unitId]:{completed:passed||(prev[unitId]&&prev[unitId].completed)||false,bestScore:Math.max(score,prevBest)}};
+saveUnitProgress(n);
+return n;
+});
+};
 
-  let content;
-  if(word)content=React.createElement(WordDetail,{word,onBack:back,onSRS:updateSRS,srsData,onGoToImmersion:goToImmersion});
-  else if(tab==='home')content=React.createElement(HomeTab,{onOpen:open,srsData,stats,lastImmersionId:immersionId,onGoToImmersion:goToImmersion,onGoToQuizDue:goToQuizDue,onGoToProgress:goToProgress});
-  else if(tab==='library')content=React.createElement(LibraryTab,{onOpen:open,srsData,onGoToImmersion:goToImmersion,onGoToQuizUnit:goToQuizUnit,unitProgress});
-  else if(tab==='immersion')content=React.createElement(ImmersionTab,{onOpen:open,activeId:immersionId,onSetActiveId:setImmersionId,onRead:markTextRead});
-  else if(tab==='quiz')content=React.createElement(QuizTab,{srsData,onSRS:updateSRS,initialMode:quizInit&&quizInit.mode,initialTextId:quizInit&&quizInit.textId,initialParcoursId:quizInit&&quizInit.parcoursId,initialUnitId:quizInit&&quizInit.unitId,onModeConsumed:consumeQuizInit,onUnitComplete,onExitToLibrary:()=>go('library')});
-  else content=React.createElement(ProgressTab,{srsData,stats,onImport,readTexts});
+let content;
+if(word)content=React.createElement(WordDetail,{word,onBack:back,onSRS:updateSRS,srsData,onGoToImmersion:goToImmersion});
+else if(tab==='home')content=React.createElement(HomeTab,{onOpen:open,srsData,stats,lastImmersionId:immersionId,onGoToImmersion:goToImmersion,onGoToQuizDue:goToQuizDue,onGoToProgress:goToProgress});
+else if(tab==='library')content=React.createElement(LibraryTab,{onOpen:open,srsData,onGoToImmersion:goToImmersion,onGoToQuizUnit:goToQuizUnit,unitProgress});
+else if(tab==='immersion')content=React.createElement(ImmersionTab,{onOpen:open,activeId:immersionId,onSetActiveId:setImmersionId,onRead:markTextRead});
+else if(tab==='quiz')content=React.createElement(QuizTab,{srsData,onSRS:updateSRS,initialMode:quizInit&&quizInit.mode,initialTextId:quizInit&&quizInit.textId,initialParcoursId:quizInit&&quizInit.parcoursId,initialUnitId:quizInit&&quizInit.unitId,onModeConsumed:consumeQuizInit,onUnitComplete,onExitToLibrary:()=>go('library')});
+else content=React.createElement(ProgressTab,{srsData,stats,onImport,readTexts});
 
-  return React.createElement('div',{className:'app'},
-    React.createElement('div',{className:'scroll-area',ref:scrollRef},content),
-    React.createElement('nav',{className:'nav-bar'},
-      TABS.map(t=>React.createElement('button',{key:t.id,className:'nav-item'+(tab===t.id&&!word?' active':''),onClick:()=>go(t.id)},
-        React.createElement('span',{className:'nav-icon'},t.icon),
-        React.createElement('span',{className:'nav-label'},t.label)
-      ))
-    )
-  );
+return React.createElement('div',{className:'app'},
+React.createElement('div',{className:'scroll-area',ref:scrollRef},content),
+React.createElement('nav',{className:'nav-bar'},
+TABS.map(t=>React.createElement('button',{key:t.id,className:'nav-item'+(tab===t.id&&!word?' active':''),onClick:()=>go(t.id)},
+React.createElement('span',{className:'nav-icon'},t.icon),
+React.createElement('span',{className:'nav-label'},t.label)
+))
+)
+);
 }
 
-// ============================================================
-// LANCEMENT DE L'APPLICATION
-// ============================================================
 warmUpVoices();
 ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
 
