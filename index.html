@@ -154,6 +154,27 @@ return IMMERSION_TEXTS.filter(t=>t.words.includes(w.arabic));
 
 const CATEGORIES=[{id:"psychologie",label:"Psychologie",icon:"🧠",color:"#5E5CE6"},{id:"émotions complexes",label:"Émotions",icon:"💫",color:"#FF6B6B"},{id:"société",label:"Société",icon:"🏛️",color:"#FF9F0A"},{id:"débat",label:"Débat",icon:"⚡",color:"#30D158"},{id:"relations humaines",label:"Relations",icon:"🤝",color:"#64D2FF"},{id:"politique",label:"Politique",icon:"🎯",color:"#FF453A"},{id:"pensée critique",label:"Pensée critique",icon:"🔍",color:"#BF5AF2"},{id:"personnalité",label:"Personnalité",icon:"✨",color:"#FFD60A"},{id:"philosophie",label:"Philosophie",icon:"📖",color:"#0A84FF"},{id:"éthique",label:"Éthique",icon:"⚖️",color:"#34C759"},{id:"économie",label:"Économie",icon:"💰",color:"#FFD60A"},{id:"numérique",label:"Numérique",icon:"📱",color:"#5AC8FA"}];
 
+// ── PARCOURS PÉDAGOGIQUES ──
+// Regroupe les 12 catégories en 4 modules d'apprentissage progressifs : Découvrir → Lire en contexte → S'évaluer → Maîtriser
+const PARCOURS=[
+{id:'soi',title:'Soi-même',subtitle:'Psychologie, émotions, personnalité',icon:'🧠',color:'#5E5CE6',categories:['psychologie','émotions complexes','personnalité'],textIds:[1]},
+{id:'societe',title:'Société & Solidarité',subtitle:'Liens sociaux, exclusion, monde numérique',icon:'🏛️',color:'#FF9F0A',categories:['société','relations humaines','numérique'],textIds:[2,4]},
+{id:'pouvoir',title:'Pouvoir & Politique',subtitle:'Institutions, éthique, économie',icon:'🎯',color:'#FF453A',categories:['politique','éthique','économie'],textIds:[3]},
+{id:'penser',title:'Penser juste',subtitle:'Esprit critique, débat, philosophie',icon:'🔍',color:'#BF5AF2',categories:['pensée critique','débat','philosophie'],textIds:[5]}
+];
+function getParcoursWords(p){return VOCABULARY.filter(w=>p.categories.includes(w.category))}
+function getParcoursMastery(p,srsData){
+const words=getParcoursWords(p);
+if(!words.length)return 0;
+const known=words.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
+return Math.round((known/words.length)*100);
+}
+function findParcoursForWord(wordId){
+const w=VOCABULARY.find(v=>v.id===wordId);
+if(!w)return null;
+return PARCOURS.find(p=>p.categories.includes(w.category))||null;
+}
+
 const LEVELS=[{id:"courant",label:"Courant",color:"#30D158"},{id:"riche",label:"Riche",color:"#0A84FF"},{id:"avancé",label:"Avancé",color:"#BF5AF2"},{id:"cultivé",label:"Très cultivé",color:"#FF9F0A"},{id:"élite",label:"Élite",color:"#FF453A"}];
 
 // ── STORAGE ──
@@ -382,44 +403,124 @@ function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQui
 }
 
 // ── LIBRARY ──
-function LibraryTab({onOpen,srsData}){
+function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizParcours}){
+  const[view,setView]=useState('parcours'); // 'parcours' | 'detail' | 'all'
+  const[activeParcours,setActiveParcours]=useState(null);
   const[search,setSearch]=useState('');
   const[cat,setCat]=useState('all');
-  const filtered=VOCABULARY.filter(w=>{
-    const ms=!search||w.arabic.includes(search)||w.transliteration.toLowerCase().includes(search.toLowerCase())||w.definition.toLowerCase().includes(search.toLowerCase());
-    return ms&&(cat==='all'||w.category===cat);
-  });
   const srsColor=v=>v==='known'?'#30D158':v==='medium'?'#FF9F0A':v==='unknown'?'#FF453A':'var(--bg5)';
+
+  const renderWordRow=w=>{
+    const catObj=CATEGORIES.find(c=>c.id===w.category);
+    return React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
+      React.createElement('div',{className:'word-list-left'},
+        React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(catObj?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}},catObj?.icon||'📝'),
+        React.createElement('div',null,
+          React.createElement('div',{className:'word-arabic-sm'},w.arabic),
+          React.createElement('div',{className:'word-translit-sm'},w.transliteration+' · '+w.register.split(' · ')[0])
+        )
+      ),
+      React.createElement('div',{style:{display:'flex',alignItems:'center',gap:8}},
+        React.createElement('div',{style:{width:8,height:8,borderRadius:'50%',background:srsColor(srsData[w.id]?srsData[w.id].status:null),flexShrink:0}}),
+        React.createElement(DiffDots,{n:w.difficulty}),
+        React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
+      )
+    );
+  };
+
+  // ── VUE "TOUS LES MOTS" (liste plate, recherche libre) ──
+  if(view==='all'){
+    const filtered=VOCABULARY.filter(w=>{
+      const ms=!search||w.arabic.includes(search)||w.transliteration.toLowerCase().includes(search.toLowerCase())||w.definition.toLowerCase().includes(search.toLowerCase());
+      return ms&&(cat==='all'||w.category===cat);
+    });
+    return React.createElement('div',null,
+      React.createElement('div',{style:{padding:'20px 16px 12px'}},
+        React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}},
+          React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Tous les mots'),
+          React.createElement('button',{onClick:()=>setView('parcours'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'🎯 Parcours')
+        ),
+        React.createElement('input',{className:'search-bar',placeholder:'Rechercher...',value:search,onChange:e=>setSearch(e.target.value)})
+      ),
+      React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
+        React.createElement('div',{className:'chip'+(cat==='all'?' active':''),onClick:()=>setCat('all')},'Tout ('+VOCABULARY.length+')'),
+        ...CATEGORIES.map(c=>React.createElement('div',{key:c.id,className:'chip'+(cat===c.id?' active':''),onClick:()=>setCat(c.id)},c.icon+' '+c.label))
+      ),
+      React.createElement('div',{className:'section'},
+        React.createElement('div',{className:'card'},
+          filtered.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun résultat'):filtered.map(renderWordRow)
+        )
+      )
+    );
+  }
+
+  // ── VUE DÉTAIL D'UN PARCOURS ──
+  if(view==='detail'&&activeParcours){
+    const p=activeParcours;
+    const words=getParcoursWords(p);
+    const mastery=getParcoursMastery(p,srsData);
+    const text=IMMERSION_TEXTS.find(t=>p.textIds.includes(t.id));
+    return React.createElement('div',null,
+      React.createElement('div',{className:'word-detail-header',style:{padding:'20px 16px 0'}},
+        React.createElement('button',{className:'back-btn',onClick:()=>{setView('parcours');setActiveParcours(null)}},'←'),
+        React.createElement('span',{style:{fontSize:14,color:'var(--text3)',fontWeight:500}},'Parcours')
+      ),
+      React.createElement('div',{style:{padding:'16px 16px 8px'}},
+        React.createElement('div',{style:{fontSize:34,marginBottom:6}},p.icon),
+        React.createElement('div',{style:{fontSize:24,fontWeight:700,letterSpacing:-.5}},p.title),
+        React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginTop:4}},p.subtitle)
+      ),
+      React.createElement('div',{style:{padding:'0 16px 16px'}},
+        React.createElement('div',{style:{background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:16}},
+          React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}},
+            React.createElement('span',{style:{fontSize:12,color:'var(--text3)'}},'Maîtrise du module'),
+            React.createElement('span',{style:{fontSize:13,fontWeight:700,color:p.color}},mastery+'%')
+          ),
+          React.createElement('div',{style:{height:8,background:'var(--bg5)',borderRadius:4,overflow:'hidden'}},
+            React.createElement('div',{style:{height:'100%',width:mastery+'%',background:p.color,borderRadius:4}})
+          )
+        )
+      ),
+      React.createElement('div',{style:{padding:'0 16px 16px',display:'flex',gap:10}},
+        text&&React.createElement('button',{onClick:()=>onGoToImmersion(text.id),style:{flex:1,background:p.color+'22',border:'1px solid '+p.color+'55',borderRadius:12,padding:'12px 8px',color:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'📖 Lire en contexte'),
+        React.createElement('button',{onClick:()=>onGoToQuizParcours(p.id),style:{flex:1,background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:12,padding:'12px 8px',color:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'⚡ S\'évaluer')
+      ),
+      React.createElement('div',{className:'section'},
+        React.createElement('div',{className:'section-title'},words.length+' mots du module'),
+        React.createElement('div',{className:'card'},words.map(renderWordRow))
+      )
+    );
+  }
+
+  // ── VUE PRINCIPALE : GRILLE DES PARCOURS ──
   return React.createElement('div',null,
-    React.createElement('div',{style:{padding:'20px 16px 12px'}},
-      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:14}},'Vocabulaire'),
-      React.createElement('input',{className:'search-bar',placeholder:'Rechercher...',value:search,onChange:e=>setSearch(e.target.value)})
+    React.createElement('div',{style:{padding:'20px 16px 4px'}},
+      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Vocabulaire'),
+      React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Choisis un parcours pour apprendre par thème')
     ),
-    React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
-      React.createElement('div',{className:'chip'+(cat==='all'?' active':''),onClick:()=>setCat('all')},'Tout ('+VOCABULARY.length+')'),
-      ...CATEGORIES.map(c=>React.createElement('div',{key:c.id,className:'chip'+(cat===c.id?' active':''),onClick:()=>setCat(c.id)},c.icon+' '+c.label))
-    ),
-    React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'card'},
-        filtered.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun résultat'):
-        filtered.map(w=>{
-          const catObj=CATEGORIES.find(c=>c.id===w.category);
-          return React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
-            React.createElement('div',{className:'word-list-left'},
-              React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(catObj?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}},catObj?.icon||'📝'),
+    React.createElement('div',{style:{padding:'12px 16px 16px',display:'flex',flexDirection:'column',gap:12}},
+      PARCOURS.map(p=>{
+        const words=getParcoursWords(p);
+        const mastery=getParcoursMastery(p,srsData);
+        return React.createElement('div',{key:p.id,onClick:()=>{setActiveParcours(p);setView('detail')},style:{background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:18,padding:18,cursor:'pointer'}},
+          React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
+            React.createElement('div',{style:{display:'flex',gap:12,alignItems:'flex-start'}},
+              React.createElement('div',{style:{fontSize:28}},p.icon),
               React.createElement('div',null,
-                React.createElement('div',{className:'word-arabic-sm'},w.arabic),
-                React.createElement('div',{className:'word-translit-sm'},w.transliteration+' · '+w.register.split(' · ')[0])
+                React.createElement('div',{style:{fontSize:16,fontWeight:700}},p.title),
+                React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},p.subtitle),
+                React.createElement('div',{style:{fontSize:11,color:'var(--text3)',marginTop:6}},words.length+' mots'+(p.textIds.length?' · texte associé':''))
               )
             ),
-            React.createElement('div',{style:{display:'flex',alignItems:'center',gap:8}},
-              React.createElement('div',{style:{width:8,height:8,borderRadius:'50%',background:srsColor(srsData[w.id]?srsData[w.id].status:null),flexShrink:0}}),
-              React.createElement(DiffDots,{n:w.difficulty}),
-              React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
+            React.createElement('div',{style:{position:'relative',width:44,height:44,borderRadius:'50%',background:'conic-gradient('+p.color+' '+(mastery*3.6)+'deg,var(--bg5) 0deg)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}},
+              React.createElement('div',{style:{width:34,height:34,borderRadius:'50%',background:'var(--bg3)',fontSize:10,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700}},mastery+'%')
             )
-          );
-        })
-      )
+          )
+        );
+      })
+    ),
+    React.createElement('div',{style:{padding:'0 16px 20px'}},
+      React.createElement('button',{onClick:()=>setView('all'),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:13,fontWeight:600,cursor:'pointer'}},'📚 Voir tous les mots ('+VOCABULARY.length+')')
     )
   );
 }
@@ -486,16 +587,18 @@ function ImmersionTab({onOpen,activeId,onSetActiveId,onRead}){
 }
 
 // ── QUIZ ──
-function QuizTab({srsData,onSRS,initialMode,initialTextId,onModeConsumed}){
+function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,onModeConsumed}){
   const[mode,setMode]=useState(initialMode||'menu');
   const[textId,setTextId]=useState(initialTextId||IMMERSION_TEXTS[0].id);
-  useEffect(()=>{if(initialMode){setMode(initialMode);if(initialTextId)setTextId(initialTextId);onModeConsumed&&onModeConsumed();}},[initialMode]);
+  const[parcoursId,setParcoursId]=useState(initialParcoursId||PARCOURS[0].id);
+  useEffect(()=>{if(initialMode){setMode(initialMode);if(initialTextId)setTextId(initialTextId);if(initialParcoursId)setParcoursId(initialParcoursId);onModeConsumed&&onModeConsumed();}},[initialMode]);
 
   const pool=useMemo(()=>{
     if(mode==='text'){const t=IMMERSION_TEXTS.find(x=>x.id===textId);return getTextVocab(t)}
+    if(mode==='parcours'){const p=PARCOURS.find(x=>x.id===parcoursId);return p?getParcoursWords(p):VOCABULARY}
     if(mode==='due'){const due=VOCABULARY.filter(w=>isDue(srsData[w.id]));return due.length>=4?due:VOCABULARY}
     return VOCABULARY;
-  },[mode,textId]);
+  },[mode,textId,parcoursId]);
 
   const[idx,setIdx]=useState(0);
   const[selected,setSelected]=useState(null);
@@ -512,7 +615,7 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,onModeConsumed}){
     return{word,options:opts,correct:word.definition};
   };
   const[q,setQ]=useState(null);
-  useEffect(()=>{if(mode!=='menu'){setQ(makeQ(null));setIdx(0);setSelected(null)}},[mode,textId]);
+  useEffect(()=>{if(mode!=='menu'){setQ(makeQ(null));setIdx(0);setSelected(null)}},[mode,textId,parcoursId]);
 
   const handle=opt=>{
     if(selected||!q)return;
@@ -536,6 +639,14 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,onModeConsumed}){
         React.createElement('div',{style:{fontSize:15,fontWeight:600}},'⏳ Mots à réviser'),
         React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:4}},'Cible les mots arrivés à échéance')
       ),
+      React.createElement('div',{className:'section-title',style:{marginTop:8}},'Par parcours thématique'),
+      ...PARCOURS.map(p=>React.createElement('div',{key:p.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer',display:'flex',alignItems:'center',gap:12},onClick:()=>{setParcoursId(p.id);setMode('parcours')}},
+        React.createElement('div',{style:{fontSize:22}},p.icon),
+        React.createElement('div',null,
+          React.createElement('div',{style:{fontSize:15,fontWeight:600}},p.title),
+          React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginTop:2}},getParcoursWords(p).length+' mots du module')
+        )
+      )),
       React.createElement('div',{className:'section-title',style:{marginTop:8}},'Quiz ciblé par texte'),
       ...IMMERSION_TEXTS.map(t=>React.createElement('div',{key:t.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer'},onClick:()=>{setTextId(t.id);setMode('text')}},
         React.createElement('div',{style:{fontSize:15,fontWeight:600}},t.title),
@@ -654,19 +765,19 @@ function ProgressTab({srsData,stats,onImport,readTexts}){
       )
     ),
     React.createElement('div',{className:'section'},
-      React.createElement('div',{className:'section-title'},'Par thème'),
+      React.createElement('div',{className:'section-title'},'Par parcours'),
       React.createElement('div',{className:'card'},
-        CATEGORIES.map(cat=>{
-          const cw=VOCABULARY.filter(w=>w.category===cat.id);
-          if(!cw.length)return null;
-          const ck=cw.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
-          return React.createElement('div',{key:cat.id,className:'detail-row'},
+        PARCOURS.map(p=>{
+          const pw=getParcoursWords(p);
+          const pk=pw.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
+          const pct=getParcoursMastery(p,srsData);
+          return React.createElement('div',{key:p.id,className:'detail-row'},
             React.createElement('div',{style:{display:'flex',alignItems:'center',gap:10}},
-              React.createElement('span',{style:{fontSize:18}},cat.icon),
-              React.createElement('span',{className:'detail-label'},cat.label)
+              React.createElement('span',{style:{fontSize:18}},p.icon),
+              React.createElement('span',{className:'detail-label'},p.title)
             ),
             React.createElement('div',{style:{textAlign:'right'}},
-              React.createElement('div',{style:{fontSize:14,fontWeight:600,color:cat.color}},ck+'/'+cw.length),
+              React.createElement('div',{style:{fontSize:14,fontWeight:600,color:p.color}},pk+'/'+pw.length+' ('+pct+'%)'),
               React.createElement('div',{style:{fontSize:11,color:'var(--text3)'}},'maîtrisés')
             )
           );
@@ -722,15 +833,16 @@ function App(){
   const markTextRead=id=>{setReadTexts(prev=>{if(prev.includes(id))return prev;const n=[...prev,id];try{localStorage.setItem('darija_read_texts',JSON.stringify(n))}catch(e){}return n})};
   const goToImmersion=id=>{setImmersionId(id);setWord(null);setTab('immersion');scrollRef.current?.scrollTo(0,0)};
   const goToQuizDue=()=>{setQuizInit({mode:'due'});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
+  const goToQuizParcours=pid=>{setQuizInit({mode:'parcours',parcoursId:pid});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
   const goToProgress=()=>go('progress');
   const consumeQuizInit=()=>setQuizInit(null);
 
   let content;
   if(word)content=React.createElement(WordDetail,{word,onBack:back,onSRS:updateSRS,srsData,onGoToImmersion:goToImmersion});
   else if(tab==='home')content=React.createElement(HomeTab,{onOpen:open,srsData,stats,lastImmersionId:immersionId,onGoToImmersion:goToImmersion,onGoToQuizDue:goToQuizDue,onGoToProgress:goToProgress});
-  else if(tab==='library')content=React.createElement(LibraryTab,{onOpen:open,srsData});
+  else if(tab==='library')content=React.createElement(LibraryTab,{onOpen:open,srsData,onGoToImmersion:goToImmersion,onGoToQuizParcours:goToQuizParcours});
   else if(tab==='immersion')content=React.createElement(ImmersionTab,{onOpen:open,activeId:immersionId,onSetActiveId:setImmersionId,onRead:markTextRead});
-  else if(tab==='quiz')content=React.createElement(QuizTab,{srsData,onSRS:updateSRS,initialMode:quizInit&&quizInit.mode,initialTextId:quizInit&&quizInit.textId,onModeConsumed:consumeQuizInit});
+  else if(tab==='quiz')content=React.createElement(QuizTab,{srsData,onSRS:updateSRS,initialMode:quizInit&&quizInit.mode,initialTextId:quizInit&&quizInit.textId,initialParcoursId:quizInit&&quizInit.parcoursId,onModeConsumed:consumeQuizInit});
   else content=React.createElement(ProgressTab,{srsData,stats,onImport,readTexts});
 
   return React.createElement('div',{className:'app'},
