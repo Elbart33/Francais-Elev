@@ -123,14 +123,14 @@ const handle=q=>{const c=q===0?'unknown':q===1?'medium':'known';setChosen(c);con
 const ctx=TEXTS.filter(t=>t.w.includes(word.a));
 return React.createElement('div',{style:{paddingBottom:20}},
 React.createElement('div',{className:'word-detail-header'},
-React.createElement('button',{className:'back-btn',onClick:onBack},'←'),
-React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'Détail')
+React.createElement('button',{className:'back-btn',onClick:onBack},'\u2190'),
+React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'D\u00e9tail')
 ),
 React.createElement('div',{className:'word-hero',style:{cursor:'default',marginTop:16}},
 React.createElement('div',{className:'word-hero-content'},
 React.createElement('div',{style:{display:'flex',justifyContent:'space-between'}},
 React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),word.r),
-React.createElement('button',{onClick:()=>speak(word.a),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer'}},'🔊')
+React.createElement('button',{onClick:()=>speak(word.a),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer'}},'\ud83d\udd0a')
 ),
 React.createElement('div',{className:'french-word'},word.a),
 React.createElement('div',{className:'transliteration'},word.t),
@@ -138,13 +138,13 @@ React.createElement('div',{className:'definition-text'},word.d)
 )
 ),
 ctx.length>0&&React.createElement('div',{style:{padding:'0 16px 16px'}},
-React.createElement('button',{onClick:()=>onGoText(ctx[0].id),style:{width:'100%',background:'rgba(94,92,230,.15)',border:'1px solid rgba(94,92,230,.4)',borderRadius:12,padding:'12px',color:'#A8A6FF',fontSize:13,fontWeight:600,cursor:'pointer'}},'📖 Voir en contexte — '+ctx[0].t)
+React.createElement('button',{onClick:()=>onGoText(ctx[0].id),style:{width:'100%',background:'rgba(94,92,230,.15)',border:'1px solid rgba(94,92,230,.4)',borderRadius:12,padding:'12px',color:'#A8A6FF',fontSize:13,fontWeight:600,cursor:'pointer'}},'\ud83d\udcd6 Voir en contexte \u2014 '+ctx[0].t)
 ),
 React.createElement('div',{style:{display:'flex',gap:8,padding:'0 16px 16px',flexWrap:'wrap'}},
 React.createElement(LevelBadge,{level:word.l}),
-React.createElement('span',{className:'tag'},'🌍 '+word.o),
-React.createElement('span',{className:'tag'},'📊 '+word.f),
-card&&React.createElement('span',{className:'tag'},'⏳ révision '+new Date(card.due).toLocaleDateString('fr-FR',{day:'numeric',month:'short'}))
+React.createElement('span',{className:'tag'},'\ud83c\udf0d '+word.o),
+React.createElement('span',{className:'tag'},'\ud83d\udcca '+word.f),
+card&&React.createElement('span',{className:'tag'},'\u23f3 r\u00e9vision '+new Date(card.due).toLocaleDateString('fr-FR',{day:'numeric',month:'short'}))
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card'},
@@ -158,25 +158,25 @@ React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card'},
 React.createElement('div',{className:'detail-row'},
 React.createElement('span',{className:'detail-label'},'Synonymes'),
-React.createElement('span',{className:'detail-value'},word.syn.join(' · '))
+React.createElement('span',{className:'detail-value'},word.syn.join(' \u00b7 '))
 ),
 React.createElement('div',{className:'detail-row'},
 React.createElement('span',{className:'detail-label'},'Antonymes'),
-React.createElement('span',{className:'detail-value'},word.ant.join(' · '))
+React.createElement('span',{className:'detail-value'},word.ant.join(' \u00b7 '))
 )
 )
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},
 React.createElement('div',{className:'section-title',style:{marginBottom:0}},'Exemples'),
-React.createElement('button',{onClick:()=>setShowAll(!showAll),style:{background:'none',border:'none',color:'var(--accent)',fontSize:13,cursor:'pointer'}},showAll?'Réduire':'Voir tout')
+React.createElement('button',{onClick:()=>setShowAll(!showAll),style:{background:'none',border:'none',color:'var(--accent)',fontSize:13,cursor:'pointer'}},showAll?'R\u00e9duire':'Voir tout')
 ),
 ...(showAll?word.ex:word.ex.slice(0,2)).map((ex,i)=>React.createElement('div',{key:i,className:'example-card'},ex))
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card',style:{borderColor:'rgba(255,69,58,.2)'}},
 React.createElement('div',{style:{padding:16}},
-React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'#FF453A',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'⚠ ERREURS'),
+React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'#FF453A',textTransform:'uppercase',letterSpacing:1,marginBottom:8}},'\u26a0 ERREURS'),
 React.createElement('div',{style:{fontSize:13,color:'var(--text2)'}},word.err)
 )
 )
@@ -189,7 +189,7 @@ React.createElement('div',{style:{fontSize:13,color:'var(--text3)',textAlign:'ce
 React.createElement('div',{className:'card'},
 React.createElement('div',{className:'srs-row'},
 ['unknown','medium','known'].map((c,i)=>React.createElement('button',{key:c,className:'srs-btn '+c,onClick:()=>handle(i),style:{opacity:chosen&&chosen!==c?.45:1}},
-React.createElement('span',{className:'srs-icon'},[' ❌','🤔','✅'][i]),
+React.createElement('span',{className:'srs-icon'},[' \u274c','\ud83e\udd14','\u2705'][i]),
 React.createElement('span',null,['Inconnu','Moyen','Je connais'][i])
 ))
 )
@@ -207,13 +207,13 @@ const pct=Math.round((known/V.length)*100);
 const last=TEXTS.find(t=>t.id===lastTextId)||TEXTS[0];
 return React.createElement('div',null,
 React.createElement('div',{style:{padding:'16px'}},
-React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginBottom:4}},'Bonjour 👋'),
-React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Français Elevate')
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginBottom:4}},'Bonjour \ud83d\udc4b'),
+React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Fran\u00e7ais Elevate')
 ),
 React.createElement('div',{style:{display:'flex',gap:10,padding:'0 16px'}},
 React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--green)'}},known),React.createElement('div',{className:'stat-label'},'Connus')),
-React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En révision')),
-React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'Série 🔥'))
+React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En r\u00e9vision')),
+React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'S\u00e9rie \ud83d\udd25'))
 ),
 React.createElement('div',{style:{padding:'16px 16px 4px'}},
 React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase'}},'MOT DU JOUR')
@@ -228,20 +228,20 @@ React.createElement('div',{className:'definition-text'},today.d)
 ),
 React.createElement('div',{style:{padding:'16px',display:'flex',flexDirection:'column',gap:10}},
 React.createElement('div',{onClick:()=>onGoText(last.id),style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
-React.createElement('div',{style:{fontSize:24}},'📖'),
+React.createElement('div',{style:{fontSize:24}},'\ud83d\udcd6'),
 React.createElement('div',{style:{flex:1}},
 React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Continuer la lecture'),
 React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},last.t)
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
 ),
 React.createElement('div',{onClick:onGoQuiz,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
-React.createElement('div',{style:{fontSize:24}},'⚡'),
+React.createElement('div',{style:{fontSize:24}},'\u26a1'),
 React.createElement('div',{style:{flex:1}},
-React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Défi Quiz'),
-React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},due.length+' mot'+(due.length>1?'s':'')+' à réviser')
+React.createElement('div',{style:{fontSize:14,fontWeight:600}},'D\u00e9fi Quiz'),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},due.length+' mot'+(due.length>1?'s':'')+' \u00e0 r\u00e9viser')
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
 ),
 React.createElement('div',{onClick:onGoProgress,style:{display:'flex',alignItems:'center',gap:14,background:'var(--bg3)',border:'1px solid var(--border)',borderRadius:16,padding:14,cursor:'pointer'}},
 React.createElement('div',{style:{position:'relative',width:36,height:36,borderRadius:'50%',background:'conic-gradient(var(--accent) '+(pct*3.6)+'deg,var(--bg5) 0deg)'}},
@@ -251,11 +251,11 @@ React.createElement('div',{style:{flex:1}},
 React.createElement('div',{style:{fontSize:14,fontWeight:600}},'Ma progression'),
 React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},known+' / '+V.length+' mots')
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
 )
 ),
 React.createElement('div',{className:'section'},
-React.createElement('div',{className:'section-title'},'À réviser'),
+React.createElement('div',{className:'section-title'},'\u00c0 r\u00e9viser'),
 React.createElement('div',{className:'card'},
 due.slice(0,5).map(w=>
 React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
@@ -265,7 +265,7 @@ React.createElement('div',{className:'word-french-sm'},w.a),
 React.createElement('div',{className:'word-translit-sm'},w.t)
 )
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'\u203a')
 )
 )
 )
@@ -283,13 +283,13 @@ const renderRow=w=>{
 const c=CATS.find(x=>x.id===w.c);
 return React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
 React.createElement('div',{className:'word-list-left'},
-React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(c?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}},c?.icon||'📝'),
+React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(c?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}},c?.icon||'\ud83d\udcdd'),
 React.createElement('div',null,
 React.createElement('div',{className:'word-french-sm'},w.a),
-React.createElement('div',{className:'word-translit-sm'},w.t+' · '+w.r)
+React.createElement('div',{className:'word-translit-sm'},w.t+' \u00b7 '+w.r)
 )
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'›')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:16}},'\u203a')
 );
 };
 
@@ -302,7 +302,7 @@ return React.createElement('div',null,
 React.createElement('div',{style:{padding:'20px 16px 12px'}},
 React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:14}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Tous les mots'),
-React.createElement('button',{onClick:()=>setView('tree'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'🧗 Parcours')
+React.createElement('button',{onClick:()=>setView('tree'),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:10,padding:'8px 12px',color:'#fff',fontSize:12,cursor:'pointer'}},'\ud83e\uddd7 Parcours')
 ),
 React.createElement('input',{className:'search-bar',placeholder:'Rechercher...',value:search,onChange:e=>setSearch(e.target.value)})
 ),
@@ -312,7 +312,7 @@ React.createElement('div',{className:'chip'+(cat==='all'?' active':''),onClick:(
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card'},
-f.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun résultat'):f.map(renderRow)
+f.length===0?React.createElement('div',{style:{padding:32,textAlign:'center',color:'var(--text3)'}},'Aucun r\u00e9sultat'):f.map(renderRow)
 )
 )
 );
@@ -325,8 +325,8 @@ const prog=unitProg[u.id]||{};
 const text=TEXTS.find(t=>t.w.some(w=>words.some(v=>v.a===w)));
 return React.createElement('div',null,
 React.createElement('div',{className:'word-detail-header',style:{padding:'20px 16px 0'}},
-React.createElement('button',{className:'back-btn',onClick:()=>{setView('tree');setActiveUnit(null)}},'←'),
-React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'Unité '+u.id)
+React.createElement('button',{className:'back-btn',onClick:()=>{setView('tree');setActiveUnit(null)}},'\u2190'),
+React.createElement('span',{style:{fontSize:14,color:'var(--text3)'}},'Unit\u00e9 '+u.id)
 ),
 React.createElement('div',{style:{padding:'16px'}},
 React.createElement('div',{style:{fontSize:34}},u.icon),
@@ -334,8 +334,8 @@ React.createElement('div',{style:{fontSize:24,fontWeight:700}},u.title),
 React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},words.length+' mots')
 ),
 React.createElement('div',{style:{padding:'0 16px 16px',display:'flex',gap:10}},
-text&&React.createElement('button',{onClick:()=>onGoText(text.id),style:{flex:1,background:u.color+'22',border:'1px solid '+u.color+'55',borderRadius:12,padding:'12px',color:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'📖 Lire'),
-React.createElement('button',{onClick:()=>onGoQuizUnit(u.id),style:{flex:1,background:u.color,border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:12,fontWeight:700,cursor:'pointer'}},'🚀 Quiz')
+text&&React.createElement('button',{onClick:()=>onGoText(text.id),style:{flex:1,background:u.color+'22',border:'1px solid '+u.color+'55',borderRadius:12,padding:'12px',color:'#fff',fontSize:12,fontWeight:600,cursor:'pointer'}},'\ud83d\udcd6 Lire'),
+React.createElement('button',{onClick:()=>onGoQuizUnit(u.id),style:{flex:1,background:u.color,border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:12,fontWeight:700,cursor:'pointer'}},'\ud83d\ude80 Quiz')
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'section-title'},'Mots'),
@@ -347,7 +347,7 @@ React.createElement('div',{className:'card'},words.map(renderRow))
 return React.createElement('div',null,
 React.createElement('div',{style:{padding:'20px 16px 4px'}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700,marginBottom:4}},'Parcours'),
-React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Progresse unité par unité')
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Progresse unit\u00e9 par unit\u00e9')
 ),
 React.createElement('div',{style:{padding:'16px',display:'flex',flexDirection:'column',alignItems:'center'}},
 UNITS.map((u,i)=>{
@@ -362,7 +362,7 @@ React.createElement('div',{style:{fontSize:11,fontWeight:600,marginTop:6,color:'
 })
 ),
 React.createElement('div',{style:{padding:'12px 16px 20px'}},
-React.createElement('button',{onClick:()=>setView('all'),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:13,fontWeight:600,cursor:'pointer'}},'📚 Tous les mots ('+V.length+')')
+React.createElement('button',{onClick:()=>setView('all'),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:13,fontWeight:600,cursor:'pointer'}},'\ud83d\udcda Tous les mots ('+V.length+')')
 )
 );
 }
@@ -388,14 +388,14 @@ return parts;
 };
 const tap=word=>{
 const f=V.find(v=>word.includes(v.a)||v.a.includes(word));
-if(f){setToast('"'+f.a+'" → '+f.t);setTimeout(()=>setToast(null),2000);onOpen(f);}
+if(f){setToast('"'+f.a+'" \u2192 '+f.t);setTimeout(()=>setToast(null),2000);onOpen(f);}
 };
 const kw=V.filter(v=>active.w.includes(v.a));
 return React.createElement('div',null,
 toast&&React.createElement('div',{className:'toast'},toast),
 React.createElement('div',{style:{padding:'20px 16px 12px'}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Immersion'),
-React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Touchez les mots surlignés')
+React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Touchez les mots surlign\u00e9s')
 ),
 React.createElement('div',{className:'chip-row',style:{marginBottom:16}},
 TEXTS.map(t=>React.createElement('div',{key:t.id,className:'chip'+(active.id===t.id?' active':''),onClick:()=>onSetId(t.id)},t.t))
@@ -412,14 +412,14 @@ p.isWord?React.createElement('span',{key:i,className:'immersion-word',onClick:()
 )
 ),
 kw.length>0&&React.createElement('div',{className:'section'},
-React.createElement('div',{className:'section-title'},'📌 Mots-clés'),
+React.createElement('div',{className:'section-title'},'\ud83d\udccc Mots-cl\u00e9s'),
 React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:8}},
 kw.map(w=>React.createElement('div',{key:w.id,onClick:()=>onOpen(w),style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 4px',cursor:'pointer',borderBottom:'1px solid var(--border)'}},
 React.createElement('div',null,
 React.createElement('div',{style:{fontSize:15,fontWeight:600}},w.a),
 React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},w.t)
 ),
-React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
+React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'\u203a')
 ))
 )
 )
@@ -498,14 +498,14 @@ React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Choisis to
 ),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('general')},
-React.createElement('div',{style:{fontSize:15,fontWeight:600}},'🎯 Général'),
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},'\ud83c\udfaf G\u00e9n\u00e9ral'),
 React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},V.length+' mots')
 ),
 React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('due')},
-React.createElement('div',{style:{fontSize:15,fontWeight:600}},'⏳ À réviser'),
+React.createElement('div',{style:{fontSize:15,fontWeight:600}},'\u23f3 \u00c0 r\u00e9viser'),
 React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},V.filter(w=>isDue(srs[w.id])).length+' mots')
 ),
-React.createElement('div',{className:'section-title',style:{marginTop:8}},'Par unité'),
+React.createElement('div',{className:'section-title',style:{marginTop:8}},'Par unit\u00e9'),
 ...UNITS.map(u=>React.createElement('div',{key:u.id,className:'card',style:{padding:16,marginBottom:10,cursor:'pointer'},onClick:()=>{setUnitId(u.id);setMode('unit')}},
 React.createElement('div',{style:{fontSize:15,fontWeight:600}},u.icon+' '+u.title),
 React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},getWords(u.words).length+' mots')
@@ -522,12 +522,12 @@ if(mode==='unit'&&finished){
 const score=session.length?Math.round((correctCount/session.length)*100):0;
 const passed=score>=80;
 return React.createElement('div',{style:{padding:'40px 24px',textAlign:'center'}},
-React.createElement('div',{style:{fontSize:54,marginBottom:12}},passed?'🎉':'💪'),
-React.createElement('div',{style:{fontSize:22,fontWeight:700,marginBottom:6}},passed?'Validé !':'Pas encore'),
+React.createElement('div',{style:{fontSize:54,marginBottom:12}},passed?'\ud83c\udf89':'\ud83d\udcaa'),
+React.createElement('div',{style:{fontSize:22,fontWeight:700,marginBottom:6}},passed?'Valid\u00e9 !':'Pas encore'),
 React.createElement('div',{style:{fontSize:14,color:'var(--text3)',marginBottom:24}},correctCount+'/'+session.length+' ('+score+'%)'),
 !passed&&React.createElement('div',{style:{fontSize:12,color:'var(--text3)',marginBottom:20}},'Il faut 80% pour valider. Retente !'),
-React.createElement('button',{onClick:()=>{setMode('unit');setSession([...getWords(UNITS.find(x=>x.id===unitId).words)].sort(()=>Math.random()-.5));setSessionIdx(0);setCorrectCount(0);setFinished(false);doneRef.current=false;},style:{width:'100%',background:'#5E5CE6',border:'none',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer',marginBottom:10}},'🔁 Recommencer'),
-React.createElement('button',{onClick:()=>onExit&&onExit(),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'← Retour')
+React.createElement('button',{onClick:()=>{setMode('unit');setSession([...getWords(UNITS.find(x=>x.id===unitId).words)].sort(()=>Math.random()-.5));setSessionIdx(0);setCorrectCount(0);setFinished(false);doneRef.current=false;},style:{width:'100%',background:'#5E5CE6',border:'none',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer',marginBottom:10}},'\ud83d\udd01 Recommencer'),
+React.createElement('button',{onClick:()=>onExit&&onExit(),style:{width:'100%',background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:14,padding:'14px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'\u2190 Retour')
 );
 }
 
@@ -621,9 +621,9 @@ React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Votre parc
 React.createElement('div',{style:{padding:'0 16px 16px'}},
 React.createElement('div',{style:{background:'linear-gradient(135deg,#1a1a2e,#16213e)',border:'1px solid rgba(94,92,230,.3)',borderRadius:24,padding:28,textAlign:'center'}},
 React.createElement('div',{style:{fontSize:72,fontWeight:800,color:'white'}},known),
-React.createElement('div',{style:{fontSize:16,color:'rgba(255,255,255,.5)'}},'mots maîtrisés'),
+React.createElement('div',{style:{fontSize:16,color:'rgba(255,255,255,.5)'}},'mots ma\u00eetris\u00e9s'),
 React.createElement('div',{style:{marginTop:16,display:'flex',justifyContent:'center',gap:24}},
-React.createElement('div',null,React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF9F0A'}},medium),React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)'}},'en révision')),
+React.createElement('div',null,React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF9F0A'}},medium),React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)'}},'en r\u00e9vision')),
 React.createElement('div',{style:{width:1,background:'rgba(255,255,255,.1)'}}),
 React.createElement('div',null,React.createElement('div',{style:{fontSize:20,fontWeight:700,color:'#FF453A'}},unknown),React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)'}},'inconnus'))
 )
@@ -653,9 +653,9 @@ React.createElement('div',{className:'progress-bar-fill',style:{width:p+'%',back
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'section-title'},'Sauvegarde'),
 React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:10}},
-React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},'Tes données sont stockées sur cet appareil. Exporte-les pour les sauvegarder.'),
-React.createElement('button',{onClick:exportData,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'⬇ Exporter'),
-React.createElement('button',{onClick:()=>fileRef.current&&fileRef.current.click(),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'⬆ Importer'),
+React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},'Tes donn\u00e9es sont stock\u00e9es sur cet appareil. Exporte-les pour les sauvegarder.'),
+React.createElement('button',{onClick:exportData,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'\u2b07 Exporter'),
+React.createElement('button',{onClick:()=>fileRef.current&&fileRef.current.click(),style:{background:'var(--bg4)',border:'1px solid var(--border)',borderRadius:12,padding:'12px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'\u2b06 Importer'),
 React.createElement('input',{ref:fileRef,type:'file',accept:'application/json',style:{display:'none'},onChange:importData})
 )
 )
@@ -707,7 +707,7 @@ else content=React.createElement(Progress,{srs,stats,onImport});
 return React.createElement('div',{className:'app'},
 React.createElement('div',{className:'scroll-area',ref:scrollRef},content),
 React.createElement('nav',{className:'nav-bar'},
-[{id:'home',icon:'⌂',label:'Accueil'},{id:'library',icon:'◫',label:'Mots'},{id:'immersion',icon:'◉',label:'Immersion'},{id:'quiz',icon:'◈',label:'Quiz'},{id:'progress',icon:'▣',label:'Progrès'}].map(t=>
+[{id:'home',icon:'\u2302',label:'Accueil'},{id:'library',icon:'\u25eb',label:'Mots'},{id:'immersion',icon:'\u25c9',label:'Immersion'},{id:'quiz',icon:'\u25c8',label:'Quiz'},{id:'progress',icon:'\u25a3',label:'Progr\u00e8s'}].map(t=>
 React.createElement('button',{key:t.id,className:'nav-item'+(tab===t.id&&!word?' active':''),onClick:()=>go(t.id)},
 React.createElement('span',{className:'nav-icon'},t.icon),
 React.createElement('span',{className:'nav-label'},t.label)
@@ -718,9 +718,9 @@ React.createElement('span',{className:'nav-label'},t.label)
 
 function LoadError({onRetry}){
 return React.createElement('div',{style:{height:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:24,textAlign:'center',gap:14}},
-React.createElement('div',{style:{fontSize:34}},'⚠️'),
+React.createElement('div',{style:{fontSize:34}},'\u26a0\ufe0f'),
 React.createElement('div',{style:{fontSize:15,color:'var(--text2)'}},'Impossible de charger le vocabulaire.'),
-React.createElement('button',{onClick:onRetry,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px 20px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'Réessayer')
+React.createElement('button',{onClick:onRetry,style:{background:'var(--accent)',border:'none',borderRadius:12,padding:'12px 20px',color:'#fff',fontSize:14,fontWeight:600,cursor:'pointer'}},'R\u00e9essayer')
 );
 }
 
