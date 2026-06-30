@@ -165,25 +165,22 @@ function isDue(card){if(!card)return true;return new Date(card.due)<=new Date()}
 function dayOfYear(d){return Math.floor((d-new Date(d.getFullYear(),0,0))/86400000)}
 
 // ── AUDIO ──
-let _voicesCache=null;
-function getVoicesAsync(){
-return new Promise(resolve=>{
-if(!('speechSynthesis' in window)){resolve([]);return}
+let _voicesCache=[];
+function warmUpVoices(){
+try{
+if(!('speechSynthesis' in window))return;
 const synth=window.speechSynthesis;
-let voices=synth.getVoices();
-if(voices&&voices.length){_voicesCache=voices;resolve(voices);return}
-if(_voicesCache){resolve(_voicesCache);return}
-const handler=()=>{voices=synth.getVoices();_voicesCache=voices;synth.removeEventListener('voiceschanged',handler);resolve(voices||[])};
-synth.addEventListener('voiceschanged',handler);
-setTimeout(()=>{synth.removeEventListener('voiceschanged',handler);voices=synth.getVoices();_voicesCache=voices;resolve(voices||[])},300);
-});
+const grab=()=>{const v=synth.getVoices();if(v&&v.length)_voicesCache=v};
+grab();
+synth.addEventListener('voiceschanged',grab);
+}catch(e){}
 }
 function speakArabic(text){
 try{
 if(!('speechSynthesis' in window))return;
 const synth=window.speechSynthesis;
-if(synth.speaking)synth.cancel();
-getVoicesAsync().then(voices=>{
+synth.cancel();
+const voices=(_voicesCache&&_voicesCache.length)?_voicesCache:synth.getVoices();
 const u=new SpeechSynthesisUtterance(text);
 const arVoice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('ar'));
 if(arVoice)u.voice=arVoice;
@@ -191,7 +188,6 @@ u.lang=arVoice?arVoice.lang:'ar-SA';
 u.rate=0.8;
 u.pitch=1;
 synth.speak(u);
-});
 }catch(e){}
 }
 
@@ -616,6 +612,7 @@ function App(){
   );
 }
 
+warmUpVoices();
 ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
 
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
