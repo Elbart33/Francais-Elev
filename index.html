@@ -5,25 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="دارجة">
+<meta name="apple-mobile-web-app-title" content="Français">
 <meta name="theme-color" content="#000000">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.png">
-<title>Darija Elevate</title>
+<title>Français Elevate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{
-  --bg:#000;--bg2:#0C0C0E;--bg3:#1C1C1E;--bg4:#2C2C2E;--bg5:#3A3A3C;
-  --text:#FFF;--text2:rgba(255,255,255,.75);--text3:rgba(255,255,255,.4);
-  --accent:#5E5CE6;--accent2:#BF5AF2;--gold:#FFD60A;
-  --green:#30D158;--red:#FF453A;--blue:#0A84FF;--orange:#FF9F0A;
-  --border:rgba(255,255,255,.08);--glass:rgba(255,255,255,.04);
-  --radius:20px;--radius-sm:12px;
-}
+:root{--bg:#000;--bg2:#0C0C0E;--bg3:#1C1C1E;--bg4:#2C2C2E;--bg5:#3A3A3C;--text:#FFF;--text2:rgba(255,255,255,.75);--text3:rgba(255,255,255,.4);--accent:#5E5CE6;--accent2:#BF5AF2;--gold:#FFD60A;--green:#30D158;--red:#FF453A;--blue:#0A84FF;--orange:#FF9F0A;--border:rgba(255,255,255,.08);--glass:rgba(255,255,255,.04);--radius:20px;--radius-sm:12px}
 html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif;overflow:hidden;height:100%;overscroll-behavior:none}
 #root{height:100%}
 .app{max-width:430px;margin:0 auto;height:100vh;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
@@ -39,7 +32,7 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 .word-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(94,92,230,.3),transparent 70%);border-radius:50%}
 .word-hero-content{padding:24px;position:relative;z-index:1}
 .word-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(94,92,230,.2);border:1px solid rgba(94,92,230,.4);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:#8B8EFF;margin-bottom:14px}
-.arabic-text{font-size:38px;font-weight:700;direction:rtl;line-height:1.1;margin-bottom:6px}
+.french-word{font-size:38px;font-weight:700;line-height:1.1;margin-bottom:6px}
 .transliteration{font-size:17px;color:var(--text2);font-style:italic;margin-bottom:12px;font-family:'Playfair Display',serif}
 .definition-text{font-size:13px;color:var(--text2);line-height:1.5}
 .tag{display:inline-flex;align-items:center;background:var(--bg4);border-radius:8px;padding:4px 10px;font-size:11px;font-weight:500;color:var(--text2)}
@@ -48,8 +41,8 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 .detail-row{display:flex;justify-content:space-between;align-items:flex-start;padding:13px 16px;border-bottom:1px solid var(--border)}
 .detail-row:last-child{border-bottom:none}
 .detail-label{font-size:13px;color:var(--text3);font-weight:500}
-.detail-value{font-size:13px;color:var(--text);text-align:right;max-width:65%;line-height:1.4}
-.example-card{background:var(--bg4);border-radius:14px;padding:14px;margin-bottom:10px;direction:rtl;font-size:15px;line-height:1.6;border-left:3px solid var(--accent)}
+.detail-value{font-size:13px;color:var(--text);text-align:left;max-width:65%;line-height:1.4}
+.example-card{background:var(--bg4);border-radius:14px;padding:14px;margin-bottom:10px;font-size:15px;line-height:1.6;border-left:3px solid var(--accent)}
 .srs-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px}
 .srs-btn{border:none;border-radius:14px;padding:14px 8px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .srs-btn:active{transform:scale(.95)}
@@ -63,7 +56,7 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 .diff-dots{display:flex;gap:3px}
 .diff-dot{width:6px;height:6px;border-radius:50%;background:var(--bg5)}
 .diff-dot.filled{background:var(--accent)}
-.quiz-option{background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;font-size:14px;transition:all .2s;text-align:right;direction:rtl}
+.quiz-option{background:var(--bg3);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;font-size:14px;transition:all .2s}
 .quiz-option:active{transform:scale(.98)}
 .quiz-option.correct{border-color:var(--green);background:rgba(48,209,88,.08);color:var(--green)}
 .quiz-option.wrong{border-color:var(--red);background:rgba(255,69,58,.08);color:var(--red)}
@@ -81,7 +74,7 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 .word-list-item:active{background:var(--glass)}
 .word-list-item:last-child{border-bottom:none}
 .word-list-left{display:flex;align-items:center;gap:12px}
-.word-arabic-sm{font-size:20px;font-weight:600;direction:rtl}
+.word-french-sm{font-size:20px;font-weight:600}
 .word-translit-sm{font-size:12px;color:var(--text3);margin-top:1px}
 .back-btn{width:36px;height:36px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;flex-shrink:0;color:var(--text)}
 .word-detail-header{padding:20px 16px 0;display:flex;align-items:center;gap:12px}
@@ -93,165 +86,197 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 .toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;z-index:300;animation:fadeUp .3s ease;white-space:nowrap}
 .install-tip{margin:12px 16px;background:rgba(94,92,230,.08);border:1px solid rgba(94,92,230,.2);border-radius:14px;padding:12px 14px;font-size:12px;color:var(--text3);line-height:1.6}
 .install-tip strong{color:var(--text2)}
+.tip-darija{background:rgba(191,90,242,.08);border:1px solid rgba(191,90,242,.2);border-radius:14px;padding:12px 16px;margin:12px 0;font-size:13px;color:var(--text2);line-height:1.6;direction:rtl;text-align:right}
+.tip-darija::before{content:'💡 ';font-size:15px}
 </style>
 </head>
 <body>
 <div id="root"></div>
 <script>
 const{useState,useEffect,useRef,useCallback,useMemo}=React;
-
-const VOCABULARY=[{id:1,arabic:"إحباط",transliteration:"i7bat",definition:"Frustration profonde ou découragement suite à un échec répété",nuance:"Plus fort que 'زعفان' — implique un état durable, pas juste un moment de colère. Souvent utilisé en introspection.",register:"Psychologie · Émotionnel",origin:"Fusha → Darija",frequency:"Très courant",difficulty:2,category:"psychologie",synonyms:["خيبة","يأس خفيف"],antonyms:["حماس","تحفيز"],examples:["حسيت بإحباط كبير ملي ما تحققش هاد الشي","الإحباط ما خلاهش يكمل فالمشروع","كيف كتتعامل مع الإحباط ملي الأمور ما تجيش كما بغيتي؟"],errors:"Ne pas confondre avec 'زعفان' (énervé momentanément) — إحباط est plus profond et durable.",level:"riche"},{id:2,arabic:"الوعي الذاتي",transliteration:"l-wa3y dh-dhati",definition:"Conscience de soi, capacité à s'observer et comprendre ses propres émotions",nuance:"Expression phare dans les cercles de développement personnel marocains, podcasts, interviews. Distingue une personne cultivée.",register:"Psychologie · Développement personnel",origin:"Fusha → Darija cultivée",frequency:"Courant dans médias",difficulty:3,category:"psychologie",synonyms:["معرفة الذات","التأمل الداخلي"],antonyms:["الغفلة","عدم الوعي"],examples:["الوعي الذاتي هو أول خطوة باش تتطور","ناس عندهم وعي ذاتي عالي كيعرفو واشبغاو من الحياة","بدونش الوعي الذاتي، كتكرر نفس الأخطاء"],errors:"Éviter de dire juste 'واعي بروحو' dans un contexte soutenu — utiliser l'expression complète.",level:"avancé"},{id:3,arabic:"الغموض",transliteration:"l-ghomud",definition:"L'ambiguïté, le flou, ce qui n'est pas clair ou défini",nuance:"Utilisé dans des contextes intellectuels (art, politique, relations). Plus noble que 'مش واضح'.",register:"Langage soutenu · Débat · Art",origin:"Fusha → Darija intellectuelle",frequency:"Courant chez intellectuels",difficulty:3,category:"pensée critique",synonyms:["اللاوضوح","التضبيب"],antonyms:["الوضوح","الشفافية"],examples:["غموض الرسالة خلى الناس يفسروها بطرق مختلفة","سياسة الغموض ما كتخدمش فالعلاقات","الفن كيشتغل على الغموض والتأويل"],errors:"Ne pas dire 'الغموضية' — la forme correcte est 'الغموض' seulement.",level:"avancé"},{id:4,arabic:"التناقض",transliteration:"t-tanaqud",definition:"La contradiction, deux réalités qui s'opposent dans une même situation ou personne",nuance:"Très utilisé dans les débats marocains et analyses sociales. Implique une tension intellectuelle.",register:"Débat · Philosophie · Société",origin:"Fusha → Darija de débat",frequency:"Fréquent",difficulty:3,category:"débat",synonyms:["التضارب","التعارض"],antonyms:["الانسجام","التوافق"],examples:["كاين تناقض واضح بين كلامو وأفعالو","المجتمع المغربي عيش فالتناقض بين التقليد والحداثة","هاد التناقض هو اللي كيخلق الصراع"],errors:"Ne pas confondre avec 'الاختلاف' (différence simple) — التناقض implique une opposition directe.",level:"riche"},{id:5,arabic:"الهشاشة العاطفية",transliteration:"l-hshasha l-3atifiya",definition:"La vulnérabilité émotionnelle, le fait d'être facilement blessé ou affecté",nuance:"Expression montée en popularité via podcasts psy marocains. Connotation neutre, introspective.",register:"Psychologie · Émotionnel · Intime",origin:"Calque de 'vulnérabilité' → Darija moderne",frequency:"Très courant aujourd'hui",difficulty:3,category:"émotions complexes",synonyms:["الضعف العاطفي","الحساسية الزايدة"],antonyms:["الصلابة العاطفية","الحصانة"],examples:["الهشاشة العاطفية مو عيب، هي علامة إنك إنسان","اعترافو بهشاشته العاطفية ساعدو يتعافى","ملي كتكون هشاش عاطفياً، الكلمات كتأثر فيك بزاف"],errors:"Ne pas traduire littéralement 'هش' comme fragile physiquement — ici le contexte est strictement émotionnel.",level:"avancé"},{id:6,arabic:"الاستحقاق",transliteration:"l-isti7qaq",definition:"Le mérite, le droit moral à quelque chose qu'on a gagné ou mérité",nuance:"Utilisé dans des débats sur la justice sociale, le travail, les droits. Différent de الحق (droit légal).",register:"Société · Justice · Débat",origin:"Fusha → Darija cultivée",frequency:"Courant",difficulty:3,category:"société",synonyms:["الجدارة","الكفاءة"],antonyms:["المحسوبية","الواسطة"],examples:["فلسفة الاستحقاق كتقول إن كل واحد يأخذ على حسب ما خدم","سؤال الاستحقاق مطروح بقوة فالنقاشات الاجتماعية","ما كانش الاستحقاق، كانت الواسطة والمحسوبية"],errors:"Différent de 'التكبر' (arrogance) — الاستحقاق est une revendication légitime.",level:"avancé"},{id:7,arabic:"التردد",transliteration:"t-taraddud",definition:"L'hésitation, l'incapacité à se décider entre deux options",nuance:"Implique un conflit intérieur profond. Utilisé dans des contextes psychologiques et personnels.",register:"Psychologie · Quotidien soutenu",origin:"Fusha → Darija",frequency:"Très fréquent",difficulty:1,category:"psychologie",synonyms:["الشك","عدم الحسم"],antonyms:["الحسم","العزيمة"],examples:["التردد ديالو خلاه يضيع الفرصة","كاين فرق بين التردد الصحي والتردد اللي كيشل","ملي كتكثر التفكير، كيزيد التردد"],errors:"Ne pas confondre avec 'الكسل' (paresse) — التردد est cognitif, pas comportemental.",level:"courant"},{id:8,arabic:"الانتماء",transliteration:"l-intimaa",definition:"Le sentiment d'appartenance à un groupe, une culture, un lieu",nuance:"Mot clé dans les débats identitaires marocains. Très chargé émotionnellement et socialement.",register:"Société · Identité · Émotionnel",origin:"Fusha → Darija cultivée",frequency:"Fréquent",difficulty:2,category:"société",synonyms:["الهوية","الانتساب"],antonyms:["الاغتراب","الانفصال"],examples:["إحساس الانتماء ضروري للصحة النفسية","المغاربة فالخارج كيعيشو أزمة الانتماء","انتماؤه لهاد المدينة كيبان من طريقة حديثو"],errors:"Différent de 'الهوية' (identité) — الانتماء est le sentiment affectif d'appartenance.",level:"riche"},{id:9,arabic:"النخبوية",transliteration:"n-nakhbawiya",definition:"L'élitisme, la mentalité ou comportement d'une élite qui se distingue du commun",nuance:"Souvent péjoratif dans le discours populaire marocain. Employé dans les critiques sociales et politiques.",register:"Critique sociale · Politique · Débat",origin:"Fusha → Darija de presse",frequency:"Courant dans médias",difficulty:4,category:"politique",synonyms:["الاستعلاء","التفوقية الاجتماعية"],antonyms:["الشعبية","التواضع الاجتماعي"],examples:["النخبوية ديالهم ظاهرة في طريقة كلامهم","النقاش الأكاديمي كيطيح فالنخبوية","النخبوية حاجز بين المثقف والمواطن العادي"],errors:"Ne pas confondre avec 'التكبر' (arrogance personnelle) — النخبوية est un phénomène social structurel.",level:"élite"},{id:10,arabic:"الإسقاط النفسي",transliteration:"l-isqat n-nafsi",definition:"La projection psychologique — attribuer à l'autre ses propres sentiments ou défauts",nuance:"Expression technique de psychologie devenue populaire dans les discussions marocaines modernes.",register:"Psychologie · Relations humaines",origin:"Terme technique → Darija éduquée",frequency:"Montant",difficulty:4,category:"psychologie",synonyms:["تحميل الآخر","نسب الصفات للغير"],antonyms:["التأمل الذاتي","المساءلة الذاتية"],examples:["ملي كتنتقد الناس على أشياء فيك، هذا هو الإسقاط النفسي","الإسقاط النفسي آلية دفاع لاوعية","كيف تعرف واش راك كتعمل إسقاطاً نفسياً؟"],errors:"Ne pas utiliser pour décrire une simple accusation — الإسقاط النفسي est inconscient et mécanisme de défense.",level:"élite"},{id:11,arabic:"الطموح المفرط",transliteration:"t-tumu7 l-mufrit",definition:"L'ambition excessive qui dépasse les capacités ou dérègle la vie",nuance:"Expression nuancée — le طموح seul est positif, mais مفرط le transforme en défaut.",register:"Développement personnel · Psychologie",origin:"Darija cultivée",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["الجشع المهني","التطلع الزائد"],antonyms:["القناعة","التوازن"],examples:["الطموح المفرط كيخلي الواحد ما يستمتعش بما حقق","الفرق بين الطموح والطموح المفرط هو الوعي","طموحه المفرط دمر علاقاته الشخصية"],errors:"Toujours utiliser مفرط pour nuancer — sans lui, طموح seul est positif.",level:"riche"},{id:12,arabic:"التبرير",transliteration:"t-tabreer",definition:"La rationalisation — trouver des justifications à ses comportements pour éviter la culpabilité",nuance:"En psychologie, le تبرير est un mécanisme de défense. En darija courante, aussi utilisé péjorativement.",register:"Psychologie · Quotidien",origin:"Fusha → Darija",frequency:"Très fréquent",difficulty:1,category:"psychologie",synonyms:["التعلل","الحجج الواهية"],antonyms:["المسؤولية","الاعتراف"],examples:["مكيبقاش كيعتذر، دايما كيبرر","التبرير مو حل، هو هروب من المسؤولية","كلنا كنبررو في مرحلة من المراحل"],errors:"Différent de 'الشرح' (explication légitime) — التبرير sert à éviter la responsabilité.",level:"courant"},{id:13,arabic:"الحدود الشخصية",transliteration:"l-7dud sh-shakhsiya",definition:"Les limites personnelles — ce qu'on accepte ou refuse dans ses relations",nuance:"Concept central du développement personnel marocain moderne. Souvent dit 'les limites' en code-switching.",register:"Relations humaines · Psychologie",origin:"Calque de 'personal boundaries' → Darija moderne",frequency:"Très courant aujourd'hui",difficulty:2,category:"relations humaines",synonyms:["الخطوط الحمراء","حدود المقبول"],antonyms:["الانفتاح الكلي","التساهل المفرط"],examples:["وضع الحدود الشخصية مو أنانية، هو احترام الذات","ما عندوش حدود شخصية فعلاقاته","كيف كتحدد حدودك الشخصية مع الناس القريبين؟"],errors:"Ne pas confondre avec 'الخصوصية' (vie privée) — الحدود الشخصية concerne les comportements acceptables.",level:"riche"},{id:14,arabic:"الخطاب",transliteration:"l-khitab",definition:"Le discours — ensemble cohérent d'idées, de langage et de positions sur un sujet",nuance:"Terme d'analyse critique et médiatique. Utilisé dans les cercles intellectuels marocains.",register:"Politique · Intellectuel · Médias",origin:"Fusha → Darija intellectuelle",frequency:"Fréquent dans médias",difficulty:4,category:"politique",synonyms:["الرواية","الموقف الإيديولوجي"],antonyms:[],examples:["الخطاب الرسمي مختلف على الواقع المعاش","تحليل الخطاب السياسي يكشف الكثير","كاين خطاب متحكم فيه فوراء هاد الرسالة"],errors:"Différent de 'الكلام' (parole ordinaire) — الخطاب implique une structure idéologique.",level:"élite"},{id:15,arabic:"الانزلاق الأخلاقي",transliteration:"l-inzilaq l-akhlaqi",definition:"La dérive morale progressive — quand on abandonne graduellement ses valeurs sans s'en rendre compte",nuance:"Expression très puissante dans les débats marocains sur la corruption et la société.",register:"Philosophie · Société · Éthique",origin:"Darija intellectuelle",frequency:"Rare, très cultivé",difficulty:5,category:"philosophie",synonyms:["الانحلال التدريجي","فساد القيم"],antonyms:["الاستقامة","الثبات الأخلاقي"],examples:["الانزلاق الأخلاقي كيبدا بتنازلات صغيرة","المجتمع يعيش انزلاقاً أخلاقياً واضحاً","كيف تحمي نفسك من الانزلاق الأخلاقي في بيئة فاسدة؟"],errors:"Ne pas utiliser pour un acte isolé — الانزلاق implique un processus graduel.",level:"élite"},{id:16,arabic:"التعاطف",transliteration:"t-ta3atuf",definition:"L'empathie, la capacité à ressentir et comprendre les émotions d'autrui",nuance:"Plus profond que 'الشفقة' (pitié) — implique de se mettre vraiment à la place de l'autre, sans condescendance.",register:"Psychologie · Relations humaines",origin:"Fusha → Darija cultivée",frequency:"Très courant",difficulty:2,category:"psychologie",synonyms:["التفهم العاطفي","المشاركة الوجدانية"],antonyms:["اللامبالاة","القسوة"],examples:["التعاطف هو أساس أي علاقة صحية","صعيب تتعاطف مع شي واحد كيهضرك بطريقة قاسية","التعاطف مو معناه تكون موافق، هو غير تفهم"],errors:"Ne pas confondre avec 'الشفقة' qui implique une hiérarchie (pitié envers un inférieur).",level:"riche"},
-{id:17,arabic:"الاستقلالية",transliteration:"l-istiqlaliya",definition:"L'autonomie, la capacité à penser et agir par soi-même sans dépendre d'autrui",nuance:"Utilisé autant pour l'indépendance financière que psychologique. Valeur centrale dans le discours générationnel moderne.",register:"Développement personnel · Société",origin:"Fusha → Darija moderne",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["الاعتماد على الذات","الحرية الشخصية"],antonyms:["التبعية","الاتكالية"],examples:["الاستقلالية المادية كتعطيك حرية القرار","بغيت نوصل للاستقلالية قبل ما نتزوج","الاستقلالية العاطفية صعيبة بزاف على بعض الناس"],errors:"Ne pas confondre avec l'isolement social — الاستقلالية concerne la capacité de décision, pas la solitude.",level:"riche"},
-{id:18,arabic:"التمكين",transliteration:"t-tamkine",definition:"L'autonomisation — le processus de donner à quelqu'un les moyens et la confiance d'agir",nuance:"Terme très utilisé dans le discours associatif et féministe marocain (تمكين المرأة).",register:"Société · Associatif · Politique",origin:"Fusha → Darija institutionnelle",frequency:"Fréquent dans médias",difficulty:3,category:"société",synonyms:["التقوية","إعطاء الصلاحيات"],antonyms:["التهميش","الإقصاء"],examples:["تمكين الشباب مشروع أساسي للتنمية","الجمعية كتخدم على تمكين النساء اقتصادياً","بدون تمكين حقيقي، الخطابات كتبقى فارغة"],errors:"Ne pas réduire à un simple soutien financier — التمكين implique aussi la confiance et l'autonomie de décision.",level:"avancé"},
-{id:19,arabic:"الانضباط",transliteration:"l-indibat",definition:"La discipline, la capacité à suivre une routine ou des règles avec rigueur",nuance:"Très utilisé dans le contexte du développement personnel et de la productivité.",register:"Développement personnel · Quotidien soutenu",origin:"Fusha → Darija",frequency:"Très courant",difficulty:1,category:"personnalité",synonyms:["الالتزام","الصرامة الذاتية"],antonyms:["الفوضى","التسيب"],examples:["الانضباط أهم من الموهبة فالنجاح","بلا انضباط، ماشي غادي توصل لشي حاجة","الانضباط ديالو فالرياضة معروف عند الجميع"],errors:"Ne pas confondre avec 'الصرامة' envers les autres — الانضباط est avant tout envers soi-même.",level:"courant"},
-{id:20,arabic:"المسؤولية",transliteration:"l-mas2uliya",definition:"La responsabilité, le fait d'assumer les conséquences de ses actes ou décisions",nuance:"Pivot du discours sur la maturité émotionnelle, souvent opposé au التبرير (rationalisation).",register:"Psychologie · Société · Quotidien",origin:"Fusha → Darija",frequency:"Très fréquent",difficulty:1,category:"psychologie",synonyms:["تحمل النتائج","الالتزام الأخلاقي"],antonyms:["التهرب","إلقاء اللوم"],examples:["تحمل المسؤولية أول خطوة للتغيير","كيلقي المسؤولية ديما على الآخرين","المسؤولية الفردية والجماعية مرتبطين"],errors:"Différent de 'الذنب' (culpabilité) — المسؤولية est un acte conscient, pas une émotion.",level:"courant"},
-{id:21,arabic:"التسامح",transliteration:"t-tasamuh",definition:"La tolérance, l'acceptation des différences ou le pardon des torts subis",nuance:"Utilisé autant dans un sens religieux/culturel (coexistence) que personnel (pardon).",register:"Société · Religion · Relations humaines",origin:"Fusha → Darija",frequency:"Courant",difficulty:2,category:"société",synonyms:["العفو","قبول الاختلاف"],antonyms:["التعصب","الحقد"],examples:["التسامح ما معناهش تنسى، معناه تتجاوز","المغرب بلاد التسامح والتعايش","التسامح مع الذات أصعب من التسامح مع الآخرين"],errors:"Ne pas confondre avec la faiblesse — التسامح est un choix conscient, pas une soumission.",level:"riche"},
-{id:22,arabic:"الاستدامة",transliteration:"l-istidama",definition:"La durabilité, ce qui peut perdurer dans le temps sans s'épuiser",nuance:"Employé en écologie mais aussi métaphoriquement pour les relations ou le mode de vie.",register:"Société · Environnement · Débat",origin:"Fusha → Darija institutionnelle",frequency:"Montant",difficulty:3,category:"société",synonyms:["الديمومة","الاستمرارية"],antonyms:["الزوال","الاستنزاف"],examples:["التنمية المستدامة موضوع كل المؤتمرات اليوم","استدامة العلاقة كترجع لكيفاش كتبنيها","بلا استدامة اقتصادية، أي نجاح كيبقى مؤقت"],errors:"Ne pas réduire au seul sens écologique — le mot s'applique largement à toute continuité durable.",level:"avancé"},
-{id:23,arabic:"الشفافية",transliteration:"sh-shafafiya",definition:"La transparence, l'absence de dissimulation dans les actions ou les communications",nuance:"Mot-clé du discours anticorruption et de bonne gouvernance au Maroc.",register:"Politique · Société · Débat",origin:"Fusha → Darija de presse",frequency:"Fréquent dans médias",difficulty:3,category:"politique",synonyms:["الوضوح","الإفصاح"],antonyms:["الغموض","التكتم"],examples:["الشفافية المالية شرط أساسي للثقة","غياب الشفافية كيغذي الشك والإشاعات","المؤسسات كتدعي الشفافية ولكن الواقع مختلف"],errors:"Ne pas confondre avec 'الصراحة' (franchise personnelle) — الشفافية concerne surtout les institutions et processus.",level:"riche"},
-{id:24,arabic:"النزاهة",transliteration:"n-nazaha",definition:"L'intégrité, le fait d'agir avec honnêteté même sans contrôle extérieur",nuance:"Valeur morale forte, souvent opposée à la corruption dans le débat public marocain.",register:"Éthique · Politique · Société",origin:"Fusha → Darija cultivée",frequency:"Courant dans médias",difficulty:3,category:"éthique",synonyms:["الاستقامة","الأمانة"],antonyms:["الفساد","الخيانة"],examples:["النزاهة كتبان ملي ما حدش شايفك","رجل النزاهة كيرفض الرشوة حتى فالسر","بدون نزاهة، المؤسسات كتفقد مصداقيتها"],errors:"Différent de 'الصدق' (dire la vérité) — النزاهة englobe l'ensemble du comportement moral.",level:"avancé"},
-{id:25,arabic:"الكفاءة",transliteration:"l-kafa2a",definition:"La compétence, la capacité réelle à accomplir une tâche avec qualité",nuance:"Souvent opposée à la 'الواسطة' (piston) dans les débats sur le recrutement au Maroc.",register:"Société · Travail · Débat",origin:"Fusha → Darija",frequency:"Très fréquent",difficulty:2,category:"société",synonyms:["المهارة","الجدارة المهنية"],antonyms:["العجز","انعدام الخبرة"],examples:["التوظيف خاصو يكون على أساس الكفاءة","عندو كفاءة عالية ولكن ما عندوش علاقات","الكفاءة بلا فرصة ما كتسواش حتى حاجة"],errors:"Ne pas confondre avec 'الذكاء' (intelligence générale) — الكفاءة est spécifique à un domaine.",level:"courant"},
-{id:26,arabic:"الإقصاء",transliteration:"l-iqsa2",definition:"L'exclusion, le fait d'écarter délibérément quelqu'un d'un groupe ou processus",nuance:"Terme fort utilisé dans les analyses sociales et politiques sur les inégalités.",register:"Société · Politique · Débat",origin:"Fusha → Darija de presse",frequency:"Fréquent dans médias",difficulty:3,category:"société",synonyms:["الاستبعاد","التهميش"],antonyms:["الإدماج","الاحتواء"],examples:["الإقصاء الاجتماعي كيخلق الفجوة بين الطبقات","حسيت بالإقصاء فالاجتماع كاملين تجاهلوني","سياسة الإقصاء ما عندهاش حل على المدى البعيد"],errors:"Proche de 'التهميش' mais الإقصاء est souvent plus actif et délibéré.",level:"riche"},
-{id:27,arabic:"التهميش",transliteration:"t-tahmish",definition:"La marginalisation, le fait de reléguer quelqu'un ou un groupe à la périphérie",nuance:"Très utilisé pour parler des régions ou catégories sociales délaissées par les politiques publiques.",register:"Société · Politique",origin:"Fusha → Darija de presse",frequency:"Fréquent",difficulty:3,category:"société",synonyms:["الإهمال","وضع على الهامش"],antonyms:["الاهتمام","الدمج"],examples:["المناطق القروية كتعاني من التهميش","تهميش الشباب فسوق الشغل مشكل حقيقي","التهميش كيخلق شعور بعدم الانتماء"],errors:"Ne pas confondre avec الإقصاء — التهميش est souvent plus passif, structurel, pas forcément intentionnel.",level:"riche"},
-{id:28,arabic:"الاغتراب",transliteration:"l-ightirab",definition:"L'aliénation, le sentiment d'étrangeté envers soi-même, sa société ou son environnement",nuance:"Concept philosophique et psychologique profond, utilisé pour décrire un malaise identitaire.",register:"Philosophie · Psychologie · Société",origin:"Fusha → Darija intellectuelle",frequency:"Rare, cultivé",difficulty:4,category:"philosophie",synonyms:["الغربة الداخلية","الانفصال عن الذات"],antonyms:["الانتماء","الانسجام"],examples:["الاغتراب الثقافي كيعيشو بزاف ديال المهاجرين","حس بالاغتراب وهو وسط أهله","الاغتراب مو غير الهجرة، يمكن تحسو فبلادك"],errors:"Ne pas réduire au sens migratoire — الاغتراب peut être purement psychologique, sans déplacement physique.",level:"élite"},
-{id:29,arabic:"التطبيع",transliteration:"t-tatbi3",definition:"La normalisation — le fait de rendre acceptable ou banal ce qui ne l'était pas",nuance:"Utilisé socialement pour critiquer l'acceptation progressive de comportements problématiques.",register:"Débat · Société · Politique",origin:"Fusha → Darija de débat",frequency:"Fréquent dans médias",difficulty:3,category:"politique",synonyms:["جعل الشيء عادياً","القبول التدريجي"],antonyms:["الرفض","المقاومة"],examples:["تطبيع العنف فوسائل الإعلام خطير","ما خاصناش نطبعو مع الفساد","التطبيع مع الأخطاء كيخلق ثقافة سيئة"],errors:"Le mot a aussi un sens politique précis (relations diplomatiques) — vérifier le contexte avant traduction.",level:"avancé"},
-{id:30,arabic:"الاستقطاب",transliteration:"l-istiqtab",definition:"La polarisation, la division d'une société ou d'un débat en deux camps opposés",nuance:"Très présent dans l'analyse des réseaux sociaux et du débat politique moderne.",register:"Politique · Médias · Débat",origin:"Fusha → Darija de presse",frequency:"Fréquent",difficulty:4,category:"politique",synonyms:["الانقسام الحاد","التطرف في المواقف"],antonyms:["التوافق","الاعتدال"],examples:["الاستقطاب السياسي كيصعب أي حوار هادئ","فيسبوك زاد فالاستقطاب بين الناس","الاستقطاب كيخلي الناس يشوفو كلشي أبيض أو كحل"],errors:"Ne pas confondre avec 'الاختلاف' simple — الاستقطاب implique deux pôles extrêmes et opposés.",level:"élite"},
-{id:31,arabic:"التضامن",transliteration:"t-tadamun",definition:"La solidarité, le soutien mutuel entre individus ou groupes",nuance:"Valeur sociale forte, mobilisée surtout en temps de crise (catastrophes, causes sociales).",register:"Société · Quotidien soutenu",origin:"Fusha → Darija",frequency:"Très courant",difficulty:1,category:"société",synonyms:["التعاضد","التآزر"],antonyms:["الأنانية","اللامبالاة"],examples:["التضامن المغربي بان واضح فالزلزال","التضامن مع القضايا العادلة واجب أخلاقي","بلا تضامن، المجتمع كيفترق"],errors:"Différent de 'المساعدة' ponctuelle — التضامن implique un engagement collectif plus large.",level:"courant"},
-{id:32,arabic:"الريع",transliteration:"r-ri3",definition:"La rente économique — un revenu obtenu sans effort productif réel, souvent par position ou privilège",nuance:"Terme central dans les critiques de l'économie marocaine (اقتصاد الريع).",register:"Économie · Politique · Débat",origin:"Fusha → Darija économique",frequency:"Courant dans débats économiques",difficulty:4,category:"économie",synonyms:["الامتياز الاقتصادي","الدخل غير المنتج"],antonyms:["الإنتاج","العمل الحقيقي"],examples:["اقتصاد الريع كيوقف التنمية الحقيقية","الريع كيخلق طبقة كتستافد بلا ما تخدم","لازم نتجاوزو منطق الريع لمنطق الإنتاج"],errors:"Ne pas confondre avec un simple revenu locatif — الريع a ici une connotation critique d'injustice économique.",level:"élite"},
-{id:33,arabic:"الفساد",transliteration:"l-fsad",definition:"La corruption, l'abus de pouvoir ou de position pour un gain personnel illégitime",nuance:"Terme omniprésent dans le débat public marocain, peut être politique, administratif ou moral.",register:"Politique · Société · Débat",origin:"Fusha → Darija",frequency:"Très fréquent",difficulty:2,category:"politique",synonyms:["الرشوة","استغلال النفوذ"],antonyms:["النزاهة","الاستقامة"],examples:["محاربة الفساد كتطلب إرادة حقيقية","الفساد الصغير موجود فحياتنا اليومية بلا ما نديرو بال","الفساد كيضرب الثقة فالمؤسسات"],errors:"Le mot couvre un large spectre, du petit abus quotidien à la grande corruption institutionnelle.",level:"riche"},
-{id:34,arabic:"الإصلاح",transliteration:"l-islah",definition:"La réforme, un changement structurel visant à améliorer un système",nuance:"Mot très utilisé en politique marocaine, souvent débattu entre réforme réelle et symbolique.",register:"Politique · Société",origin:"Fusha → Darija",frequency:"Fréquent dans médias",difficulty:2,category:"politique",synonyms:["التغيير الهيكلي","التطوير"],antonyms:["الجمود","المحافظة على الوضع"],examples:["الإصلاح التعليمي محتاج وقت وصبر","كاين فرق بين الإصلاح الحقيقي والإصلاح الشكلي","بلا إصلاح عميق، المشاكل كترجع"],errors:"Différent de 'التغيير' simple — الإصلاح implique une amélioration intentionnelle et structurée.",level:"courant"},
-{id:35,arabic:"البيروقراطية",transliteration:"l-biroqratiya",definition:"La bureaucratie, la lourdeur administrative excessive dans le fonctionnement des institutions",nuance:"Souvent utilisé avec une connotation négative pour critiquer la lenteur administrative.",register:"Économie · Administration · Quotidien",origin:"Emprunt international → Darija",frequency:"Très courant",difficulty:2,category:"économie",synonyms:["الروتين الإداري","التعقيد الإداري"],antonyms:["المرونة","البساطة الإدارية"],examples:["البيروقراطية كتأخر أي مشروع استثماري","ضعت نهار كامل بسبب البيروقراطية","تبسيط البيروقراطية أولوية اقتصادية"],errors:"Ne pas confondre avec 'الإدارة' neutre — البيروقراطية porte une connotation de lourdeur excessive.",level:"courant"},
-{id:36,arabic:"الكفاية الذاتية",transliteration:"l-kifaya dh-dhatiya",definition:"L'autosuffisance, la capacité à subvenir à ses propres besoins sans dépendance extérieure",nuance:"Utilisé aussi bien pour les individus que pour les pays (الكفاية الذاتية الغذائية).",register:"Économie · Société",origin:"Fusha → Darija institutionnelle",frequency:"Courant dans débats économiques",difficulty:3,category:"économie",synonyms:["الاستقلال الاقتصادي","عدم الاعتماد على الغير"],antonyms:["التبعية","الاعتماد الكلي"],examples:["الكفاية الذاتية الغذائية هدف استراتيجي لكل بلاد","بغيت نوصل للكفاية الذاتية المادية قبل الثلاثين","الكفاية الذاتية ما كتمنعش التعاون مع الآخرين"],errors:"Ne pas confondre avec l'isolement total — il s'agit de réduire la dépendance, pas de couper tout lien.",level:"avancé"},
-{id:37,arabic:"الهوية الرقمية",transliteration:"l-hawiya r-raqmiya",definition:"L'identité numérique, l'image et la présence d'une personne sur internet et les réseaux sociaux",nuance:"Concept moderne, central dans les discussions sur la vie privée et l'image de soi en ligne.",register:"Numérique · Société moderne",origin:"Calque international → Darija moderne",frequency:"Montant",difficulty:3,category:"numérique",synonyms:["الصورة الافتراضية","الحضور الإلكتروني"],antonyms:["الهوية الواقعية"],examples:["الهوية الرقمية ديالك كتأثر على فرصك المهنية","كاين ناس كيعيشو هوية رقمية بعيدة على الواقع","حماية الهوية الرقمية أصبحات ضرورة"],errors:"Ne pas la confondre avec l'identité réelle — souvent une version construite et sélective de soi-même.",level:"avancé"},
-{id:38,arabic:"الإدمان الرقمي",transliteration:"l-idman r-raqmi",definition:"L'addiction numérique, la dépendance compulsive aux écrans et réseaux sociaux",nuance:"Sujet de plus en plus discuté dans les médias et podcasts marocains sur la santé mentale.",register:"Psychologie · Numérique · Santé",origin:"Calque international → Darija moderne",frequency:"Très courant aujourd'hui",difficulty:2,category:"numérique",synonyms:["الإدمان على الهاتف","الاستخدام القهري للشاشات"],antonyms:["الاعتدال الرقمي","الانضباط الرقمي"],examples:["الإدمان الرقمي كيأثر على النوم والتركيز","واعي بإدمانه الرقمي ولكن صعيب يوقف","الإدمان الرقمي عند الأطفال مقلق بزاف"],errors:"Ne pas le minimiser comme une simple habitude — c'est reconnu comme un vrai trouble comportemental.",level:"riche"},
-{id:39,arabic:"الرقابة الذاتية",transliteration:"r-riqaba dh-dhatiya",definition:"L'autocensure, le fait de se restreindre soi-même dans l'expression par peur ou prudence",nuance:"Sujet sensible dans le débat sur la liberté d'expression au Maroc et dans le monde arabe.",register:"Société · Politique · Médias",origin:"Fusha → Darija intellectuelle",frequency:"Courant dans débats",difficulty:4,category:"psychologie",synonyms:["كبت الرأي","تقييد النفس"],antonyms:["حرية التعبير","الصراحة الكاملة"],examples:["الرقابة الذاتية أخطر من الرقابة الرسمية أحياناً","كنمارس رقابة ذاتية باش ما نأذيش حد","الرقابة الذاتية كتقتل الإبداع شوية شوية"],errors:"Différent de la simple politesse — الرقابة الذاتية implique une vraie suppression de pensée par peur.",level:"élite"},
-{id:40,arabic:"الانفصام",transliteration:"l-infisam",definition:"Le clivage ou la dissociation — une rupture entre deux aspects d'une même personne ou réalité",nuance:"Utilisé métaphoriquement (pas seulement clinique) pour décrire une contradiction interne forte.",register:"Psychologie · Société · Débat",origin:"Terme clinique → Darija métaphorique",frequency:"Courant dans débats sociaux",difficulty:4,category:"psychologie",synonyms:["الازدواجية","التناقض الداخلي"],antonyms:["الانسجام","التماسك"],examples:["كاين انفصام بين القيم اللي كنحملوها والأفعال ديالنا","المجتمع عايش نوع من الانفصام بين الخاص والعام","الانفصام بين الخطاب والممارسة واضح"],errors:"Dans un sens non clinique, le mot décrit une contradiction profonde, pas une pathologie réelle.",level:"élite"},
-{id:41,arabic:"التطرف",transliteration:"t-tatarruf",definition:"L'extrémisme, l'adoption de positions radicales sans nuance ni compromis",nuance:"Utilisé en politique, religion, mais aussi dans des débats du quotidien sur les opinions tranchées.",register:"Politique · Débat · Société",origin:"Fusha → Darija",frequency:"Fréquent dans médias",difficulty:3,category:"politique",synonyms:["الراديكالية","التشدد"],antonyms:["الاعتدال","التوازن"],examples:["التطرف فالأفكار كيقفل الباب على أي حوار","التطرف مو غير ديني، يمكن يكون فكري أو سياسي","الخوف من التطرف ما خاصوش يحولنا للتطرف العكسي"],errors:"Le mot ne se limite pas à la violence — il qualifie aussi des positions intellectuelles rigides.",level:"riche"},
-{id:42,arabic:"الاعتدال",transliteration:"l-i3tidal",definition:"La modération, l'équilibre entre deux extrêmes dans les opinions ou comportements",nuance:"Valeur souvent promue comme antidote à la polarisation et l'extrémisme.",register:"Société · Débat · Quotidien soutenu",origin:"Fusha → Darija",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["التوازن","الوسطية"],antonyms:["التطرف","الإفراط"],examples:["الاعتدال فالأكل وفالكلام صعيب على بعض الناس","الاعتدال مو ضعف، هو نضج فكري","كنحاول نلقى الاعتدال بين الطموح والقناعة"],errors:"Ne pas confondre avec l'indécision — الاعتدال est un choix réfléchi, pas une absence de position.",level:"courant"},
-{id:43,arabic:"التفكير النقدي",transliteration:"t-tafkir n-naqdi",definition:"La pensée critique, la capacité à analyser et questionner les informations avant de les accepter",nuance:"Compétence très valorisée dans l'éducation moderne et le débat citoyen.",register:"Éducation · Société · Débat",origin:"Calque international → Darija éduquée",frequency:"Montant",difficulty:3,category:"pensée critique",synonyms:["التحليل العقلاني","عدم التصديق الأعمى"],antonyms:["التفكير الساذج","التصديق بلا تمحيص"],examples:["التفكير النقدي خاصو يتعلم من الصغر","بلا تفكير نقدي، الإشاعات كتنتشر بسهولة","التفكير النقدي ما معناهش الشك فكلشي"],errors:"Ne pas confondre avec le scepticisme systématique — c'est une méthode, pas une attitude négative.",level:"avancé"},
-{id:44,arabic:"التحيز",transliteration:"t-ta7ayyuz",definition:"Le biais, une inclinaison inconsciente qui fausse le jugement ou l'analyse",nuance:"Terme de psychologie cognitive devenu courant dans les débats sur les médias et la justice.",register:"Psychologie · Débat · Médias",origin:"Terme technique → Darija éduquée",frequency:"Montant",difficulty:4,category:"pensée critique",synonyms:["الميل اللاواعي","عدم الحياد"],antonyms:["الموضوعية","الحياد"],examples:["كلنا عندنا تحيزات حتى ولو ما كنشعروش بيها","التحيز الإعلامي كيأثر على الرأي العام","الاعتراف بالتحيز أول خطوة باش تتجاوزه"],errors:"Ne pas confondre avec une opinion assumée — le biais est souvent inconscient et non reconnu.",level:"élite"},
-{id:45,arabic:"التعميم",transliteration:"t-ta3mim",definition:"La généralisation, le fait d'étendre une observation particulière à un ensemble entier",nuance:"Souvent critiqué dans les débats car source de stéréotypes et de jugements hâtifs.",register:"Débat · Pensée critique",origin:"Fusha → Darija",frequency:"Fréquent",difficulty:2,category:"pensée critique",synonyms:["إصدار حكم شامل","التعميم المتسرع"],antonyms:["التدقيق","التمييز بين الحالات"],examples:["التعميم خطر، كل حالة عندها ظروفها","ما يمكنش نعممو على جميع الناس بتجربة واحدة","التعميم أساس بزاف ديال الأحكام المسبقة"],errors:"Différent d'une tendance statistique réelle — le problème est de généraliser sans nuance ni preuve suffisante.",level:"courant"},
-{id:46,arabic:"السذاجة",transliteration:"s-sadhaja",definition:"La naïveté, le manque de discernement face aux intentions ou réalités complexes",nuance:"Peut être utilisé avec tendresse ou comme critique selon le contexte.",register:"Quotidien soutenu · Personnalité",origin:"Fusha → Darija",frequency:"Courant",difficulty:1,category:"personnalité",synonyms:["البراءة الزائدة","قلة الحنكة"],antonyms:["الدهاء","الحنكة"],examples:["سذاجته خلاته يثق فناس ما يستاهلوش","السذاجة مو عيب فالصغر، ولكن مشكل فالكبر","كنحبو فيه سذاجته رغم كبر سنو"],errors:"Ne pas confondre avec la gentillesse — السذاجة implique un manque de lucidité, pas seulement de bonté.",level:"courant"},
-{id:47,arabic:"الدهاء",transliteration:"d-daha2",definition:"La ruse ou l'habileté stratégique, la capacité à manœuvrer intelligemment dans des situations complexes",nuance:"Peut être positif (intelligence stratégique) ou négatif (manipulation) selon le contexte.",register:"Personnalité · Débat",origin:"Fusha → Darija",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["الذكاء العملي","الحنكة"],antonyms:["السذاجة","الغباء"],examples:["دهاءه السياسي خلاه يتجاوز بزاف ديال الأزمات","الدهاء بلا أخلاق كيوصل للخيانة","عندو دهاء فالتفاوض ما عند حتى واحد"],errors:"Le mot oscille entre admiration et méfiance — toujours vérifier le ton du contexte.",level:"riche"},
-{id:48,arabic:"التملص",transliteration:"t-tamallus",definition:"L'esquive ou la dérobade, le fait d'éviter une responsabilité ou une confrontation",nuance:"Plus actif que التبرير — implique une fuite délibérée plutôt qu'une justification.",register:"Psychologie · Quotidien soutenu",origin:"Fusha → Darija",frequency:"Fréquent",difficulty:2,category:"psychologie",synonyms:["الهروب من المسؤولية","التهرب"],antonyms:["المواجهة","تحمل المسؤولية"],examples:["التملص من النقاش مو حل، هو تأجيل للمشكل","كيتملص من كل سؤال محرج","التملص المستمر كيضر العلاقة على المدى البعيد"],errors:"Différent de التبرير (justification) — التملص est l'action d'éviter directement, sans même se justifier.",level:"riche"},
-{id:49,arabic:"الاستغلال",transliteration:"l-istighlal",definition:"L'exploitation, le fait de tirer profit abusif d'une personne, situation ou ressource",nuance:"Utilisé dans des contextes économiques, relationnels et sociaux, toujours négatif.",register:"Société · Relations humaines · Économie",origin:"Fusha → Darija",frequency:"Fréquent",difficulty:2,category:"société",synonyms:["استعمال الآخر لمصلحة شخصية","التعسف"],antonyms:["الإنصاف","الاحترام المتبادل"],examples:["الاستغلال فالشغل مشكل منتشر بزاف","حس بالاستغلال فالعلاقة وقرر يمشي","الاستغلال الاقتصادي للعمال قضية عالمية"],errors:"Toujours connoté négativement — ne jamais l'utiliser pour décrire un échange équitable.",level:"riche"},
-{id:50,arabic:"التعافي",transliteration:"t-ta3afi",definition:"La guérison ou le rétablissement, le processus de surmonter une blessure physique ou psychologique",nuance:"Très utilisé dans le langage thérapeutique moderne marocain (تعافي من صدمة، تعافي عاطفي).",register:"Psychologie · Santé · Émotionnel",origin:"Fusha → Darija thérapeutique",frequency:"Très courant aujourd'hui",difficulty:2,category:"émotions complexes",synonyms:["الشفاء النفسي","التجاوز"],antonyms:["الانتكاسة","الجرح المفتوح"],examples:["التعافي مو خط مستقيم، فيه تقدم ونكسات","التعافي العاطفي كياخد وقتو الخاص","بدأت رحلة التعافي بعد سنين ديال الألم"],errors:"Ne pas le confondre avec l'oubli — التعافي n'efface pas l'expérience, il permet de vivre avec elle.",level:"avancé"},];
-
-const IMMERSION_TEXTS=[
-{id:1,title:"الوعي والنجاح",text:"الناس اللي عندهم وعي بالذات كيعرفو يحملو المسؤولية ديال أخطاءهم بلا ما يلقاو لها مبرر. التعاطف معاهم بزاف، ولكن هذا ما يمنعهمش من الانضباط فحياتهم اليومية. الاستقلالية الفكرية والمادية كتبقى هدف أساسي عندهم، حتى ولو الطريق طويلة وصعيبة.",words:["المسؤولية","التعاطف","الانضباط","الاستقلالية"],category:"psychologie"},
-{id:2,title:"المجتمع والتناقض",text:"التضامن بين الناس كيبان واضح فأوقات الأزمات، ولكن المجتمع كيعيش أحياناً نوع من الإقصاء الممنهج ضد بعض الفئات. التهميش الاقتصادي والاجتماعي كيخلق فجوة عميقة، خاصة ملي كيوقع التطبيع مع هاد الوضع بدل ما نواجهوه بجرأة.",words:["التضامن","الإقصاء","التهميش","التطبيع"],category:"société"},
-{id:3,title:"السياسة والإصلاح",text:"الشفافية والنزاهة شرطان أساسيان لمحاربة الفساد المستشري فبعض المؤسسات. الإصلاح الحقيقي ما كيبانش غير بالأفعال، وماشي بالخطابات. ولكن المشكل أن الاستقطاب السياسي كيصعب أي نقاش هادئ حول هاد المواضيع.",words:["الشفافية","النزاهة","الفساد","الإصلاح","الاستقطاب"],category:"politique"},
-{id:4,title:"العالم الرقمي",text:"الهوية الرقمية ديال بزاف ديال الشباب أصبحات أهم من الهوية الواقعية. الإدمان الرقمي كيأثر على التركيز والنوم، وكاين ناس كيمارسو الرقابة الذاتية باش ما يبانوش بصورة سيئة قدام الآخرين.",words:["الهوية الرقمية","الإدمان الرقمي","الرقابة الذاتية"],category:"numérique"},
-{id:5,title:"التفكير والنضج",text:"التفكير النقدي كيتطلب وعي بالتحيز اللي عند كل واحد فينا. التعميم السريع على الناس أو الأفكار كيخلق أحكام مسبقة خاطئة. الاعتدال فالمواقف أصعب بزاف من التطرف، ولكنه أكثر نضجاً.",words:["التفكير النقدي","التحيز","التعميم","الاعتدال","التطرف"],category:"pensée critique"}
+  // ============================================================
+// VOCABULAIRE FRANÇAIS (50 mots)
+// ============================================================
+const VOCABULARY = [
+{id:1,arabic:"Éloquence",transliteration:"e-lok-wans",definition:"Art de bien parler, de persuader par un discours fluide.",nuance:"L'éloquence est une compétence qui se cultive. Elle ne se limite pas à un langage soutenu.",register:"Soutenu · Littéraire",origin:"Latin",frequency:"Courant",difficulty:3,category:"littérature",synonyms:["Art oratoire","Fluidité"],antonyms:["Bafouillage","Lourdeur"],examples:["L'éloquence de ce discours a conquis tout le public.","Un bon débat nécessite de l'éloquence."],errors:"Ne pas confondre 'éloquence' et 'verbeux'.",level:"B2",tip_darija:"هاد الكلمة كتستعمل فالنقاشات الرسمية."},
+{id:2,arabic:"Pertinent",transliteration:"per-ti-nan",definition:"Qui est en rapport parfait avec le sujet.",nuance:"Une remarque pertinente est une remarque qui tombe juste.",register:"Professionnel",origin:"Latin",frequency:"Très courant",difficulty:2,category:"travail",synonyms:["Opportun","Judicieux"],antonyms:["Hors sujet","Inopportun"],examples:["Ta question est très pertinente.","Dans un entretien, il faut donner des exemples pertinents."],errors:"On dit 'une remarque pertinente' et non 'pertinante'.",level:"B1",tip_darija:"هاذ الكلمة كتجي بزاف فالمقابلات."},
+{id:3,arabic:"Nuancer",transliteration:"nu-an-se",definition:"Exprimer avec précision en tenant compte des différences subtiles.",nuance:"Nuancer une opinion, c'est ne pas la voir en noir et blanc.",register:"Intellectuel",origin:"Français",frequency:"Courant",difficulty:3,category:"pensée critique",synonyms:["Modérer","Préciser"],antonyms:["Généraliser","Simplifier"],examples:["Il faut nuancer ce propos.","Son discours nuancé a été très apprécié."],errors:"Nuancer ne signifie pas 'contredire'.",level:"B2",tip_darija:"فاش كتخاصم واحد، حاول تnuance كلامك."},
+{id:4,arabic:"Ambigüité",transliteration:"an-bi-gui-te",definition:"Caractère de ce qui peut avoir plusieurs sens.",nuance:"L'ambigüité peut être voulue ou involontaire.",register:"Débat",origin:"Latin",frequency:"Courant",difficulty:3,category:"débat",synonyms:["Flou","Équivoque"],antonyms:["Clarté","Précision"],examples:["L'ambigüité de cette phrase prête à confusion.","Il y a une certaine ambigüité dans ses intentions."],errors:"Attention à l'orthographe : 'ambigüité' avec un tréma.",level:"B2",tip_darija:"هاد الكلمة كاتكتب بالtréma فوق الu."},
+{id:5,arabic:"Vulnérabilité",transliteration:"vul-ne-ra-bi-li-te",definition:"Caractère de ce qui est fragile, qui peut être facilement blessé.",nuance:"La vulnérabilité n'est pas une faiblesse. C'est une force.",register:"Psychologie",origin:"Latin",frequency:"Très courant",difficulty:3,category:"psychologie",synonyms:["Fragilité","Sensibilité"],antonyms:["Invulnérabilité","Force"],examples:["Montrer sa vulnérabilité est un signe de courage.","La vulnérabilité affective est un thème récurrent."],errors:"Ne pas utiliser pour décrire une simple faiblesse physique.",level:"B2",tip_darija:"الضعف ماشي عيب. بالعكس، هو قوة."},
+{id:6,arabic:"Mérite",transliteration:"me-rit",definition:"Ce qui rend quelqu'un digne d'estime.",nuance:"Le mérite est souvent opposé à la chance ou au privilège.",register:"Société",origin:"Latin",frequency:"Courant",difficulty:2,category:"société",synonyms:["Valeur","Qualité"],antonyms:["Indignité","Déshonneur"],examples:["Il a obtenu cette place à force de mérite.","On lui reconnaît le mérite de son travail."],errors:"Ne pas confondre 'mérite' et 'arrogance'.",level:"B1",tip_darija:"هاد الكلمة هي عكس 'الواسطة'."},
+{id:7,arabic:"Hésitation",transliteration:"e-zi-ta-syon",definition:"État de quelqu'un qui ne peut pas se décider.",nuance:"L'hésitation peut être le signe d'une réflexion profonde ou d'un manque de confiance.",register:"Psychologie",origin:"Latin",frequency:"Très fréquent",difficulty:1,category:"psychologie",synonyms:["Indécision","Doute"],antonyms:["Décision","Assurance"],examples:["Son hésitation a fait rater le train.","Après une brève hésitation, il a choisi."],errors:"Hésitation ne signifie pas 'paresse'.",level:"B1",tip_darija:"التردد كيتعلق بالتفكير، ماشي بالكسل."},
+{id:8,arabic:"Appartenance",transliteration:"a-par-te-nans",definition:"Sentiment d'être membre d'un groupe.",nuance:"L'appartenance est un besoin humain fondamental.",register:"Société",origin:"Français",frequency:"Fréquent",difficulty:2,category:"société",synonyms:["Identité","Affiliation"],antonyms:["Exclusion","Solitude"],examples:["Le sentiment d'appartenance à une équipe est important.","Il recherche un sentiment d'appartenance."],errors:"Ne pas confondre 'appartenance' et 'identité'.",level:"B2",tip_darija:"الشعور بالانتماء ضروري للراحة النفسية."},
+{id:9,arabic:"Élitisme",transliteration:"e-li-tism",definition:"Attitude qui privilégie une élite.",nuance:"Le mot est souvent utilisé de manière critique.",register:"Critique sociale",origin:"Français",frequency:"Courant",difficulty:4,category:"politique",synonyms:["Arrogance sociale","Condescendance"],antonyms:["Populisme","Humilité"],examples:["On lui reproche son élitisme.","L'élitisme peut être un frein à la diversité."],errors:"Ne pas confondre l'élitisme avec la 'méritocratie'.",level:"C1",tip_darija:"هاد الكلمة كاتستعمل فالنقاشات السياسية."},
+{id:10,arabic:"Projection",transliteration:"pro-jek-syon",definition:"Mécanisme par lequel on attribue à l'autre ses propres sentiments.",nuance:"La projection est un mécanisme de défense inconscient.",register:"Psychologie",origin:"Latin",frequency:"Montant",difficulty:4,category:"psychologie",synonyms:["Attribution","Transfert"],antonyms:["Introspection","Auto-analyse"],examples:["Il fait de la projection : il accuse les autres.","La projection est un mécanisme de défense courant."],errors:"La projection est un processus inconscient.",level:"C1",tip_darija:"كيعني أنك ترمي عتابك على الناس."},
+{id:11,arabic:"Ambition",transliteration:"an-bi-syon",definition:"Désir ardent de réussir.",nuance:"L'ambition est généralement positive. Une ambition démesurée peut devenir négative.",register:"Développement personnel",origin:"Latin",frequency:"Très courant",difficulty:1,category:"personnalité",synonyms:["Aspiration","Détermination"],antonyms:["Résignation","Passivité"],examples:["Sa grande ambition est de devenir architecte.","L'ambition est une qualité dans le monde professionnel."],errors:"L'ambition n'est pas un défaut en soi.",level:"B1",tip_darija:"الطموح صفة كاتعجب الناس."},
+{id:12,arabic:"Rationalisation",transliteration:"ra-syo-na-li-za-syon",definition:"Action de justifier ses actes par des raisons logiques.",nuance:"En psychologie, c'est un mécanisme de défense.",register:"Psychologie",origin:"Latin",frequency:"Fréquent",difficulty:3,category:"psychologie",synonyms:["Justification","Excuse"],antonyms:["Remise en question","Assomption"],examples:["Il trouve toujours une rationalisation pour justifier ses retards.","Arrête de rationaliser et assume tes erreurs."],errors:"Ne pas confondre 'rationalisation' et 'raisonnement'.",level:"B2",tip_darija:"كاتعني التفكير المنطقي باش تبرر شي حاجة."},
+{id:13,arabic:"Limites",transliteration:"li-mit",definition:"Frontières, ce qu'on ne peut pas dépasser.",nuance:"Dans les relations humaines, les limites sont essentielles.",register:"Relations",origin:"Latin",frequency:"Très courant",difficulty:1,category:"relations humaines",synonyms:["Frontières","Bornes"],antonyms:["Liberté totale","Permissivité"],examples:["Il est important de poser des limites.","Elle a dépassé les limites de la politesse."],errors:"On dit 'poser des limites' et non 'mettre des limites'.",level:"B1",tip_darija:"الحدود هي احترام الذات."},
+{id:14,arabic:"Discours",transliteration:"dis-kour",definition:"Ensemble cohérent de paroles sur un sujet.",nuance:"Le discours est aussi la manière dont une institution s'exprime.",register:"Politique",origin:"Latin",frequency:"Fréquent",difficulty:4,category:"politique",synonyms:["Propos","Prise de parole"],antonyms:[],examples:["Le discours politique est souvent éloigné de la réalité.","Son discours est convaincant."],errors:"Ne pas confondre 'discours' et 'speech'.",level:"C1",tip_darija:"الخطاب هو مجموعة أفكار."},
+{id:15,arabic:"Dérive",transliteration:"de-riv",definition:"Écart progressif par rapport à une norme.",nuance:"La dérive est insidieuse. Elle se fait petit à petit.",register:"Philosophie",origin:"Latin",frequency:"Courant",difficulty:4,category:"philosophie",synonyms:["Déviation","Égarement"],antonyms:["Stabilité","Rigidité"],examples:["On assiste à une dérive des valeurs.","Cette politique est une dérive dangereuse."],errors:"La dérive est un processus graduel.",level:"C1",tip_darija:"كاتعني التدهور التدريجي."},
+{id:16,arabic:"Empathie",transliteration:"em-pa-ti",definition:"Capacité à comprendre et partager les émotions d'autrui.",nuance:"L'empathie va au-delà de la simple sympathie.",register:"Psychologie",origin:"Grec",frequency:"Très courant",difficulty:2,category:"psychologie",synonyms:["Compréhension","Sensibilité"],antonyms:["Indifférence","Apathie"],examples:["L'empathie est une compétence qui se développe.","Montrer de l'empathie apaise les conflits."],errors:"Ne pas confondre 'empathie' et 'sympathie'.",level:"B2",tip_darija:"التعاطف هو أنك تفهم وتحس بلي كيعيشو الآخر."},
+{id:17,arabic:"Autonomie",transliteration:"o-to-no-mi",definition:"Capacité de se gouverner soi-même.",nuance:"L'autonomie est une valeur forte dans les sociétés modernes.",register:"Développement personnel",origin:"Grec",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["Indépendance","Liberté"],antonyms:["Dépendance","Soumission"],examples:["L'autonomie est un objectif éducatif.","Il a gagné son autonomie financière."],errors:"L'autonomie n'est pas l'isolement.",level:"B1",tip_darija:"الاستقلالية هي القدرة على القرار."},
+{id:18,arabic:"Autonomisation",transliteration:"o-to-no-mi-za-syon",definition:"Processus qui permet à une personne de gagner en autonomie.",nuance:"Autonomiser les femmes, les jeunes, c'est leur donner les moyens d'agir.",register:"Société",origin:"Français",frequency:"Fréquent",difficulty:3,category:"société",synonyms:["Émancipation","Responsabilisation"],antonyms:["Dépendance","Soumission"],examples:["L'autonomisation des femmes est un combat.","Ce programme vise l'autonomisation des jeunes."],errors:"Autonomisation n'est pas synonyme d'isolement.",level:"B2",tip_darija:"التمكين هو أن تعطي للآخر القوة والثقة."},
+{id:19,arabic:"Discipline",transliteration:"di-si-plin",definition:"Capacité à suivre des règles, une méthode.",nuance:"La discipline peut être imposée ou choisie. C'est une qualité essentielle.",register:"Développement personnel",origin:"Latin",frequency:"Très courant",difficulty:1,category:"personnalité",synonyms:["Rigueur","Auto-contrôle"],antonyms:["Indiscipline","Laisser-aller"],examples:["La discipline est la clé du succès.","Il a une grande discipline de travail."],errors:"La discipline n'est pas une punition.",level:"B1",tip_darija:"الانضباط هو تنظيم نفسك."},
+{id:20,arabic:"Responsabilité",transliteration:"res-pon-sa-bi-li-te",definition:"Obligation de répondre de ses actes.",nuance:"Un adulte responsable assume les conséquences de ses choix.",register:"Psychologie",origin:"Latin",frequency:"Très fréquent",difficulty:1,category:"psychologie",synonyms:["Charge","Obligation"],antonyms:["Irresponsabilité","Impunité"],examples:["Il assume la responsabilité de son échec.","C'est une lourde responsabilité."],errors:"La responsabilité n'est pas la culpabilité.",level:"B1",tip_darija:"المسؤولية هي أنك تتحمل عواقب أفعالك."},
+{id:21,arabic:"Tolérance",transliteration:"to-le-rans",definition:"Acceptation des opinions, des croyances différentes.",nuance:"La tolérance est une valeur fondamentale des sociétés démocratiques.",register:"Société",origin:"Latin",frequency:"Courant",difficulty:2,category:"société",synonyms:["Ouverture d'esprit","Largeur de vue"],antonyms:["Intolérance","Sectarisme"],examples:["La tolérance est le fondement de la paix sociale.","Il fait preuve d'une grande tolérance."],errors:"La tolérance n'est pas la faiblesse.",level:"B2",tip_darija:"التسامح هو اختيار واع باش تحترم اختلافات الآخرين."},
+{id:22,arabic:"Durabilité",transliteration:"du-ra-bi-li-te",definition:"Capacité à durer dans le temps.",nuance:"La durabilité est au cœur des préoccupations écologiques et économiques.",register:"Écologie",origin:"Français",frequency:"Montant",difficulty:3,category:"société",synonyms:["Pérennité","Continuité"],antonyms:["Précarité","Éphémère"],examples:["La durabilité est un enjeu majeur.","Il faut investir dans des solutions durables."],errors:"La durabilité ne se limite pas à l'écologie.",level:"B2",tip_darija:"كاتستعمل بزاف فالنقاشات البيئية."},
+{id:23,arabic:"Transparence",transliteration:"tran-spa-rans",definition:"Caractère de ce qui est clair, sans dissimulation.",nuance:"La transparence est une qualité très valorisée dans les institutions.",register:"Politique",origin:"Latin",frequency:"Fréquent",difficulty:3,category:"politique",synonyms:["Clarté","Loyauté"],antonyms:["Opacité","Dissimulation"],examples:["On exige plus de transparence.","La transparence est gage de confiance."],errors:"La transparence n'est pas la naïveté.",level:"B2",tip_darija:"الشفافية هي الوضوح في التعامل."},
+{id:24,arabic:"Intégrité",transliteration:"in-te-gri-te",definition:"Qualité de quelqu'un qui agit avec honnêteté.",nuance:"Une personne intègre ne transige pas sur ses principes.",register:"Éthique",origin:"Latin",frequency:"Courant",difficulty:3,category:"éthique",synonyms:["Honnêteté","Droiture"],antonyms:["Corruption","Malhonnêteté"],examples:["Son intégrité professionnelle est reconnue.","Il a refusé le pot-de-vin par intégrité."],errors:"L'intégrité ne se réduit pas à la probité financière.",level:"B2",tip_darija:"النزاهة هي أنك تبقى صادق حتى كيما أحد ما شافك."},
+{id:25,arabic:"Compétence",transliteration:"kom-pe-tans",definition:"Capacité reconnue à accomplir une tâche.",nuance:"La compétence désigne à la fois le savoir-faire et le savoir-être.",register:"Travail",origin:"Latin",frequency:"Très fréquent",difficulty:2,category:"travail",synonyms:["Habileté","Qualification"],antonyms:["Incompétence","Incapacité"],examples:["Ses compétences en gestion sont appréciées.","On recrute sur la base des compétences."],errors:"La compétence n'est pas innée.",level:"B1",tip_darija:"الكفاءة هي المهارة. كاتكتسب بالممارسة."}
+{id:26,arabic:"Exclusion",transliteration:"eks-klu-zyon",definition:"Action de rejeter, d'écarter quelqu'un d'un groupe.",nuance:"L'exclusion est un phénomène social grave.",register:"Société",origin:"Latin",frequency:"Fréquent",difficulty:3,category:"société",synonyms:["Rejet","Mise à l'écart"],antonyms:["Inclusion","Intégration"],examples:["L'exclusion sociale touche les plus vulnérables.","Il a vécu une situation d'exclusion."],errors:"L'exclusion est souvent un processus actif.",level:"B2",tip_darija:"الإقصاء هو أنك تبعّد شي واحد بشكل متعمد."},
+{id:27,arabic:"Marginalisation",transliteration:"mar-ji-na-li-za-syon",definition:"Fait de reléguer un individu à la périphérie.",nuance:"La marginalisation est souvent plus passive que l'exclusion.",register:"Société",origin:"Français",frequency:"Fréquent",difficulty:3,category:"société",synonyms:["Mise au banc","Relégation"],antonyms:["Insertion","Participation"],examples:["La marginalisation des jeunes est une réalité.","Les politiques contre la marginalisation sont insuffisantes."],errors:"La marginalisation est souvent un processus structurel.",level:"B2",tip_darija:"التهميش هو الإقصاء الغير مباشر."},
+{id:28,arabic:"Aliénation",transliteration:"a-lye-na-syon",definition:"Sentiment d'être étranger à soi-même.",nuance:"L'aliénation est un concept philosophique et psychologique profond.",register:"Philosophie",origin:"Latin",frequency:"Rare",difficulty:4,category:"psychologie",synonyms:["Étrangeté","Dépossession"],antonyms:["Appartenance","Épanouissement"],examples:["L'aliénation du travail est une réalité.","Il ressent une profonde aliénation."],errors:"L'aliénation ne se limite pas à l'exil géographique.",level:"C1",tip_darija:"الاغتراب هو شعور بالغربة حتى فبلادك."},
+{id:29,arabic:"Banalisation",transliteration:"ba-na-li-za-syon",definition:"Fait de rendre banal ce qui ne devrait pas l'être.",nuance:"La banalisation est souvent utilisée pour décrire un phénomène inquiétant.",register:"Société",origin:"Français",frequency:"Courant",difficulty:3,category:"société",synonyms:["Normalisation","Tolérance excessive"],antonyms:["Dénonciation","Résistance"],examples:["On assiste à une banalisation de la violence.","La banalisation des incivilités est préoccupante."],errors:"La banalisation est un processus progressif.",level:"B2",tip_darija:"التطبيع هو أن شي حاجة غريبة تتحول لعادية."},
+{id:30,arabic:"Polarisation",transliteration:"po-la-ri-za-syon",definition:"Division en deux camps opposés.",nuance:"La polarisation est très présente dans le débat politique et sur les réseaux sociaux.",register:"Politique",origin:"Français",frequency:"Fréquent",difficulty:4,category:"politique",synonyms:["Clivage","Division"],antonyms:["Consensus","Modération"],examples:["La polarisation du débat public est inquiétante.","Les réseaux sociaux accentuent la polarisation."],errors:"La polarisation est un phénomène de groupe.",level:"C1",tip_darija:"الاستقطاب هو الإنقسام لجوج قطبيين."},
+{id:31,arabic:"Solidarité",transliteration:"so-li-da-ri-te",definition:"Lien d'entraide et de soutien mutuel.",nuance:"La solidarité est une valeur fondamentale. Elle peut être spontanée ou organisée.",register:"Société",origin:"Français",frequency:"Très courant",difficulty:1,category:"société",synonyms:["Entraide","Fraternité"],antonyms:["Individualisme","Égoïsme"],examples:["La solidarité s'est manifestée après l'ouragan.","La solidarité est un rempart contre l'exclusion."],errors:"La solidarité n'est pas la charité.",level:"B1",tip_darija:"التضامن هو التآزر."},
+{id:32,arabic:"Rente",transliteration:"rant",definition:"Revenu perçu sans effort productif.",nuance:"Le terme est souvent critique. Il désigne une situation où l'on gagne de l'argent sans travailler.",register:"Économie",origin:"Français",frequency:"Courant",difficulty:4,category:"économie",synonyms:["Privilège","Revenu passif"],antonyms:["Travail","Production"],examples:["Certaines entreprises vivent de la rente.","La rente immobilière est un sujet de débat."],errors:"La rente a une connotation négative.",level:"C1",tip_darija:"الريع هو المال اللي كايجي بلا خدمة."},
+{id:33,arabic:"Corruption",transliteration:"ko-rup-syon",definition:"Abus de pouvoir ou de fonction pour un gain personnel.",nuance:"La corruption est un fléau dans de nombreux pays. Elle peut être politique, administrative ou morale.",register:"Politique",origin:"Latin",frequency:"Très fréquent",difficulty:2,category:"politique",synonyms:["Pots-de-vin","Détournement"],antonyms:["Intégrité","Probité"],examples:["La corruption est un obstacle au développement.","Il a été accusé de corruption."],errors:"La corruption ne se limite pas aux grands scandales.",level:"B2",tip_darija:"الفساد هو استغلال المنصب."},
+{id:34,arabic:"Réforme",transliteration:"re-form",definition:"Changement structuré visant à améliorer un système.",nuance:"La réforme est souvent débattue en politique. Elle est présentée comme une amélioration.",register:"Politique",origin:"Latin",frequency:"Fréquent",difficulty:2,category:"politique",synonyms:["Changement","Modernisation"],antonyms:["Conservatisme","Statut quo"],examples:["La réforme de l'éducation est en cours.","Il a proposé une réforme ambitieuse."],errors:"Une réforme n'est pas un simple changement.",level:"B2",tip_darija:"الإصلاح هو تغيير هيكلي."},
+{id:35,arabic:"Bureaucratie",transliteration:"by-ro-kra-si",definition:"Administration caractérisée par des procédures lourdes.",nuance:"La bureaucratie est souvent critiquée pour sa lenteur et sa rigidité.",register:"Administration",origin:"Français",frequency:"Très courant",difficulty:2,category:"économie",synonyms:["Administration lourde","Paperasserie"],antonyms:["Simplification","Flexibilité"],examples:["La bureaucratie décourage les investisseurs.","Il a passé des heures à lutter contre la bureaucratie."],errors:"La bureaucratie désigne un système, pas un simple employé.",level:"B2",tip_darija:"البيروقراطية هي الروتين الإداري."},
+{id:36,arabic:"Autosuffisance",transliteration:"o-to-sy-fi-zans",definition:"Capacité à subvenir à ses propres besoins.",nuance:"L'autosuffisance est souvent un objectif individuel ou collectif.",register:"Économie",origin:"Français",frequency:"Courant",difficulty:3,category:"économie",synonyms:["Indépendance","Autonomie"],antonyms:["Dépendance","Assistance"],examples:["Il recherche l'autosuffisance énergétique.","L'autosuffisance alimentaire est un enjeu stratégique."],errors:"L'autosuffisance ne signifie pas l'isolement.",level:"B2",tip_darija:"الكفاية الذاتية هي أنك تكون معتمد على نفسك."},
+{id:37,arabic:"Identité numérique",transliteration:"i-dan-ti-te nu-me-rik",definition:"L'ensemble des traces d'une personne sur Internet.",nuance:"L'identité numérique est une notion de plus en plus importante. Elle est construite par nos activités en ligne.",register:"Numérique",origin:"Anglais",frequency:"Montant",difficulty:3,category:"numérique",synonyms:["Empreinte numérique","Présence en ligne"],antonyms:["Vie privée","Anonymat"],examples:["Il faut gérer son identité numérique avec soin.","L'identité numérique peut vous ouvrir des portes."],errors:"L'identité numérique est une construction.",level:"B2",tip_darija:"هويتك الرقمية هي صورتك على الانترنت."},
+{id:38,arabic:"Addiction numérique",transliteration:"a-dik-syon nu-me-rik",definition:"Dépendance excessive aux écrans et aux réseaux sociaux.",nuance:"L'addiction numérique est un trouble comportemental reconnu.",register:"Psychologie",origin:"Anglais",frequency:"Très courant",difficulty:2,category:"numérique",synonyms:["Cyberaddiction","Nomophobie"],antonyms:["Déconnexion","Modération"],examples:["L'addiction numérique touche de plus en plus de jeunes.","Il a reconnu son addiction numérique."],errors:"L'addiction numérique est une vraie addiction.",level:"B2",tip_darija:"الإدمان الرقمي خطر على الصحة النفسية."},
+{id:39,arabic:"Autocensure",transliteration:"o-to-san-syr",definition:"Fait de se restreindre dans ce que l'on dit par peur.",nuance:"L'autocensure est une forme de contrainte intériorisée.",register:"Société",origin:"Français",frequency:"Courant",difficulty:4,category:"psychologie",synonyms:["Réserve","Prudence excessive"],antonyms:["Liberté d'expression","Franchise"],examples:["L'autocensure est le pire ennemi de la créativité.","Il pratique l'autocensure par peur de représailles."],errors:"L'autocensure est une suppression de la pensée.",level:"C1",tip_darija:"الرقابة الذاتية هي أنك توقف أفكارك بنفسك."},
+{id:40,arabic:"Clivage",transliteration:"kli-vaj",definition:"Division profonde entre deux groupes.",nuance:"Le clivage est une notion psychologique et sociale. On parle de 'clivage générationnel'.",register:"Psychologie",origin:"Français",frequency:"Courant",difficulty:4,category:"psychologie",synonyms:["Fracture","Divorce"],antonyms:["Union","Harmonie"],examples:["Il existe un clivage profond entre les générations.","Le clivage gauche-droite est moins net aujourd'hui."],errors:"Le clivage est une division radicale.",level:"C1",tip_darija:"الانفصام هو الإنقسام العميق."},
+{id:41,arabic:"Extrémisme",transliteration:"eks-tre-mism",definition:"Position radicale, sans nuance ni compromis.",nuance:"L'extrémisme peut être politique, religieux ou idéologique.",register:"Politique",origin:"Français",frequency:"Fréquent",difficulty:3,category:"politique",synonyms:["Radicalisme","Fanatisme"],antonyms:["Modération","Centre"],examples:["L'extrémisme est un danger pour la démocratie.","Il a condamné l'extrémisme sous toutes ses formes."],errors:"L'extrémisme ne se limite pas à la violence.",level:"B2",tip_darija:"التطرف هو التشدد."},
+{id:42,arabic:"Modération",transliteration:"mo-de-ra-syon",definition:"Attitude qui évite les excès, qui cherche l'équilibre.",nuance:"La modération est une valeur souvent promue dans les sociétés démocratiques.",register:"Société",origin:"Latin",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["Mesure","Tempérance"],antonyms:["Excès","Extrémisme"],examples:["Il faut agir avec modération.","Sa modération est appréciée dans les débats."],errors:"La modération n'est pas l'indécision.",level:"B1",tip_darija:"الاعتدال هو التوازن."},
+{id:43,arabic:"Pensée critique",transliteration:"pan-se kri-tik",definition:"Capacité à analyser, questionner et évaluer les informations.",nuance:"La pensée critique permet de ne pas se laisser manipuler.",register:"Éducation",origin:"Français",frequency:"Montant",difficulty:3,category:"pensée critique",synonyms:["Esprit critique","Analyse"],antonyms:["Crédulité","Naïveté"],examples:["Le développement de la pensée critique est un objectif.","La pensée critique permet de déceler les manipulations."],errors:"La pensée critique n'est pas un scepticisme systématique.",level:"B2",tip_darija:"التفكير النقدي هو التفكير التحليلي."},
+{id:44,arabic:"Biais",transliteration:"bye",definition:"Inclination inconsciente qui fausse le jugement.",nuance:"Les biais cognitifs sont des raccourcis mentaux qui nous trompent.",register:"Psychologie",origin:"Français",frequency:"Montant",difficulty:4,category:"pensée critique",synonyms:["Préjugé","Parti pris"],antonyms:["Objectivité","Neutralité"],examples:["Il faut être conscient de ses propres biais.","Le biais de confirmation est très répandu."],errors:"Un biais est inconscient.",level:"C1",tip_darija:"التحيز هو الميل اللاواعي."},
+{id:45,arabic:"Généralisation",transliteration:"je-ne-ra-li-za-syon",definition:"Action de passer d'un cas particulier à une règle générale.",nuance:"La généralisation peut être utile mais elle est souvent source d'erreurs.",register:"Débat",origin:"Latin",frequency:"Fréquent",difficulty:2,category:"pensée critique",synonyms:["Universalisation","Stéréotypage"],antonyms:["Spécification","Cas par cas"],examples:["La généralisation est dangereuse dans ce débat.","Il fait une généralisation abusive."],errors:"La généralisation n'est pas une tendance statistique.",level:"B2",tip_darija:"التعميم هو الحكم على كل الناس من واحد."},
+{id:46,arabic:"Naïveté",transliteration:"na-iv-te",definition:"Manque de discernement, tendance à croire trop facilement.",nuance:"La naïveté peut être touchante chez un enfant, mais dans le monde adulte, elle est souvent perçue comme une faiblesse.",register:"Personnalité",origin:"Français",frequency:"Courant",difficulty:1,category:"personnalité",synonyms:["Crédulité","Simplicité"],antonyms:["Ruse","Méfiance"],examples:["Sa naïveté l'a conduit à faire de mauvais choix.","La naïveté n'est pas un défaut."],errors:"La naïveté n'est pas la gentillesse.",level:"B1",tip_darija:"السذاجة هي البراءة الزايدة."},
+{id:47,arabic:"Ruse",transliteration:"ryz",definition:"Habileté à tromper ou à manœuvrer pour obtenir un avantage.",nuance:"La ruse est souvent associée à la manipulation. Elle peut être défensive ou offensive.",register:"Personnalité",origin:"Français",frequency:"Courant",difficulty:2,category:"personnalité",synonyms:["Astuce","Artifice"],antonyms:["Naïveté","Droiture"],examples:["Il a utilisé la ruse pour gagner le débat.","La ruse est parfois nécessaire dans les négociations."],errors:"La ruse peut être positive ou négative.",level:"B1",tip_darija:"الدهاء هو الذكاء العملي."},
+{id:48,arabic:"Esquive",transliteration:"es-kiv",definition:"Action d'éviter une situation, une question ou une responsabilité.",nuance:"L'esquive est souvent perçue comme une attitude de fuite.",register:"Psychologie",origin:"Français",frequency:"Fréquent",difficulty:2,category:"psychologie",synonyms:["Dérobade","Fuite"],antonyms:["Affrontement","Assomption"],examples:["Il a répondu par une esquive à cette question.","Son esquive est une preuve de sa mauvaise foi."],errors:"L'esquive est un acte de fuite.",level:"B2",tip_darija:"التملص هو الهروب من شي حاجة."},
+{id:49,arabic:"Exploitation",transliteration:"eks-plwa-ta-syon",definition:"Fait de tirer profit de quelqu'un de manière abusive.",nuance:"L'exploitation a une connotation très négative.",register:"Société",origin:"Latin",frequency:"Fréquent",difficulty:2,category:"société",synonyms:["Abus","Profit"],antonyms:["Équité","Partage"],examples:["L'exploitation des travailleurs est un scandale.","Il dénonce l'exploitation des ressources."],errors:"L'exploitation est toujours négative.",level:"B2",tip_darija:"الاستغلال هو استخدام الآخر لمصلحتك."},
+{id:50,arabic:"Guérison",transliteration:"ge-ri-zon",definition:"Rétablissement après une maladie, une blessure ou un traumatisme.",nuance:"La guérison est un processus, pas un événement soudain.",register:"Psychologie",origin:"Français",frequency:"Très courant",difficulty:2,category:"psychologie",synonyms:["Rétablissement","Rémission"],antonyms:["Rechute","Aggravation"],examples:["Sa guérison a été longue et difficile.","Il a enfin trouvé le chemin de la guérison."],errors:"La guérison n'est pas l'oubli.",level:"B2",tip_darija:"التعافي هو الشفاء."}
+];];
+// ============================================================
+// TEXTES D'IMMERSION
+// ============================================================
+const IMMERSION_TEXTS = [
+  {id:1,title:"L'art de la communication",text:"Pour s'exprimer avec éloquence, il ne suffit pas de maîtriser le vocabulaire. Il faut aussi savoir nuancer son discours, reconnaître l'ambigüité de certaines situations, et poser des limites claires. La pertinence d'une remarque dépend souvent du contexte. Une communication réussie demande de l'empathie et une vraie discipline.",words:["Éloquence","Nuancer","Ambigüité","Pertinent","Limites","Empathie","Discipline"],category:"communication"},
+  {id:2,title:"Une société en mutation",text:"Notre société est marquée par la polarisation des débats et la banalisation de l'exclusion. La marginalisation de certains groupes crée un sentiment d'aliénation. Pour y remédier, il faut renforcer la solidarité et lutter contre la corruption. Les réformes structurelles sont nécessaires, mais elles doivent s'accompagner d'une vraie transparence et d'un respect de l'intégrité.",words:["Polarisation","Banalisation","Exclusion","Marginalisation","Aliénation","Solidarité","Corruption","Réforme","Transparence","Intégrité"],category:"société"},
+  {id:3,title:"Le monde professionnel",text:"Dans le monde du travail, la compétence et le mérite sont souvent mis en avant, mais la réalité est parfois différente. L'autonomie et l'autonomisation sont des objectifs clés. La discipline et la responsabilité sont des qualités très recherchées. Enfin, il faut savoir reconnaître et dénoncer les situations d'exploitation et de bureaucratie excessive.",words:["Compétence","Mérite","Autonomie","Autonomisation","Discipline","Responsabilité","Exploitation","Bureaucratie"],category:"travail"},
+  {id:4,title:"L'ère numérique",text:"L'identité numérique est devenue aussi importante que l'identité réelle. L'addiction numérique est un vrai problème de santé publique. Elle peut conduire à une forme d'aliénation. Pour s'en protéger, il faut parfois pratiquer une certaine forme d'autocensure. Mais attention, une autocensure excessive peut aussi nuire à la liberté d'expression.",words:["Identité numérique","Addiction numérique","Aliénation","Autocensure"],category:"numérique"},
+  {id:5,title:"Développer son esprit critique",text:"La pensée critique est une compétence essentielle à notre époque. Elle permet de ne pas tomber dans le piège des généralisations abusives et des biais cognitifs. La modération est souvent plus difficile que l'extrémisme, mais elle est aussi plus intelligente. La naïveté peut être un frein, mais la ruse excessive n'est pas une solution. La guérison d'un esprit dogmatique passe par la nuance.",words:["Pensée critique","Généralisation","Biais","Modération","Extrémisme","Naïveté","Ruse","Guérison","Nuancer"],category:"esprit critique"}
 ];
 
-// ── PASSERELLES MOTS ↔ IMMERSION ──
+// ============================================================
+// CATÉGORIES
+// ============================================================
+const CATEGORIES = [
+  {id:"psychologie",label:"Psychologie",icon:"🧠",color:"#5E5CE6"},
+  {id:"travail",label:"Travail",icon:"💼",color:"#FF9F0A"},
+  {id:"société",label:"Société",icon:"🏛️",color:"#FF453A"},
+  {id:"débat",label:"Débat",icon:"⚡",color:"#30D158"},
+  {id:"relations humaines",label:"Relations",icon:"🤝",color:"#64D2FF"},
+  {id:"politique",label:"Politique",icon:"🎯",color:"#FF6B6B"},
+  {id:"pensée critique",label:"Pensée critique",icon:"🔍",color:"#BF5AF2"},
+  {id:"personnalité",label:"Personnalité",icon:"✨",color:"#FFD60A"},
+  {id:"philosophie",label:"Philosophie",icon:"📖",color:"#0A84FF"},
+  {id:"éthique",label:"Éthique",icon:"⚖️",color:"#34C759"},
+  {id:"économie",label:"Économie",icon:"💰",color:"#FFD60A"},
+  {id:"numérique",label:"Numérique",icon:"📱",color:"#5AC8FA"},
+  {id:"littérature",label:"Littérature",icon:"📚",color:"#BF5AF2"},
+  {id:"communication",label:"Communication",icon:"🗣️",color:"#5E5CE6"},
+  {id:"esprit critique",label:"Esprit critique",icon:"💡",color:"#FF9F0A"}
+];
+
+// ============================================================
+// PARCOURS
+// ============================================================
+const PARCOURS = [
+  {id:'soi',title:'Comprendre l\'humain',subtitle:'Psychologie, émotions, personnalité',icon:'🧠',color:'#5E5CE6',categories:['psychologie','personnalité'],textIds:[1]},
+  {id:'societe',title:'Vivre ensemble',subtitle:'Société, solidarité, numérique',icon:'🏛️',color:'#FF9F0A',categories:['société','relations humaines','numérique'],textIds:[2,4]},
+  {id:'pouvoir',title:'Pouvoir et politique',subtitle:'Institutions, éthique, économie',icon:'🎯',color:'#FF453A',categories:['politique','éthique','économie'],textIds:[3]},
+  {id:'penser',title:'L\'art de penser',subtitle:'Esprit critique, débat, philosophie',icon:'🔍',color:'#BF5AF2',categories:['pensée critique','débat','philosophie'],textIds:[5]}
+];
+
+// ============================================================
+// UNITÉS
+// ============================================================
+const UNITS = [
+  {id:1,title:'Les bases',icon:'🌱',color:'#5E5CE6',wordIds:[20,31,19,46,7]},
+  {id:2,title:'Qualités et défauts',icon:'🎭',color:'#FF9F0A',wordIds:[2,25,11,42,47]},
+  {id:3,title:'Émotions et limites',icon:'💭',color:'#FF453A',wordIds:[45,5,8,13,16]},
+  {id:4,title:'Valeurs humaines',icon:'🤝',color:'#BF5AF2',wordIds:[21,17,33,24,6]},
+  {id:5,title:'Dynamiques sociales',icon:'🌓',color:'#30D158',wordIds:[48,49,50,26,27]},
+  {id:6,title:'Débat et société',icon:'⚡',color:'#0A84FF',wordIds:[23,34,35,41,29]},
+  {id:7,title:'Nuances avancées',icon:'🌫️',color:'#64D2FF',wordIds:[3,1,4,18,22]},
+  {id:8,title:'Le monde moderne',icon:'🧭',color:'#FFD60A',wordIds:[37,38,43,36,44]},
+  {id:9,title:'Discours et pouvoir',icon:'🎙️',color:'#34C759',wordIds:[14,30,9,28,40]},
+  {id:10,title:'Maîtrise totale',icon:'👑',color:'#5AC8FA',wordIds:[32,39,15,12,10]}
+];
+
+const LEVELS = [
+  {id:"B1",label:"B1",color:"#30D158"},
+  {id:"B2",label:"B2",color:"#0A84FF"},
+  {id:"C1",label:"C1",color:"#BF5AF2"},
+  {id:"C2",label:"C2",color:"#FF9F0A"}
+];
+
+// ============================================================
+// FONCTIONS UTILITAIRES
+// ============================================================
 function getTextVocab(t){return t?VOCABULARY.filter(v=>t.words.includes(v.arabic)):[]}
-function findTextsForWord(wordId){
-const w=VOCABULARY.find(v=>v.id===wordId);
-if(!w)return[];
-return IMMERSION_TEXTS.filter(t=>t.words.includes(w.arabic));
-}
-
-const CATEGORIES=[{id:"psychologie",label:"Psychologie",icon:"🧠",color:"#5E5CE6"},{id:"émotions complexes",label:"Émotions",icon:"💫",color:"#FF6B6B"},{id:"société",label:"Société",icon:"🏛️",color:"#FF9F0A"},{id:"débat",label:"Débat",icon:"⚡",color:"#30D158"},{id:"relations humaines",label:"Relations",icon:"🤝",color:"#64D2FF"},{id:"politique",label:"Politique",icon:"🎯",color:"#FF453A"},{id:"pensée critique",label:"Pensée critique",icon:"🔍",color:"#BF5AF2"},{id:"personnalité",label:"Personnalité",icon:"✨",color:"#FFD60A"},{id:"philosophie",label:"Philosophie",icon:"📖",color:"#0A84FF"},{id:"éthique",label:"Éthique",icon:"⚖️",color:"#34C759"},{id:"économie",label:"Économie",icon:"💰",color:"#FFD60A"},{id:"numérique",label:"Numérique",icon:"📱",color:"#5AC8FA"}];
-
-// ── PARCOURS PÉDAGOGIQUES ──
-// Regroupe les 12 catégories en 4 modules d'apprentissage progressifs : Découvrir → Lire en contexte → S'évaluer → Maîtriser
-const PARCOURS=[
-{id:'soi',title:'Soi-même',subtitle:'Psychologie, émotions, personnalité',icon:'🧠',color:'#5E5CE6',categories:['psychologie','émotions complexes','personnalité'],textIds:[1]},
-{id:'societe',title:'Société & Solidarité',subtitle:'Liens sociaux, exclusion, monde numérique',icon:'🏛️',color:'#FF9F0A',categories:['société','relations humaines','numérique'],textIds:[2,4]},
-{id:'pouvoir',title:'Pouvoir & Politique',subtitle:'Institutions, éthique, économie',icon:'🎯',color:'#FF453A',categories:['politique','éthique','économie'],textIds:[3]},
-{id:'penser',title:'Penser juste',subtitle:'Esprit critique, débat, philosophie',icon:'🔍',color:'#BF5AF2',categories:['pensée critique','débat','philosophie'],textIds:[5]}
-];
+function findTextsForWord(wordId){const w=VOCABULARY.find(v=>v.id===wordId);if(!w)return[];return IMMERSION_TEXTS.filter(t=>t.words.includes(w.arabic))}
 function getParcoursWords(p){return VOCABULARY.filter(w=>p.categories.includes(w.category))}
-function getParcoursMastery(p,srsData){
-const words=getParcoursWords(p);
-if(!words.length)return 0;
-const known=words.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;
-return Math.round((known/words.length)*100);
-}
-function findParcoursForWord(wordId){
-const w=VOCABULARY.find(v=>v.id===wordId);
-if(!w)return null;
-return PARCOURS.find(p=>p.categories.includes(w.category))||null;
-}
-
-// ── ARBRE DE PROGRESSION (style Duolingo) ──
-// 10 unités de 5 mots, ordonnées par difficulté croissante. Chaque unité se débloque
-// après la réussite (≥80%) du palier de validation de l'unité précédente.
-const UNITS=[
-{id:1,title:'Bases du caractère',icon:'🌱',color:'#5E5CE6',wordIds:[7,12,19,20,31]},
-{id:2,title:'Qualités et défauts',icon:'🎭',color:'#FF9F0A',wordIds:[46,25,34,35,42]},
-{id:3,title:'Émotions et limites',icon:'💭',color:'#FF453A',wordIds:[45,1,8,11,13]},
-{id:4,title:'Valeurs humaines',icon:'🤝',color:'#BF5AF2',wordIds:[16,17,21,33,38]},
-{id:5,title:'Zones grises',icon:'🌓',color:'#30D158',wordIds:[47,48,49,50,4]},
-{id:6,title:'Société en tension',icon:'🏛️',color:'#0A84FF',wordIds:[23,26,27,41,2]},
-{id:7,title:'Nuances avancées',icon:'🌫️',color:'#64D2FF',wordIds:[3,5,6,18,22]},
-{id:8,title:'Penser le monde moderne',icon:'🧭',color:'#FFD60A',wordIds:[24,29,36,37,43]},
-{id:9,title:'Discours et pouvoir',icon:'🎙️',color:'#34C759',wordIds:[9,10,14,28,30]},
-{id:10,title:'Maîtrise totale',icon:'👑',color:'#5AC8FA',wordIds:[32,39,40,44,15]}
-];
+function getParcoursMastery(p,srsData){const words=getParcoursWords(p);if(!words.length)return 0;const known=words.filter(w=>srsData[w.id]&&srsData[w.id].status==='known').length;return Math.round((known/words.length)*100)}
+function findParcoursForWord(wordId){const w=VOCABULARY.find(v=>v.id===wordId);if(!w)return null;return PARCOURS.find(p=>p.categories.includes(w.category))||null}
 function getUnitWords(u){return VOCABULARY.filter(w=>u.wordIds.includes(w.id))}
-function loadUnitProgress(){try{return JSON.parse(localStorage.getItem('darija_units')||'{}')}catch(e){return{}}}
-function saveUnitProgress(p){try{localStorage.setItem('darija_units',JSON.stringify(p))}catch(e){}}
+function loadUnitProgress(){try{return JSON.parse(localStorage.getItem('francais_units')||'{}')}catch(e){return{}}}
+function saveUnitProgress(p){try{localStorage.setItem('francais_units',JSON.stringify(p))}catch(e){}}
 function isUnitUnlocked(unitId,progress){if(unitId===1)return true;return!!(progress[unitId-1]&&progress[unitId-1].completed)}
 function isUnitCompleted(unitId,progress){return!!(progress[unitId]&&progress[unitId].completed)}
+function loadSRS(){try{return JSON.parse(localStorage.getItem('francais_srs')||'{}')}catch(e){return{}}}
+function saveSRS(s){try{localStorage.setItem('francais_srs',JSON.stringify(s));return true}catch(e){return false}}
+function loadStats(){try{return JSON.parse(localStorage.getItem('francais_stats')||'{}')}catch(e){return{}}}
+function saveStats(s){try{localStorage.setItem('francais_stats',JSON.stringify(s));return true}catch(e){return false}}
 
-const LEVELS=[{id:"courant",label:"Courant",color:"#30D158"},{id:"riche",label:"Riche",color:"#0A84FF"},{id:"avancé",label:"Avancé",color:"#BF5AF2"},{id:"cultivé",label:"Très cultivé",color:"#FF9F0A"},{id:"élite",label:"Élite",color:"#FF453A"}];
-
-// ── STORAGE ──
-function loadSRS(){try{return JSON.parse(localStorage.getItem('darija_srs')||'{}')}catch(e){return{}}}
-function saveSRS(s){try{localStorage.setItem('darija_srs',JSON.stringify(s));return true}catch(e){return false}}
-function loadStats(){try{return JSON.parse(localStorage.getItem('darija_stats')||'{}')}catch(e){return{}}}
-function saveStats(s){try{localStorage.setItem('darija_stats',JSON.stringify(s));return true}catch(e){return false}}
-
-// ── SRS ENGINE (SM-2 simplifié) ──
-// quality: 0 = inconnu, 1 = moyen, 2 = je connais
 function reviewCard(srsData,id,quality){
-const prev=srsData[id]||{ease:2.5,interval:0,reps:0,due:new Date().toISOString()};
-let{ease,interval,reps}=prev;
-if(quality===0){reps=0;interval=1;ease=Math.max(1.3,ease-0.25)}
-else if(quality===1){reps=reps+1;interval=reps<=1?1:Math.max(1,Math.round(interval*1.2));ease=Math.max(1.3,ease-0.05)}
-else{reps=reps+1;interval=reps<=1?3:Math.round(interval*ease);ease=Math.min(2.8,ease+0.1)}
-const due=new Date(Date.now()+interval*86400000).toISOString();
-const status=quality===0?'unknown':quality===1?'medium':'known';
-const card={ease,interval,reps,due,status,lastReview:new Date().toISOString()};
-return{...srsData,[id]:card};
+  const prev=srsData[id]||{ease:2.5,interval:0,reps:0,due:new Date().toISOString()};
+  let{ease,interval,reps}=prev;
+  if(quality===0){reps=0;interval=1;ease=Math.max(1.3,ease-0.25)}
+  else if(quality===1){reps=reps+1;interval=reps<=1?1:Math.max(1,Math.round(interval*1.2));ease=Math.max(1.3,ease-0.05)}
+  else{reps=reps+1;interval=reps<=1?3:Math.round(interval*ease);ease=Math.min(2.8,ease+0.1)}
+  const due=new Date(Date.now()+interval*86400000).toISOString();
+  const status=quality===0?'unknown':quality===1?'medium':'known';
+  const card={ease,interval,reps,due,status,lastReview:new Date().toISOString()};
+  return{...srsData,[id]:card};
 }
 function isDue(card){if(!card)return true;return new Date(card.due)<=new Date()}
 function dayOfYear(d){return Math.floor((d-new Date(d.getFullYear(),0,0))/86400000)}
 
-// ── AUDIO ──
 let _voicesCache=[];
 function warmUpVoices(){
-try{
-if(!('speechSynthesis' in window))return;
-const synth=window.speechSynthesis;
-const grab=()=>{const v=synth.getVoices();if(v&&v.length)_voicesCache=v};
-grab();
-synth.addEventListener('voiceschanged',grab);
-}catch(e){}
+  try{
+    if(!('speechSynthesis' in window))return;
+    const synth=window.speechSynthesis;
+    const grab=()=>{const v=synth.getVoices();if(v&&v.length)_voicesCache=v};
+    grab();
+    synth.addEventListener('voiceschanged',grab);
+  }catch(e){}
 }
-function speakArabic(text){
-try{
-if(!('speechSynthesis' in window))return;
-const synth=window.speechSynthesis;
-synth.cancel();
-const voices=(_voicesCache&&_voicesCache.length)?_voicesCache:synth.getVoices();
-const u=new SpeechSynthesisUtterance(text);
-const arVoice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('ar'));
-if(arVoice)u.voice=arVoice;
-u.lang=arVoice?arVoice.lang:'ar-SA';
-u.rate=0.8;
-u.pitch=1;
-synth.speak(u);
-}catch(e){}
+function speakFrench(text){
+  try{
+    if(!('speechSynthesis' in window))return;
+    const synth=window.speechSynthesis;
+    synth.cancel();
+    const voices=(_voicesCache&&_voicesCache.length)?_voicesCache:synth.getVoices();
+    const u=new SpeechSynthesisUtterance(text);
+    const frVoice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith('fr'));
+    if(frVoice)u.voice=frVoice;
+    u.lang=frVoice?frVoice.lang:'fr-FR';
+    u.rate=0.85;
+    u.pitch=1;
+    synth.speak(u);
+  }catch(e){}
 }
 
-// ── HELPERS ──
-function LevelBadge({level}){const f=LEVELS.find(l=>l.id===level)||LEVELS[1];return React.createElement('span',{className:'level-badge',style:{color:f.color,borderColor:f.color+'44'}},f.label)}
+function LevelBadge({level}){const f=LEVELS.find(l=>l.id===level)||LEVELS[0];return React.createElement('span',{className:'level-badge',style:{color:f.color,borderColor:f.color+'44'}},f.label)}
 function DiffDots({n}){return React.createElement('div',{className:'diff-dots'},...[1,2,3,4,5].map(i=>React.createElement('div',{key:i,className:'diff-dot'+(i<=n?' filled':'')})))}
-
-// ── WORD DETAIL ──
+// ============================================================
+// COMPOSANT WORD DETAIL
+// ============================================================
 function WordDetail({word,onBack,onSRS,srsData,onGoToImmersion}){
   const[showAll,setShowAll]=useState(false);
   const card=srsData[word.id]||null;
@@ -267,9 +292,9 @@ function WordDetail({word,onBack,onSRS,srsData,onGoToImmersion}){
       React.createElement('div',{className:'word-hero-content'},
         React.createElement('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}},
           React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),word.register),
-          React.createElement('button',{onClick:()=>speakArabic(word.arabic),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer',flexShrink:0}},'🔊')
+          React.createElement('button',{onClick:()=>speakFrench(word.arabic),style:{background:'rgba(255,255,255,.08)',border:'1px solid rgba(255,255,255,.15)',borderRadius:'50%',width:38,height:38,fontSize:16,color:'#fff',cursor:'pointer',flexShrink:0}},'🔊')
         ),
-        React.createElement('div',{className:'arabic-text'},word.arabic),
+        React.createElement('div',{className:'french-word'},word.arabic),
         React.createElement('div',{className:'transliteration'},word.transliteration),
         React.createElement('div',{className:'definition-text'},word.definition)
       )
@@ -296,11 +321,11 @@ function WordDetail({word,onBack,onSRS,srsData,onGoToImmersion}){
       React.createElement('div',{className:'card'},
         React.createElement('div',{className:'detail-row'},
           React.createElement('span',{className:'detail-label'},'Synonymes'),
-          React.createElement('span',{className:'detail-value',style:{direction:'rtl'}},word.synonyms.join('، ')||'—')
+          React.createElement('span',{className:'detail-value'},word.synonyms.join(' · ')||'—')
         ),
         React.createElement('div',{className:'detail-row'},
           React.createElement('span',{className:'detail-label'},'Antonymes'),
-          React.createElement('span',{className:'detail-value',style:{direction:'rtl'}},word.antonyms.join('، ')||'—')
+          React.createElement('span',{className:'detail-value'},word.antonyms.join(' · ')||'—')
         )
       )
     ),
@@ -319,6 +344,9 @@ function WordDetail({word,onBack,onSRS,srsData,onGoToImmersion}){
         )
       )
     ),
+    word.tip_darija && React.createElement('div',{className:'section'},
+      React.createElement('div',{className:'tip-darija'},word.tip_darija)
+    ),
     React.createElement('div',{className:'section'},
       React.createElement('div',{style:{fontSize:13,color:'var(--text3)',textAlign:'center',marginBottom:12}},'Tu connais ce mot ?'),
       React.createElement('div',{className:'card'},
@@ -333,7 +361,9 @@ function WordDetail({word,onBack,onSRS,srsData,onGoToImmersion}){
   );
 }
 
-// ── HOME ──
+// ============================================================
+// COMPOSANT HOME
+// ============================================================
 function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQuizDue,onGoToProgress}){
   const isInstalled=window.navigator.standalone||window.matchMedia('(display-mode:standalone)').matches;
   const todayWord=VOCABULARY[dayOfYear(new Date())%VOCABULARY.length];
@@ -348,27 +378,25 @@ function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQui
     ),
     React.createElement('div',{style:{padding:'16px 16px 8px'}},
       React.createElement('div',{style:{fontSize:13,color:'var(--text3)',marginBottom:4}},'Bonjour 👋'),
-      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Darija Elevate')
+      React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5}},'Français Elevate')
     ),
     React.createElement('div',{style:{display:'flex',gap:10,padding:'12px 16px'}},
       React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--green)'}},known),React.createElement('div',{className:'stat-label'},'Connus')),
       React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--orange)'}},medium),React.createElement('div',{className:'stat-label'},'En révision')),
       React.createElement('div',{className:'stat-block'},React.createElement('div',{className:'stat-num',style:{color:'var(--accent)'}},stats.streak||0),React.createElement('div',{className:'stat-label'},'Série 🔥'))
     ),
-
     React.createElement('div',{style:{padding:'8px 16px 4px'}},
       React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'MOT DU JOUR')
     ),
     React.createElement('div',{className:'word-hero',onClick:()=>onOpen(todayWord)},
       React.createElement('div',{className:'word-hero-content'},
         React.createElement('div',{className:'word-badge'},React.createElement('span',{className:'dot-live'}),todayWord.register),
-        React.createElement('div',{className:'arabic-text'},todayWord.arabic),
+        React.createElement('div',{className:'french-word'},todayWord.arabic),
         React.createElement('div',{className:'transliteration'},todayWord.transliteration),
         React.createElement('div',{className:'definition-text'},todayWord.definition),
         React.createElement('div',{style:{marginTop:12,fontSize:12,color:'rgba(255,255,255,.4)'}},'Toucher pour explorer →')
       )
     ),
-
     React.createElement('div',{style:{padding:'16px 16px 4px'}},
       React.createElement('div',{style:{fontSize:12,fontWeight:600,color:'var(--text3)',textTransform:'uppercase',letterSpacing:1}},'CONTINUER')
     ),
@@ -400,7 +428,6 @@ function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQui
         React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
       )
     ),
-
     React.createElement('div',{className:'section',style:{marginTop:8}},
       React.createElement('div',{className:'section-title'},'À réviser'),
       React.createElement('div',{className:'card'},
@@ -408,7 +435,7 @@ function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQui
           React.createElement('div',{key:w.id,className:'word-list-item',onClick:()=>onOpen(w)},
             React.createElement('div',{className:'word-list-left'},
               React.createElement('div',null,
-                React.createElement('div',{className:'word-arabic-sm'},w.arabic),
+                React.createElement('div',{className:'word-french-sm'},w.arabic),
                 React.createElement('div',{className:'word-translit-sm'},w.transliteration)
               )
             ),
@@ -423,9 +450,11 @@ function HomeTab({onOpen,srsData,stats,lastImmersionId,onGoToImmersion,onGoToQui
   );
 }
 
-// ── LIBRARY ──
+// ============================================================
+// COMPOSANT LIBRARY
+// ============================================================
 function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizUnit,unitProgress}){
-  const[view,setView]=useState('tree'); // 'tree' | 'unit' | 'all'
+  const[view,setView]=useState('tree');
   const[activeUnit,setActiveUnit]=useState(null);
   const[search,setSearch]=useState('');
   const[cat,setCat]=useState('all');
@@ -437,7 +466,7 @@ function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizUnit,unitProgress}
       React.createElement('div',{className:'word-list-left'},
         React.createElement('div',{style:{width:40,height:40,borderRadius:12,background:(catObj?.color||'#888')+'22',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18,flexShrink:0}},catObj?.icon||'📝'),
         React.createElement('div',null,
-          React.createElement('div',{className:'word-arabic-sm'},w.arabic),
+          React.createElement('div',{className:'word-french-sm'},w.arabic),
           React.createElement('div',{className:'word-translit-sm'},w.transliteration+' · '+w.register.split(' · ')[0])
         )
       ),
@@ -449,7 +478,6 @@ function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizUnit,unitProgress}
     );
   };
 
-  // ── VUE "TOUS LES MOTS" (liste plate, recherche libre) ──
   if(view==='all'){
     const filtered=VOCABULARY.filter(w=>{
       const ms=!search||w.arabic.includes(search)||w.transliteration.toLowerCase().includes(search.toLowerCase())||w.definition.toLowerCase().includes(search.toLowerCase());
@@ -475,7 +503,6 @@ function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizUnit,unitProgress}
     );
   }
 
-  // ── VUE DÉTAIL D'UNE UNITÉ ──
   if(view==='unit'&&activeUnit){
     const u=activeUnit;
     const words=getUnitWords(u);
@@ -503,11 +530,10 @@ function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizUnit,unitProgress}
     );
   }
 
-  // ── VUE PRINCIPALE : ARBRE DE PROGRESSION ──
   return React.createElement('div',null,
     React.createElement('div',{style:{padding:'20px 16px 4px'}},
       React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Parcours'),
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Progresse unité par unité, du plus simple au plus rare')
+      React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Progresse unité par unité')
     ),
     React.createElement('div',{style:{padding:'16px 16px 8px',display:'flex',flexDirection:'column',alignItems:'center'}},
       UNITS.map((u,i)=>{
@@ -532,7 +558,9 @@ function LibraryTab({onOpen,srsData,onGoToImmersion,onGoToQuizUnit,unitProgress}
   );
 }
 
-// ── IMMERSION ──
+// ============================================================
+// COMPOSANT IMMERSION
+// ============================================================
 function ImmersionTab({onOpen,activeId,onSetActiveId,onRead}){
   const active=IMMERSION_TEXTS.find(t=>t.id===activeId)||IMMERSION_TEXTS[0];
   const[toast,setToast]=useState(null);
@@ -570,7 +598,7 @@ function ImmersionTab({onOpen,activeId,onSetActiveId,onRead}){
       React.createElement('div',{className:'card'},
         React.createElement('div',{style:{padding:20}},
           React.createElement('div',{style:{fontSize:11,fontWeight:600,color:'var(--text3)',marginBottom:12,textTransform:'uppercase',letterSpacing:1}},active.category.toUpperCase()),
-          React.createElement('div',{style:{fontSize:16,lineHeight:1.9,direction:'rtl',color:'var(--text2)'}},
+          React.createElement('div',{style:{fontSize:16,lineHeight:1.9,color:'var(--text2)'}},
             ...renderText(active.text,active.words).map((p,i)=>
               p.isWord?React.createElement('span',{key:i,className:'immersion-word',onClick:()=>tap(p.text)},p.text):React.createElement('span',{key:i},p.text)
             )
@@ -583,7 +611,7 @@ function ImmersionTab({onOpen,activeId,onSetActiveId,onRead}){
       React.createElement('div',{className:'card',style:{padding:16,display:'flex',flexDirection:'column',gap:8}},
         keyWords.map(w=>React.createElement('div',{key:w.id,onClick:()=>onOpen(w),style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'10px 4px',cursor:'pointer',borderBottom:'1px solid var(--border)'}},
           React.createElement('div',null,
-            React.createElement('div',{style:{fontSize:15,fontWeight:600,direction:'rtl'}},w.arabic),
+            React.createElement('div',{style:{fontSize:15,fontWeight:600}},w.arabic),
             React.createElement('div',{style:{fontSize:12,color:'var(--text3)'}},w.transliteration)
           ),
           React.createElement('span',{style:{color:'var(--text3)',fontSize:18}},'›')
@@ -593,7 +621,9 @@ function ImmersionTab({onOpen,activeId,onSetActiveId,onRead}){
   );
 }
 
-// ── QUIZ ──
+// ============================================================
+// COMPOSANT QUIZ
+// ============================================================
 function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,initialUnitId,onModeConsumed,onUnitComplete,onExitToLibrary}){
   const[mode,setMode]=useState(initialMode||'menu');
   const[textId,setTextId]=useState(initialTextId||IMMERSION_TEXTS[0].id);
@@ -617,7 +647,6 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,init
     return{word,options:opts,correct:word.definition};
   };
 
-  // ── MODE PALIER (session fixe avec score) ──
   const[session,setSession]=useState([]);
   const[sessionIdx,setSessionIdx]=useState(0);
   const[correctCount,setCorrectCount]=useState(0);
@@ -633,7 +662,6 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,init
   },[mode,unitId]);
   const sessionQ=mode==='unit'&&session.length?makeQFor(session[sessionIdx]):null;
 
-  // ── MODES LIBRES (infinis) ──
   const[idx,setIdx]=useState(0);
   const[selected,setSelected]=useState(null);
   const pickWord=lastId=>{
@@ -704,7 +732,6 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,init
     )
   );
 
-  // ── ÉCRAN DE RÉSULTATS DU PALIER ──
   if(mode==='unit'&&finished){
     const u=UNITS.find(x=>x.id===unitId);
     const score=session.length?Math.round((correctCount/session.length)*100):0;
@@ -733,7 +760,7 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,init
         React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
           React.createElement('div',{className:'word-hero-content'},
             React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
-            React.createElement('div',{className:'arabic-text'},sessionQ.word.arabic),
+            React.createElement('div',{className:'french-word'},sessionQ.word.arabic),
             React.createElement('div',{className:'transliteration'},sessionQ.word.transliteration),
             React.createElement('div',{style:{marginTop:10}},React.createElement(LevelBadge,{level:sessionQ.word.level}))
           )
@@ -761,7 +788,7 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,init
       React.createElement('div',{className:'word-hero',style:{cursor:'default',marginBottom:20}},
         React.createElement('div',{className:'word-hero-content'},
           React.createElement('div',{style:{fontSize:11,color:'rgba(255,255,255,.4)',textTransform:'uppercase',letterSpacing:1,marginBottom:12}},'QUEL EST LE SENS ?'),
-          React.createElement('div',{className:'arabic-text'},q.word.arabic),
+          React.createElement('div',{className:'french-word'},q.word.arabic),
           React.createElement('div',{className:'transliteration'},q.word.transliteration),
           React.createElement('div',{style:{marginTop:10}},React.createElement(LevelBadge,{level:q.word.level}))
         )
@@ -775,7 +802,9 @@ function QuizTab({srsData,onSRS,initialMode,initialTextId,initialParcoursId,init
   );
 }
 
-// ── PROGRESS ──
+// ============================================================
+// COMPOSANT PROGRESS
+// ============================================================
 function ProgressTab({srsData,stats,onImport,readTexts}){
   const known=Object.values(srsData).filter(v=>v.status==='known').length;
   const medium=Object.values(srsData).filter(v=>v.status==='medium').length;
@@ -783,7 +812,7 @@ function ProgressTab({srsData,stats,onImport,readTexts}){
   const pctKnown=Math.round((known/VOCABULARY.length)*100);
   const hasReadImmersion=(readTexts||[]).length>0;
   const badge=pctKnown>70&&hasReadImmersion?{ar:'المفكر',fr:'Penseur',color:'#BF5AF2',icon:'🧠'}
-    :pctKnown>=30?{ar:'المشارك',fr:'Participant au débat',color:'#0A84FF',icon:'💬'}
+    :pctKnown>=30?{ar:'المشارك',fr:'Participant',color:'#0A84FF',icon:'💬'}
     :{ar:'الملاحظ',fr:'Observateur',color:'#8E8E93',icon:'👁️'};
   const fileRef=useRef(null);
   const handleExport=()=>{
@@ -792,7 +821,7 @@ function ProgressTab({srsData,stats,onImport,readTexts}){
       const blob=new Blob([data],{type:'application/json'});
       const url=URL.createObjectURL(blob);
       const a=document.createElement('a');
-      a.href=url;a.download='darija-elevate-backup.json';a.click();
+      a.href=url;a.download='francais-elevate-backup.json';a.click();
       URL.revokeObjectURL(url);
     }catch(e){}
   };
@@ -812,7 +841,7 @@ function ProgressTab({srsData,stats,onImport,readTexts}){
   return React.createElement('div',null,
     React.createElement('div',{style:{padding:'20px 16px 8px'}},
       React.createElement('div',{style:{fontSize:26,fontWeight:700,letterSpacing:-.5,marginBottom:4}},'Progression'),
-      React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Votre parcours vers l\'élite')
+      React.createElement('div',{style:{fontSize:13,color:'var(--text3)'}},'Votre parcours vers la maîtrise')
     ),
     React.createElement('div',{style:{padding:'0 16px 16px'}},
       React.createElement('div',{style:{display:'flex',alignItems:'center',gap:12,background:badge.color+'22',border:'1px solid '+badge.color+'55',borderRadius:16,padding:'14px 18px'}},
@@ -889,7 +918,9 @@ function ProgressTab({srsData,stats,onImport,readTexts}){
   );
 }
 
-// ── APP ──
+// ============================================================
+// COMPOSANT APP
+// ============================================================
 const TABS=[{id:'home',icon:'⌂',label:'Accueil'},{id:'library',icon:'◫',label:'Mots'},{id:'immersion',icon:'◉',label:'Immersion'},{id:'quiz',icon:'◈',label:'Quiz'},{id:'progress',icon:'▣',label:'Progrès'}];
 
 function App(){
@@ -907,8 +938,8 @@ function App(){
     }
     return s;
   });
-  const[immersionId,setImmersionIdState]=useState(()=>{try{return JSON.parse(localStorage.getItem('darija_last_immersion'))||IMMERSION_TEXTS[0].id}catch(e){return IMMERSION_TEXTS[0].id}});
-  const[readTexts,setReadTexts]=useState(()=>{try{return JSON.parse(localStorage.getItem('darija_read_texts'))||[]}catch(e){return[]}});
+  const[immersionId,setImmersionIdState]=useState(()=>{try{return JSON.parse(localStorage.getItem('francais_last_immersion'))||IMMERSION_TEXTS[0].id}catch(e){return IMMERSION_TEXTS[0].id}});
+  const[readTexts,setReadTexts]=useState(()=>{try{return JSON.parse(localStorage.getItem('francais_read_texts'))||[]}catch(e){return[]}});
   const[unitProgress,setUnitProgress]=useState(loadUnitProgress);
   const[quizInit,setQuizInit]=useState(null);
 
@@ -922,8 +953,8 @@ function App(){
     setStats(st);saveStats(st);
   };
 
-  const setImmersionId=id=>{setImmersionIdState(id);try{localStorage.setItem('darija_last_immersion',JSON.stringify(id))}catch(e){}};
-  const markTextRead=id=>{setReadTexts(prev=>{if(prev.includes(id))return prev;const n=[...prev,id];try{localStorage.setItem('darija_read_texts',JSON.stringify(n))}catch(e){}return n})};
+  const setImmersionId=id=>{setImmersionIdState(id);try{localStorage.setItem('francais_last_immersion',JSON.stringify(id))}catch(e){}};
+  const markTextRead=id=>{setReadTexts(prev=>{if(prev.includes(id))return prev;const n=[...prev,id];try{localStorage.setItem('francais_read_texts',JSON.stringify(n))}catch(e){}return n})};
   const goToImmersion=id=>{setImmersionId(id);setWord(null);setTab('immersion');scrollRef.current?.scrollTo(0,0)};
   const goToQuizDue=()=>{setQuizInit({mode:'due'});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
   const goToQuizParcours=pid=>{setQuizInit({mode:'parcours',parcoursId:pid});setWord(null);setTab('quiz');scrollRef.current?.scrollTo(0,0)};
@@ -958,6 +989,9 @@ function App(){
   );
 }
 
+// ============================================================
+// LANCEMENT DE L'APPLICATION
+// ============================================================
 warmUpVoices();
 ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
 
