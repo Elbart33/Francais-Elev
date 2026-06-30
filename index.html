@@ -15,7 +15,7 @@
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#000;--bg2:#0C0C0E;--bg3:#1C1C1E;--bg4:#2C2C2E;--bg5:#3A3A3C;--text:#FFF;--text2:rgba(255,255,255,.8);--text3:rgba(255,255,255,.5);--accent:#5E5CE6;--green:#30D158;--red:#FF453A;--orange:#FF9F0A;--border:rgba(255,255,255,.08);--darija:#BF5AF2;--darija-bg:rgba(191,90,242,.12)}
+:root{--bg:#000;--bg2:#0C0C0E;--bg3:#1C1C1E;--bg4:#2C2C2E;--bg5:#3A3A3C;--text:#FFF;--text2:rgba(255,255,255,.8);--text3:rgba(255,255,255,.5);--accent:#5E5CE6;--green:#30D158;--red:#FF453A;--orange:#FF9F0A;--border:rgba(255,255,255,.08);--darija:#BF5AF2;--darija-bg:rgba(191,90,242,.12);--arabic:#FFD60A;--arabic-bg:rgba(255,214,10,.1)}
 html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif;overflow:hidden;height:100%}
 #root{height:100%}
 .app{max-width:430px;margin:0 auto;height:100vh;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
@@ -33,6 +33,10 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 .french-word{font-size:48px;font-weight:700;margin-bottom:6px}
 .transliteration{font-size:21px;color:var(--text2);font-style:italic;margin-bottom:12px}
 .definition-text{font-size:20px;color:var(--text2);line-height:1.6}
+.translation-block{background:var(--bg4);border-radius:14px;padding:16px;margin:12px 0;border-left:4px solid var(--arabic)}
+.translation-block .trans-title{font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.translation-block .trans-ar{font-size:19px;color:var(--arabic);direction:rtl;text-align:right;font-weight:500}
+.translation-block .trans-darija{font-size:19px;color:var(--darija);direction:rtl;text-align:right;margin-top:6px;font-weight:500}
 .tag{display:inline-flex;align-items:center;background:var(--bg4);border-radius:8px;padding:5px 11px;font-size:15px;font-weight:500;color:var(--text2)}
 .section{padding:0 16px;margin-bottom:18px}
 .section-title{font-size:24px;font-weight:700;margin-bottom:14px}
@@ -97,6 +101,10 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-
 .size-btn{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:8px 16px;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
 .size-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .size-btn:active{transform:scale(.95)}
+.consigne-box{background:var(--bg3);border:2px solid var(--accent);border-radius:16px;padding:16px 20px;margin:12px 16px}
+.consigne-box .consigne-title{font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px}
+.consigne-box .consigne-text{font-size:18px;color:var(--text2);line-height:1.5}
+.consigne-box .consigne-darija{font-size:18px;color:var(--darija);margin-top:8px;direction:rtl;text-align:right}
 </style>
 </head>
 <body>
@@ -147,6 +155,14 @@ example&&React.createElement('div',{className:'tip-example'},'📖 '+example)
 );
 }
 
+function Consigne({text,darija}){
+return React.createElement('div',{className:'consigne-box'},
+React.createElement('div',{className:'consigne-title'},'📝 CONSIGNE'),
+React.createElement('div',{className:'consigne-text'},text),
+React.createElement('div',{className:'consigne-darija'},'💡 '+darija)
+);
+}
+
 function WordDetail({word,onBack,onSRS,srs,onGoText,fontSize}){
 const[showAll,setShowAll]=useState(false);
 const card=srs[word.id]||null;
@@ -169,6 +185,13 @@ React.createElement('button',{onClick:()=>speak(word.a),style:{background:'rgba(
 React.createElement('div',{className:'french-word',style:style},word.a),
 React.createElement('div',{className:'transliteration'},word.t),
 React.createElement('div',{className:'definition-text',style:style},word.d)
+)
+),
+(word.ar||word.darija)&&React.createElement('div',{className:'section'},
+React.createElement('div',{className:'translation-block'},
+React.createElement('div',{className:'trans-title'},'🌍 TRADUCTION'),
+word.ar&&React.createElement('div',{className:'trans-ar'},'العربية الفصحى : '+word.ar),
+word.darija&&React.createElement('div',{className:'trans-darija'},'الدارجة المغربية : '+word.darija)
 )
 ),
 ctx.length>0&&React.createElement('div',{style:{padding:'0 16px 16px'}},
@@ -259,7 +282,6 @@ const due=V.filter(w=>isDue(srs[w.id]));
 const pct=Math.round((known/V.length)*100);
 const last=TEXTS.find(t=>t.id===lastTextId)||TEXTS[0];
 const style=fontSize?{fontSize:fontSize+'px'}:{};
-// Mission steps
 const steps=[
 {id:'learn',icon:'📖',title:'Apprendre un mot',sub:today.a,action:()=>onOpen(today),done:false},
 {id:'read',icon:'📄',title:'Lire le texte',sub:last.t,action:()=>onGoText(last.id),done:false},
@@ -578,6 +600,7 @@ React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Quiz'),
 React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Choisis ton mode'),
 React.createElement('div',{style:{fontSize:14,color:'var(--darija)',marginTop:6,direction:'rtl',textAlign:'right'}},'اختار طريقة المراجعة اللي كتعجبك')
 ),
+React.createElement(Consigne,{text:'Choisis le mode de quiz qui correspond à tes besoins. Tu peux réviser tous les mots, seulement ceux à réviser, ou cibler une unité ou un texte spécifique.',darija:'اختار الطريقة المناسبة للمراجعة. يمكنك مراجعة كل الكلمات، أو فقط اللي خاصك تراجعهم، أو تختار وحدة معينة.'}),
 React.createElement('div',{className:'section'},
 React.createElement('div',{className:'card',style:{padding:16,marginBottom:12,cursor:'pointer'},onClick:()=>setMode('general')},
 React.createElement('div',{style:{fontSize:15,fontWeight:600}},'🎯 Général'),
@@ -615,8 +638,22 @@ React.createElement('button',{onClick:()=>onExit&&onExit(),style:{width:'100%',b
 
 if(!question)return React.createElement('div',{style:{padding:40,textAlign:'center'}},'Chargement...');
 
+const consignes={
+general:'Choisis la bonne définition pour le mot proposé. Clique sur la bonne réponse.',
+text:'Choisis la bonne définition pour le mot proposé dans le contexte du texte.',
+unit:'Choisis la bonne définition pour le mot proposé. Clique sur la bonne réponse.',
+due:'Choisis la bonne définition pour le mot proposé. Clique sur la bonne réponse.'
+};
+const consignesDarija={
+general:'اختر التعريف المناسب للكلمة المعروضة. ضغط على الجواب الصحيح.',
+text:'اختر التعريف المناسب للكلمة المعروضة فسياق النص.',
+unit:'اختر التعريف المناسب للكلمة المعروضة. ضغط على الجواب الصحيح.',
+due:'اختر التعريف المناسب للكلمة المعروضة. ضغط على الجواب الصحيح.'
+};
+
 if(mode==='unit'){
 return React.createElement('div',null,
+React.createElement(Consigne,{text:consignes.unit||consignes.general,darija:consignesDarija.unit||consignesDarija.general}),
 React.createElement('div',{style:{padding:'20px 16px 8px'}},
 React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Palier'),
 React.createElement('div',{style:{fontSize:15,color:'var(--text3)'}},'Question '+(sessionIdx+1)+' / '+session.length)
@@ -643,6 +680,7 @@ feedback&&React.createElement('div',{className:'quiz-feedback'},feedback)
 }
 
 return React.createElement('div',null,
+React.createElement(Consigne,{text:consignes[mode]||consignes.general,darija:consignesDarija[mode]||consignesDarija.general}),
 React.createElement('div',{style:{padding:'20px 16px 8px',display:'flex',justifyContent:'space-between'}},
 React.createElement('div',null,
 React.createElement('div',{style:{fontSize:26,fontWeight:700}},'Quiz'),
